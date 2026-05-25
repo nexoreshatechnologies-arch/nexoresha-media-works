@@ -155,7 +155,7 @@ export default function Hero() {
   };
 
   return (
-    <div ref={containerRef} className="relative w-full h-[300vh] bg-[#F9EEDC]">
+    <div id="home" ref={containerRef} className="relative w-full h-[300vh] bg-[#F9EEDC]">
       {/* Sticky Content Wrapper (Height locked to viewport) */}
       <div 
         className="sticky top-0 left-0 w-full h-screen overflow-hidden bg-[#F9EEDC]"

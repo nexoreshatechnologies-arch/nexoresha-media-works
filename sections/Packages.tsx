@@ -113,20 +113,44 @@ export default function Packages() {
         
         {/* Header */}
         <div className="text-center max-w-xl mx-auto mb-20 space-y-4">
-          <span className="text-xs uppercase font-bold tracking-widest text-[#8B0000]">
+          <motion.span 
+            initial={{ opacity: 0, scale: 0.9 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6, type: 'spring' }}
+            className="text-xs uppercase font-bold tracking-widest text-[#8B0000] block"
+          >
             Pricing Structure
-          </span>
-          <h2 className="font-display text-4xl md:text-6xl text-[#4A0404] uppercase leading-none">
+          </motion.span>
+          <motion.h2 
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            whileHover={{ scale: 1.03, color: '#8B0000' }}
+            transition={{ 
+              y: { type: 'spring', stiffness: 100 },
+              scale: { type: 'spring', stiffness: 300, damping: 15 },
+              color: { duration: 0.3 },
+              default: { duration: 0.8, delay: 0.1, type: 'spring', stiffness: 100 }
+            }}
+            className="font-display text-4xl md:text-6xl text-[#4A0404] uppercase leading-none cursor-default inline-block"
+          >
             LUXURY PACKAGES
-          </h2>
-          <p className="text-sm md:text-base text-[#1E1E1E]/70 font-light leading-relaxed">
+          </motion.h2>
+          <motion.p 
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8, delay: 0.2, type: 'spring', stiffness: 100 }}
+            className="text-sm md:text-base text-[#1E1E1E]/70 font-light leading-relaxed"
+          >
             Select the level of visual authority your brand demands. All plans are optimized for long-term organic growth.
-          </p>
+          </motion.p>
         </div>
 
         {/* Plan Cards Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 items-stretch pt-6">
-          {plans.map((plan) => {
+          {plans.map((plan, index) => {
             const Icon = plan.icon;
             const isGold = plan.name === 'Gold';
 
@@ -137,7 +161,12 @@ export default function Packages() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, margin: '-50px' }}
                 whileHover={{ y: -8, scale: isGold ? 1.06 : 1.03 }}
-                transition={{ type: 'spring', stiffness: 350, damping: 20 }}
+                transition={{ 
+                  y: { type: 'spring', stiffness: 350, damping: 20 },
+                  scale: { type: 'spring', stiffness: 350, damping: 20 },
+                  opacity: { duration: 0.5, delay: index * 0.1 },
+                  default: { duration: 0.5, delay: index * 0.1 }
+                }}
                 className={`relative rounded-3xl p-8 border flex flex-col justify-between overflow-hidden group ${plan.themeClass}`}
               >
                 {/* Visual shine sweep overlay */}
@@ -147,7 +176,7 @@ export default function Packages() {
 
                 {/* Badge for Gold */}
                 {plan.badge && (
-                  <div className="absolute top-4 left-1/2 -translate-x-1/2 bg-[#8B0000] text-white text-[9px] font-bold px-4 py-1.5 rounded-full border border-white/20 tracking-wider shadow-md uppercase">
+                  <div className="absolute top-4 left-1/2 -translate-x-1/2 bg-[#8B0000] text-white text-[9px] font-bold px-4 py-1.5 rounded-full border border-white/20 tracking-wider shadow-md uppercase z-20">
                     {plan.badge}
                   </div>
                 )}
@@ -165,10 +194,10 @@ export default function Packages() {
                         {plan.description}
                       </p>
                     </div>
-                    <div className={`w-10 h-10 rounded-xl flex items-center justify-center border ${
+                    <div className={`w-10 h-10 rounded-xl flex items-center justify-center border transition-all duration-500 group-hover:scale-110 group-hover:rotate-12 group-hover:bg-[#8B0000] group-hover:text-[#F9EEDC] group-hover:border-[#8B0000]/20 group-hover:shadow-[0_4px_12px_rgba(139,0,0,0.2)] ${
                       isGold ? 'bg-white/10 border-white/10 text-[#EAD8C0]' : 'bg-[#4A0404]/5 border-[#4A0404]/10 text-[#4A0404]'
                     }`}>
-                      <Icon className="w-5 h-5" />
+                      <Icon className="w-5 h-5 animate-pulse" />
                     </div>
                   </div>
 
@@ -184,9 +213,9 @@ export default function Packages() {
                   {/* Deliverables List */}
                   <ul className="space-y-3.5 pt-2">
                     {plan.deliverables.map((item, idx) => (
-                      <li key={idx} className="flex items-start gap-2.5 text-xs font-light leading-relaxed">
-                        <Check className={`w-4 h-4 mt-0.5 flex-shrink-0 ${isGold ? 'text-[#EAD8C0]' : 'text-[#8B0000]'}`} />
-                        <span>{item}</span>
+                      <li key={idx} className="flex items-start gap-2.5 text-xs font-light leading-relaxed group/item cursor-default">
+                        <Check className={`w-4 h-4 mt-0.5 flex-shrink-0 transition-transform duration-300 group-hover/item:scale-125 group-hover:scale-105 ${isGold ? 'text-[#EAD8C0]' : 'text-[#8B0000]'}`} />
+                        <span className={`transition-colors duration-300 ${isGold ? 'group-hover/item:text-[#EAD8C0]' : 'group-hover/item:text-[#8B0000]'}`}>{item}</span>
                       </li>
                     ))}
                   </ul>
@@ -194,12 +223,14 @@ export default function Packages() {
 
                 {/* Card Action CTA */}
                 <div className="pt-8 relative z-10">
-                  <button
+                  <motion.button
+                    whileTap={{ scale: 0.96 }}
+                    whileHover={{ scale: 1.02 }}
                     onClick={() => handleSelectPackage(plan)}
                     className={`w-full py-4.5 rounded-xl font-display tracking-widest text-sm uppercase transition-all duration-300 border font-semibold cursor-pointer ${plan.buttonStyle}`}
                   >
                     Select {plan.name}
-                  </button>
+                  </motion.button>
                 </div>
 
               </motion.div>

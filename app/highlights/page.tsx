@@ -137,14 +137,14 @@ export default function HighlightsPage() {
           className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
         >
           <AnimatePresence mode="popLayout">
-            {filteredReels.map((reel) => (
+            {filteredReels.map((reel, index) => (
               <motion.div
                 key={reel.title}
                 layout
-                initial={{ opacity: 0, scale: 0.95 }}
-                animate={{ opacity: 1, scale: 1 }}
+                initial={{ opacity: 0, y: 30, scale: 0.95 }}
+                animate={{ opacity: 1, y: 0, scale: 1 }}
                 exit={{ opacity: 0, scale: 0.95 }}
-                transition={{ duration: 0.3 }}
+                transition={{ duration: 0.35, delay: index * 0.06 }}
               >
                 <HighlightCard
                   title={reel.title}

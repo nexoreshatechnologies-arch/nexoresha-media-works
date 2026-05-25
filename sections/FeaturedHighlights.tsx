@@ -3,6 +3,7 @@
 import { useState } from 'react';
 import Link from 'next/link';
 import { ArrowUpRight } from 'lucide-react';
+import { motion } from 'framer-motion';
 import HighlightCard from '@/components/HighlightCard';
 import VideoModal from '@/components/VideoModal';
 
@@ -52,43 +53,81 @@ export default function FeaturedHighlights() {
   return (
     <section id="highlights" className="py-28 px-6 md:px-12 max-w-7xl mx-auto bg-[#F9EEDC]">
       {/* Header */}
-      <div className="flex flex-col md:flex-row justify-between items-start md:items-end mb-16 gap-6">
-        <div className="space-y-4">
-          <span className="text-xs uppercase font-bold tracking-widest text-[#8B0000]">
-            Creative Showreel
-          </span>
-          <h2 className="font-display text-4xl md:text-6xl text-[#4A0404] uppercase leading-none">
-            FEATURED WORKS
-          </h2>
-          <p className="text-sm md:text-base text-[#1E1E1E]/70 max-w-md font-light leading-relaxed">
-            A curated showcase of our high-impact vertical campaigns and luxury visual narratives.
-          </p>
-        </div>
-        
-        <Link
-          href="/highlights"
-          className="group flex items-center gap-1 text-sm font-semibold uppercase tracking-wider text-[#4A0404] border-b-2 border-[#4A0404] pb-1 cursor-pointer"
+      <div className="text-center max-w-2xl mx-auto mb-16 space-y-4">
+        <motion.span 
+          initial={{ opacity: 0, scale: 0.9 }}
+          whileInView={{ opacity: 1, scale: 1 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6, type: 'spring' }}
+          className="text-xs uppercase font-bold tracking-widest text-[#8B0000] block"
         >
-          Explore More
-          <ArrowUpRight className="w-4 h-4 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
-        </Link>
+          Creative Showreel
+        </motion.span>
+        <motion.h2 
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          whileHover={{ scale: 1.03, color: '#8B0000' }}
+          transition={{ 
+            y: { type: 'spring', stiffness: 100 },
+            scale: { type: 'spring', stiffness: 300, damping: 15 },
+            color: { duration: 0.3 },
+            default: { duration: 0.8, delay: 0.1, type: 'spring', stiffness: 100 }
+          }}
+          className="font-display text-4xl md:text-6xl text-[#4A0404] uppercase leading-none cursor-default inline-block"
+        >
+          FEATURED WORKS
+        </motion.h2>
+        <motion.p 
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.8, delay: 0.2, type: 'spring', stiffness: 100 }}
+          className="text-sm md:text-base text-[#1E1E1E]/70 font-light leading-relaxed max-w-md mx-auto"
+        >
+          A curated showcase of our high-impact vertical campaigns and luxury visual narratives.
+        </motion.p>
       </div>
 
       {/* Grid of Highlight Cards */}
       <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-        {featuredReels.map((reel) => (
-          <HighlightCard
+        {featuredReels.map((reel, index) => (
+          <motion.div
             key={reel.title}
-            title={reel.title}
-            client={reel.client}
-            reach={reel.reach}
-            category={reel.category}
-            thumbnail={reel.thumbnail}
-            videoUrl={reel.videoUrl}
-            onSelect={handleSelectVideo}
-          />
+            initial={{ opacity: 0, y: 40 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: '-50px' }}
+            transition={{ duration: 0.6, delay: index * 0.15 }}
+          >
+            <HighlightCard
+              title={reel.title}
+              client={reel.client}
+              reach={reel.reach}
+              category={reel.category}
+              thumbnail={reel.thumbnail}
+              videoUrl={reel.videoUrl}
+              onSelect={handleSelectVideo}
+            />
+          </motion.div>
         ))}
       </div>
+
+      {/* Explore More Button below */}
+      <motion.div 
+        initial={{ opacity: 0, y: 20 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.6, delay: 0.3 }}
+        className="flex justify-center mt-14"
+      >
+        <Link
+          href="/highlights"
+          className="group flex items-center gap-2 text-xs font-semibold uppercase tracking-widest text-[#4A0404] hover:text-[#F9EEDC] bg-[#EAD8C0]/30 hover:bg-[#8B0000] border border-[#4A0404]/10 hover:border-transparent px-8 py-4 rounded-xl shadow-sm transition-all duration-300 hover:scale-[1.03] active:scale-95 cursor-pointer"
+        >
+          Explore More Portfolio
+          <ArrowUpRight className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+        </Link>
+      </motion.div>
 
       {/* Video Modal Player */}
       <VideoModal

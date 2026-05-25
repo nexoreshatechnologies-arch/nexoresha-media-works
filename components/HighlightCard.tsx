@@ -49,7 +49,7 @@ export default function HighlightCard({
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
       onClick={() => onSelect(videoUrl, `${client} - ${title}`)}
-      className="group relative aspect-[9/16] overflow-hidden rounded-2xl bg-[#4A0404] cursor-pointer border border-[#4A0404]/10 hover:border-[#8B0000]/30 shadow-md hover:shadow-[0_20px_50px_rgba(74,4,4,0.22)] transition-all duration-500 flex flex-col justify-end"
+      className="group relative aspect-[9/16] overflow-hidden rounded-2xl bg-[#4A0404] cursor-pointer border border-[#4A0404]/10 hover:border-[#8B0000]/30 shadow-md hover:shadow-[0_20px_50px_rgba(139,0,0,0.18)] transition-all duration-500 flex flex-col justify-end"
     >
       {/* Thumbnail static image */}
       <img
@@ -87,7 +87,11 @@ export default function HighlightCard({
       </div>
 
       {/* Card Metadata Details */}
-      <div className="relative z-20 p-6 space-y-2">
+      <motion.div 
+        animate={{ y: isHovered ? -4 : 0 }}
+        transition={{ type: 'spring', stiffness: 300, damping: 25 }}
+        className="relative z-20 p-6 space-y-2"
+      >
         <span className="text-[10px] text-[#EAD8C0] tracking-widest uppercase font-bold block">
           {category}
         </span>
@@ -99,12 +103,16 @@ export default function HighlightCard({
             </h3>
           </div>
           
-          <div className="flex items-center gap-1 bg-[#8B0000] text-white text-[9px] font-bold uppercase tracking-wider px-2.5 py-1 rounded-lg shadow-md flex-shrink-0">
+          <motion.div 
+            animate={{ scale: isHovered ? 1.05 : 1, rotate: isHovered ? -2 : 0 }}
+            transition={{ type: 'spring', stiffness: 300, damping: 15 }}
+            className="flex items-center gap-1 bg-[#8B0000] text-white text-[9px] font-bold uppercase tracking-wider px-2.5 py-1 rounded-lg shadow-md flex-shrink-0"
+          >
             <TrendingUp className="w-3 h-3" />
             {reach}
-          </div>
+          </motion.div>
         </div>
-      </div>
+      </motion.div>
     </motion.div>
   );
 }

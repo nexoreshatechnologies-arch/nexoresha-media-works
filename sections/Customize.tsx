@@ -238,15 +238,39 @@ export default function Customize() {
     <section id="customize" className="py-28 max-w-7xl mx-auto px-6 md:px-12 bg-[#F9EEDC]">
       {/* Header */}
       <div className="text-center max-w-xl mx-auto mb-16 space-y-4">
-        <span className="text-xs uppercase font-bold tracking-widest text-[#8B0000]">
+        <motion.span 
+          initial={{ opacity: 0, scale: 0.9 }}
+          whileInView={{ opacity: 1, scale: 1 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6, type: 'spring' }}
+          className="text-xs uppercase font-bold tracking-widest text-[#8B0000] block"
+        >
           Interactive Builder
-        </span>
-        <h2 className="font-display text-4xl md:text-6xl text-[#4A0404] uppercase leading-none">
+        </motion.span>
+        <motion.h2 
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          whileHover={{ scale: 1.03, color: '#8B0000' }}
+          transition={{ 
+            y: { type: 'spring', stiffness: 100 },
+            scale: { type: 'spring', stiffness: 300, damping: 15 },
+            color: { duration: 0.3 },
+            default: { duration: 0.8, delay: 0.1, type: 'spring', stiffness: 100 }
+          }}
+          className="font-display text-4xl md:text-6xl text-[#4A0404] uppercase leading-none cursor-default inline-block"
+        >
           BUILD YOUR VISION
-        </h2>
-        <p className="text-sm md:text-base text-[#1E1E1E]/70 font-light leading-relaxed">
+        </motion.h2>
+        <motion.p 
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.8, delay: 0.2, type: 'spring', stiffness: 100 }}
+          className="text-sm md:text-base text-[#1E1E1E]/70 font-light leading-relaxed"
+        >
           Mix and match premium services to architect a tailored branding roadmap. Add selections to checkout.
-        </p>
+        </motion.p>
       </div>
 
       {/* Tabs Selector Navigation */}
@@ -285,24 +309,30 @@ export default function Customize() {
         className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
       >
         <AnimatePresence mode="popLayout">
-          {filteredServices.map((service) => {
+          {filteredServices.map((service, index) => {
             const Icon = service.icon;
 
             return (
               <motion.div
                 layout
-                initial={{ opacity: 0, scale: 0.95 }}
+                initial={{ opacity: 0, scale: 0.92 }}
                 animate={{ opacity: 1, scale: 1 }}
-                exit={{ opacity: 0, scale: 0.95 }}
-                transition={{ duration: 0.3 }}
+                exit={{ opacity: 0, scale: 0.92 }}
+                whileHover={{ y: -6, scale: 1.01 }}
+                transition={{ 
+                  y: { type: 'spring', stiffness: 350, damping: 25 },
+                  scale: { type: 'spring', stiffness: 350, damping: 25 },
+                  opacity: { duration: 0.25, delay: index * 0.04 },
+                  default: { duration: 0.25, delay: index * 0.04 }
+                }}
                 key={service.id}
                 onClick={() => setSelectedService(service)}
-                className="glass-layer rounded-2xl p-7 flex flex-col justify-between group hover:border-[#8B0000]/20 hover:bg-white/50 cursor-pointer shadow-sm hover:shadow-[0_15px_30px_rgba(74,4,4,0.06)] transition-all duration-500 relative"
+                className="glass-layer rounded-2xl p-7 flex flex-col justify-between group hover:border-[#8B0000]/30 hover:bg-[#8B0000]/[0.01] cursor-pointer shadow-sm hover:shadow-[0_15px_30px_rgba(74,4,4,0.06)] transition-all duration-500 relative"
               >
                 {/* Visual card content */}
                 <div>
                   <div className="flex justify-between items-start mb-6">
-                    <div className="w-12 h-12 rounded-xl bg-[#4A0404]/5 flex items-center justify-center text-[#4A0404] border border-[#4A0404]/10 group-hover:scale-105 transition-transform duration-300">
+                    <div className="w-12 h-12 rounded-xl bg-[#4A0404]/5 flex items-center justify-center text-[#4A0404] border border-[#4A0404]/10 transition-all duration-300 group-hover:bg-[#8B0000] group-hover:text-[#F9EEDC] group-hover:border-[#8B0000]/25 group-hover:scale-105">
                       <Icon className="w-5 h-5" />
                     </div>
                     
@@ -333,10 +363,10 @@ export default function Customize() {
                   {/* Add icon button */}
                   <button
                     onClick={(e) => handleQuickAdd(e, service)}
-                    className="w-10 h-10 rounded-xl bg-[#4A0404] hover:bg-[#8B0000] text-white flex items-center justify-center transition-all hover:scale-105 active:scale-95 shadow-md cursor-pointer"
+                    className="w-10 h-10 rounded-xl bg-[#4A0404] hover:bg-[#8B0000] text-white flex items-center justify-center transition-all hover:scale-105 active:scale-95 shadow-md cursor-pointer group/btn"
                     aria-label={`Add ${service.name} to cart`}
                   >
-                    <Plus className="w-4 h-4" />
+                    <Plus className="w-4 h-4 transition-transform duration-300 group-hover/btn:rotate-90 group-hover:rotate-45" />
                   </button>
                 </div>
 

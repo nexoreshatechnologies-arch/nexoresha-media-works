@@ -1,5 +1,7 @@
 # Nexoresha Media Works Project Execution Report
 
+**Author & Developer**: Mohd Saad Khan
+
 This report documents the detailed step-by-step progress, design decisions, architectural updates, and failures encountered while building the website.
 
 ---
@@ -148,5 +150,79 @@ The application now builds successfully into the following static and dynamic ro
     - Added an interactive **Cursor-Following Glow Overlay** to the background of the Hero section, translating a soft radial blood-red spotlight to follow pointer coordinate maps with spring damping filters.
     - Programmed a **Character Split Bounce Effect** on the displays: split the typography characters into distinct spans that scale, rotate, lift, and toggle colors individually upon mouse sweeps.
     - Configured badge icons to roll 45 degrees when hovered, and added spring physics scaling on CTA mouse-actions.
-11. **Boundary-Restricted Fading Glow**:
-    - Programmed an opacity constraint inside the mouse-movement tracker: if the cursor coordinates travel past the left 40% of the screen width (moving near the right column frames), the cursor glow's opacity smoothly transitions to `0`. This keeps the glow restricted to the left-side text area and prevents it from lighting up the static frame borders on the right.
+11. **Ref-Bound Fading Glow**:
+    - Bounded the cursor glow animation to the right edge of the word `"DIRECTOR'S"` by attaching a React ref (`directorsRef`) to its text span. Inside the mouse-movement handler, the cursor coordinate `clientX` is compared with the right boundary of the word (`rect.right`). The glow fades to `0` opacity immediately as the cursor crosses the boundaries of this word. This ensures that the glow only appears behind the initial text and never goes near the frames on the right.
+
+---
+
+## 8. Refinement: Trusted by Brands Section Enhancement
+
+### Changes Made:
+1. **Marquee Clipping Prevention**:
+   - Integrated vertical padding and compensating negative margins (`py-6 -my-6`) to the marquee's overflow hidden container wrapper. This extends the vertical bounding box, allowing cards to scale and translate upwards (`y: -6`) upon hover without being cropped ("trimmed") by the container boundaries.
+2. **Ambient Background Glows**:
+   - Replaced the single beige blur background overlay with dual-colored low-opacity glowing blobs (`#4A0404/8` maroon and `#8B0000/8` blood red) to add depth.
+3. **Typography & Headers**:
+   - Styled the section title "TRUSTED BY BRANDS" in a clean primary maroon `#4A0404` at `80%` opacity with tracking to ensure a light, elegant feel that is highly readable.
+   - Added a subtitle: `"Partnering with the world's most prestigious labels to craft cinematic visual masterpieces"`.
+   - Placed a subtle centered divider line.
+4. **"Glass Velvet" Card Styling**:
+   - **Background/Border**: Kept the clean glass resting aesthetic (`glass-layer` representing `rgba(234, 216, 192, 0.4)` background and soft maroon-beige border). On hover, it transitions to a light blood-red tint border (`hover:border-[#8B0000]/30`) and background (`hover:bg-[#8B0000]/[0.015]`).
+   - **Brand Icons**: Reverted the icon container back to a light resting state (`bg-[#4A0404]/5 text-[#4A0404]`). On hover, it transitions dynamically into a solid blood-red block (`group-hover:bg-[#8B0000]`) with cream-beige icon fill (`group-hover:text-[#F9EEDC]`), scaling up slightly (`scale-105`).
+   - **Pulsing Stat Indicators**: Replaced raw text statistics with a live status look: each stat features a blood-red pulsing indicator dot (using nested pings: `animate-ping` and solid inner centers) next to the statistic text, conveying real-time active data.
+
+---
+
+## 9. Refinement: Custom Logo and Global Page Animations
+
+### Changes Made:
+1. **Custom Brand Logo & Favicon Extraction**:
+   - Created a python converter script (`convert_favicon.py`) that reads the first frame `ezgif-frame-001.jpg` in the `public/Hero Frames/` folder, crops a square matching the full aspect ratio from its center, downscales it, and exports it to:
+     - `public/favicon.ico`: Standard multi-size Windows icon file.
+     - `public/logo.png`: 512x512 PNG file used for high-fidelity branding elements.
+   - Updated the navigation brand logo in `components/Navbar.tsx` to render the brand image inside a 36px rounded glass-effect container that rotates $12^{\circ}$ and scales slightly on hover.
+2. **Featured Highlights Animations**:
+   - Integrated scroll-triggered fade-up animations on the section headers and descriptions in `FeaturedHighlights.tsx`.
+   - Staggered the initial slide-in of highlight showreel cards by index using Framer Motion (`delay: index * 0.15`), causing them to flow into the layout smoothly.
+   - In `HighlightCard.tsx`, configured text items to lift upwards (`y: -4`) and the reach badge to scale and rotate slightly when the card is hovered, casting a diffused blood-red shadow glow.
+3. **Packages Component Stagger & Tap feedbacks**:
+   - Staggered pricing cards on load based on index delay so they load sequentially.
+   - Configured pricing plan icons to scale (`scale-110`), rotate ($12^{\circ}$), and transition to a solid red circle backdrop upon card hover.
+   - Added hover effects to checklist line deliverables: the checkmark icon scales and the text shifts to highlight specific package list deliverables.
+   - Converted static buttons to `<motion.button>` with spring hover scaling and tap feedback.
+4. **Customize Configurator Animations**:
+   - Staggered cards entry when active tabs change (`delay: index * 0.04`) to create a fluid tab transition ripple.
+   - Added card hover spring motions (`y: -6`) and matched icons hover states to shift to solid blood red and scale up, matching the brands list card theme.
+   - Configured quick add `Plus` buttons to rotate $45^{\circ}$ on card hover, and spin $90^{\circ}$ on direct pointer contact.
+- Staggered the showreels layout grid on the main highlights subpage (`app/highlights/page.tsx`) to ripple showreels in sequentially.
+
+---
+
+## 10. Refinement: Section Header Animations, Scroll Selection Fixes, and Custom favicon1.ico branding
+
+### Changes Made:
+1. **Custom favicon1.ico Styling & Conversion**:
+   - Copied the user's provided `favicon1.ico` file to the default location `public/favicon.ico`.
+   - Reprocessed `favicon1.ico` using Pillow to extract its shapes, applying a smooth anti-aliased transparency mask (converting white background to transparent) and colorizing the graphic to the luxury brand maroon `#4A0404`. Exported this transparent emblem as `public/logo.png`, which is used in the navigation bar.
+2. **Scroll Active Section Selection Bugfixes**:
+   - Added `id="home"` to the Hero scroll track div wrapper in `sections/Hero.tsx`. This allows the scroll monitor to locate the Hero section dynamically.
+   - Refined the active nav item styling logic in `components/Navbar.tsx`. When on the homepage (`pathname === '/'`), the active nav tab is determined strictly by the `activeSection` scroll height index, resolving the bugs where Home was permanently selected and Companies was highlighted in Hero. Highlighted active menu options inside the mobile drawer menu as well.
+3. **Scroll-Triggered Heading Animations**:
+   - Integrated scroll-triggered animations to headings across all main sections of the website (`Companies.tsx`, `FeaturedHighlights.tsx`, `Packages.tsx`, and `Customize.tsx`).
+   - Tags, main headers, and description paragraphs slide up sequentially with spring damping ease.
+   - Designed a dynamic growing divider animation in `sections/Companies.tsx` that expands its width from `0` to `96px` upon scrolling into view, creating an elegant visual splash.
+
+---
+
+## 11. Refinement: Heading Hover Animations & Featured Works Redesign
+
+### Changes Made:
+1. **Interactive Heading Hover Animations**:
+   - Converted headings in `Companies.tsx`, `FeaturedHighlights.tsx`, `Packages.tsx`, and `Customize.tsx` into interactive `<motion.h2>` elements.
+   - When hovered, headings scale up slightly (`scale: 1.03`) and transition to the vibrant blood-red color `#8B0000` with spring damping. Used `inline-block` constraints to restrict the hover trigger area strictly to the text contents.
+2. **Featured Works Centering**:
+   - Redesigned the header inside `FeaturedHighlights.tsx` to align the tagline, primary title, and description centrally, creating a balanced focal point.
+3. **Showcase Card Dimensions**:
+   - Retained the card's original full-sized 9:16 vertical proportions inside `components/HighlightCard.tsx` (reverting the `md:h-[44vh]` height bounds) to ensure maximum visual prominence and high-impact fidelity.
+4. **Relocated Explore More Button**:
+   - Moved the "Explore More" link from the header top-right and positioned a redesigned centered button directly *below* the 3 cards grid. Hovering over it fills the button with a blood-red background and turns the text cream-beige, complete with spring-tap scale animations.
