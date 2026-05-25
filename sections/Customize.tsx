@@ -235,7 +235,7 @@ export default function Customize() {
   };
 
   return (
-    <section id="customize" className="py-28 max-w-7xl mx-auto px-6 md:px-12 bg-[#F5EBDD]">
+    <section id="customize" className="py-28 max-w-7xl mx-auto px-6 md:px-12 bg-[#F9EEDC]">
       {/* Header */}
       <div className="text-center max-w-xl mx-auto mb-16 space-y-4">
         <span className="text-xs uppercase font-bold tracking-widest text-[#8B0000]">
@@ -261,7 +261,7 @@ export default function Customize() {
                 key={tab}
                 onClick={() => setActiveTab(tab)}
                 className={`relative flex items-center gap-2 px-6 py-3 rounded-xl text-xs font-semibold uppercase tracking-wider transition-all duration-300 cursor-pointer ${
-                  isActive ? 'text-[#F5EBDD] font-bold z-10' : 'text-[#4A0404]/70 hover:text-[#4A0404]'
+                  isActive ? 'text-[#F9EEDC] font-bold z-10' : 'text-[#4A0404]/70 hover:text-[#4A0404]'
                 }`}
               >
                 {isActive && (

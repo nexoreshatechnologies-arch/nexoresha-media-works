@@ -40,14 +40,14 @@
 }
 
 :root {
-  --background: #F5EBDD;
+  --background: #F9EEDC;
   --foreground: #1E1E1E;
-  --card: #F5EBDD;
+  --card: #F9EEDC;
   --card-foreground: #1E1E1E;
-  --popover: #F5EBDD;
+  --popover: #F9EEDC;
   --popover-foreground: #1E1E1E;
   --primary: #4A0404;
-  --primary-foreground: #F5EBDD;
+  --primary-foreground: #F9EEDC;
   --secondary: #EAD8C0;
   --secondary-foreground: #4A0404;
   --muted: #EAD8C0;
@@ -65,7 +65,7 @@
   --primary-maroon: #4A0404;
   --blood-red: #8B0000;
   --accent-beige: #EAD8C0;
-  --cream-beige: #F5EBDD;
+  --cream-beige: #F9EEDC;
   --dark-text: #1E1E1E;
 }
 
@@ -87,7 +87,7 @@
   width: 8px;
 }
 ::-webkit-scrollbar-track {
-  background: #F5EBDD;
+  background: #F9EEDC;
 }
 ::-webkit-scrollbar-thumb {
   background: #4A0404;

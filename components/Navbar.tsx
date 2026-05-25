@@ -77,7 +77,7 @@ export default function Navbar() {
       id="top-nav"
       className={`fixed top-0 left-0 w-full z-50 transition-all duration-500 max-w-full ${
         isScrolled
-          ? 'py-4 bg-[#F5EBDD]/80 backdrop-blur-xl border-b border-[#4A0404]/10 shadow-[0_4px_30px_rgba(74,4,4,0.03)]'
+          ? 'py-4 bg-[#F9EEDC]/80 backdrop-blur-xl border-b border-[#4A0404]/10 shadow-[0_4px_30px_rgba(74,4,4,0.03)]'
           : 'py-6 bg-transparent'
       }`}
     >
@@ -85,7 +85,7 @@ export default function Navbar() {
         {/* Logo */}
         <Link href="/" className="flex items-center gap-3 group">
           <div className="relative w-8 h-8 rounded-lg bg-[#4A0404] flex items-center justify-center overflow-hidden transition-transform duration-500 group-hover:rotate-12">
-            <span className="text-[#F5EBDD] font-display text-lg tracking-tighter">N</span>
+            <span className="text-[#F9EEDC] font-display text-lg tracking-tighter">N</span>
           </div>
           <span className="font-display text-xl tracking-wider text-[#4A0404] transition-colors group-hover:text-[#8B0000]">
             NEXORESHA
@@ -127,12 +127,12 @@ export default function Navbar() {
           {/* Cart Icon */}
           <button
             onClick={() => toggleCart(true)}
-            className="relative p-2.5 rounded-xl border border-[#4A0404]/10 hover:border-[#4A0404]/30 bg-[#F5EBDD]/40 hover:bg-[#F5EBDD] text-[#4A0404] transition-all duration-300 hover:scale-105 active:scale-95 cursor-pointer"
+            className="relative p-2.5 rounded-xl border border-[#4A0404]/10 hover:border-[#4A0404]/30 bg-[#F9EEDC]/40 hover:bg-[#F9EEDC] text-[#4A0404] transition-all duration-300 hover:scale-105 active:scale-95 cursor-pointer"
             aria-label="Open Shopping Cart"
           >
             <ShoppingBag className="w-5 h-5" />
             {totalItems > 0 && (
-              <span className="absolute -top-1 -right-1 bg-[#8B0000] text-white text-[10px] font-bold w-5 h-5 flex items-center justify-center rounded-full border-2 border-[#F5EBDD]">
+              <span className="absolute -top-1 -right-1 bg-[#8B0000] text-white text-[10px] font-bold w-5 h-5 flex items-center justify-center rounded-full border-2 border-[#F9EEDC]">
                 {totalItems}
               </span>
             )}
@@ -160,7 +160,7 @@ export default function Navbar() {
 
       {/* Mobile Nav Overlay Slide */}
       {isMobileMenuOpen && (
-        <div className="md:hidden fixed inset-x-0 top-[73px] bg-[#F5EBDD] border-b border-[#4A0404]/10 shadow-lg px-6 py-8 flex flex-col gap-6 z-40 transition-all duration-300 animate-in fade-in slide-in-from-top-5">
+        <div className="md:hidden fixed inset-x-0 top-[73px] bg-[#F9EEDC] border-b border-[#4A0404]/10 shadow-lg px-6 py-8 flex flex-col gap-6 z-40 transition-all duration-300 animate-in fade-in slide-in-from-top-5">
           {navItems.map((item) => (
             <Link
               key={item.label}

@@ -39,7 +39,7 @@ export default function RootLayout({
       lang="en"
       className={`${bebasNeue.variable} ${inter.variable} h-full antialiased`}
     >
-      <body className="min-h-full flex flex-col bg-[#F5EBDD] text-[#1E1E1E]">
+      <body className="min-h-full flex flex-col bg-[#F9EEDC] text-[#1E1E1E]">
         <Navbar />
         <main className="flex-grow">{children}</main>
         <CartDrawer />

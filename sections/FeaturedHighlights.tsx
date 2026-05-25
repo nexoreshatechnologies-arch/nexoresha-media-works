@@ -50,7 +50,7 @@ export default function FeaturedHighlights() {
   };
 
   return (
-    <section id="highlights" className="py-28 px-6 md:px-12 max-w-7xl mx-auto bg-[#F5EBDD]">
+    <section id="highlights" className="py-28 px-6 md:px-12 max-w-7xl mx-auto bg-[#F9EEDC]">
       {/* Header */}
       <div className="flex flex-col md:flex-row justify-between items-start md:items-end mb-16 gap-6">
         <div className="space-y-4">

@@ -214,7 +214,7 @@ export default function CartDrawer() {
                 animate={{ translateX: 0 }}
                 exit={{ translateX: '100%' }}
                 transition={{ type: 'tween', duration: 0.4, ease: 'easeInOut' }}
-                className="w-screen max-w-md bg-[#F5EBDD] shadow-[-20px_0_50px_rgba(74,4,4,0.06)] border-l border-[#4A0404]/10 flex flex-col h-full"
+                className="w-screen max-w-md bg-[#F9EEDC] shadow-[-20px_0_50px_rgba(74,4,4,0.06)] border-l border-[#4A0404]/10 flex flex-col h-full"
               >
                 {/* Header */}
                 <div className="p-6 border-b border-[#4A0404]/10 flex justify-between items-center bg-[#4A0404]/5">
@@ -314,7 +314,7 @@ export default function CartDrawer() {
                           value={couponInput}
                           onChange={(e) => setCouponInput(e.target.value)}
                           placeholder="Coupon Code"
-                          className="w-full text-xs bg-[#F5EBDD]/40 border border-[#4A0404]/15 rounded-lg py-2.5 pl-9 pr-3 text-[#1E1E1E] focus:outline-none focus:border-[#4A0404] placeholder-[#1E1E1E]/40"
+                          className="w-full text-xs bg-[#F9EEDC]/40 border border-[#4A0404]/15 rounded-lg py-2.5 pl-9 pr-3 text-[#1E1E1E] focus:outline-none focus:border-[#4A0404] placeholder-[#1E1E1E]/40"
                         />
                       </div>
                       <button
@@ -373,7 +373,7 @@ export default function CartDrawer() {
                     <button
                       onClick={handleCheckout}
                       disabled={isCheckoutLoading}
-                      className="w-full bg-[#4A0404] hover:bg-[#8B0000] disabled:bg-[#4A0404]/40 text-[#F5EBDD] py-4 rounded-xl font-display tracking-widest text-lg uppercase transition-all duration-300 hover:scale-[1.01] active:scale-95 flex items-center justify-center gap-2 cursor-pointer shadow-md"
+                      className="w-full bg-[#4A0404] hover:bg-[#8B0000] disabled:bg-[#4A0404]/40 text-[#F9EEDC] py-4 rounded-xl font-display tracking-widest text-lg uppercase transition-all duration-300 hover:scale-[1.01] active:scale-95 flex items-center justify-center gap-2 cursor-pointer shadow-md"
                     >
                       {isCheckoutLoading ? (
                         <>

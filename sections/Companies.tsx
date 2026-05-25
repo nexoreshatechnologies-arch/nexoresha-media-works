@@ -28,7 +28,7 @@ const row2Companies: Company[] = [
 
 export default function Companies() {
   return (
-    <section id="companies" className="py-24 bg-[#F5EBDD] overflow-hidden relative border-t border-[#4A0404]/5">
+    <section id="companies" className="py-24 bg-[#F9EEDC] overflow-hidden relative border-t border-[#4A0404]/5">
       {/* Background soft blurs */}
       <div className="absolute inset-0 pointer-events-none overflow-hidden z-0">
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[300px] bg-[#EAD8C0]/30 rounded-full blur-[120px]" />

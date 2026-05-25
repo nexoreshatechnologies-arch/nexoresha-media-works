@@ -115,9 +115,9 @@ export default function Hero() {
   } as any;
 
   return (
-    <div ref={containerRef} className="relative w-full h-[300vh] bg-[#F5EBDD]">
+    <div ref={containerRef} className="relative w-full h-[300vh] bg-[#F9EEDC]">
       {/* Sticky Content Wrapper (Height locked to viewport) */}
-      <div className="sticky top-0 left-0 w-full h-screen overflow-hidden flex items-center justify-center bg-[#F5EBDD]">
+      <div className="sticky top-0 left-0 w-full h-screen overflow-hidden flex items-center justify-center bg-[#F9EEDC]">
         
         {/* Soft Background blur accents */}
         <div className="absolute inset-0 pointer-events-none z-0 overflow-hidden">
@@ -185,7 +185,7 @@ export default function Hero() {
             
             {/* Loading Indicator for frames preloading */}
             {!isPreloaded && (
-              <div className="absolute inset-0 bg-[#F5EBDD] z-20 flex flex-col items-center justify-center gap-3 rounded-2xl border border-[#4A0404]/5 shadow-inner p-8">
+              <div className="absolute inset-0 bg-[#F9EEDC] z-20 flex flex-col items-center justify-center gap-3 rounded-2xl border border-[#4A0404]/5 shadow-inner p-8">
                 <span className="font-display text-xl text-[#4A0404] tracking-widest uppercase">
                   Loading Sequence
                 </span>
@@ -202,11 +202,11 @@ export default function Hero() {
             )}
 
             {/* Sequence Image Container */}
-            <div className="relative w-full aspect-square max-w-sm sm:max-w-md lg:max-w-none md:aspect-[4/3] rounded-2xl overflow-hidden border border-[#4A0404]/10 shadow-[0_25px_50px_rgba(74,4,4,0.12)] bg-[#F5EBDD] flex items-center justify-center">
+            <div className="relative w-full aspect-square max-w-sm sm:max-w-md lg:max-w-none md:aspect-[4/3] flex items-center justify-center">
               <img
                 ref={imgRef}
                 alt="Cinematic Brand Scroll Sequence"
-                className="w-full h-full object-cover select-none pointer-events-none"
+                className="w-full h-full object-contain select-none pointer-events-none"
                 src="/Hero Frames/ezgif-frame-001.jpg"
               />
             </div>

@@ -57,7 +57,7 @@ const plans: PricingPlan[] = [
     description: 'Authority & Market Dominance',
     icon: Star,
     badge: 'MOST POPULAR',
-    themeClass: 'bg-[#4A0404] text-[#F5EBDD] border-[#8B0000] scale-105 shadow-[0_20px_40px_rgba(74,4,4,0.18)] z-10',
+    themeClass: 'bg-[#4A0404] text-[#F9EEDC] border-[#8B0000] scale-105 shadow-[0_20px_40px_rgba(74,4,4,0.18)] z-10',
     deliverables: [
       '30 Multi-Platform Creative Assets',
       '10 Cinematic High-Grade Reels',

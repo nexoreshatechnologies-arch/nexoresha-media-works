@@ -41,7 +41,7 @@ export default function MockPaymentModal({
         particleCount: 150,
         spread: 80,
         origin: { y: 0.6 },
-        colors: ['#4A0404', '#8B0000', '#EAD8C0', '#F5EBDD']
+        colors: ['#4A0404', '#8B0000', '#EAD8C0', '#F9EEDC']
       });
 
       setTimeout(() => {
@@ -81,7 +81,7 @@ export default function MockPaymentModal({
           animate={{ scale: 1, opacity: 1, y: 0 }}
           exit={{ scale: 0.95, opacity: 0, y: 20 }}
           transition={{ type: 'spring', duration: 0.5 }}
-          className="relative w-full max-w-md overflow-hidden rounded-2xl bg-[#F5EBDD] border border-[#4A0404]/20 shadow-[0_20px_50px_rgba(74,4,4,0.25)] z-10"
+          className="relative w-full max-w-md overflow-hidden rounded-2xl bg-[#F9EEDC] border border-[#4A0404]/20 shadow-[0_20px_50px_rgba(74,4,4,0.25)] z-10"
         >
           {/* Top aesthetic border */}
           <div className="h-2 w-full bg-gradient-to-r from-[#4A0404] via-[#8B0000] to-[#EAD8C0]" />

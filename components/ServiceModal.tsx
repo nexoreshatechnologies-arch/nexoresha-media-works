@@ -57,7 +57,7 @@ export default function ServiceModal({ isOpen, onClose, service }: ServiceModalP
           animate={{ y: 0, opacity: 1, scale: 1 }}
           exit={{ y: 50, opacity: 0, scale: 0.95 }}
           transition={{ type: 'spring', duration: 0.5 }}
-          className="relative w-full max-w-2xl bg-[#F5EBDD] border border-[#4A0404]/20 rounded-3xl shadow-[0_20px_50px_rgba(74,4,4,0.22)] overflow-hidden z-10 flex flex-col max-h-[90vh]"
+          className="relative w-full max-w-2xl bg-[#F9EEDC] border border-[#4A0404]/20 rounded-3xl shadow-[0_20px_50px_rgba(74,4,4,0.22)] overflow-hidden z-10 flex flex-col max-h-[90vh]"
         >
           {/* Header controls */}
           <div className="p-6 border-b border-[#4A0404]/10 bg-[#4A0404]/5 flex justify-between items-center flex-shrink-0">
@@ -144,7 +144,7 @@ export default function ServiceModal({ isOpen, onClose, service }: ServiceModalP
           </div>
 
           {/* Action Footer */}
-          <div className="p-6 border-t border-[#4A0404]/10 bg-[#F5EBDD] flex justify-between items-center gap-4 flex-shrink-0">
+          <div className="p-6 border-t border-[#4A0404]/10 bg-[#F9EEDC] flex justify-between items-center gap-4 flex-shrink-0">
             <div>
               <span className="text-[10px] text-[#1E1E1E]/50 uppercase tracking-widest block font-bold">
                 Starting from

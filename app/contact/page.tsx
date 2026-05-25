@@ -89,7 +89,7 @@ export default function ContactPage() {
         particleCount: 120,
         spread: 70,
         origin: { y: 0.5 },
-        colors: ['#4A0404', '#8B0000', '#EAD8C0', '#F5EBDD']
+        colors: ['#4A0404', '#8B0000', '#EAD8C0', '#F9EEDC']
       });
 
       // Reset form
@@ -125,18 +125,18 @@ export default function ContactPage() {
   ];
 
   return (
-    <div className="min-h-screen bg-[#F5EBDD] pb-24 relative overflow-hidden">
+    <div className="min-h-screen bg-[#F9EEDC] pb-24 relative overflow-hidden">
       {/* 1. Contact Hero */}
       <div className="relative w-full h-[380px] bg-[#4A0404] flex items-center justify-center text-center overflow-hidden">
         {/* Glow particles */}
-        <div className="absolute inset-0 bg-gradient-to-b from-transparent to-[#F5EBDD] z-10" />
+        <div className="absolute inset-0 bg-gradient-to-b from-transparent to-[#F9EEDC] z-10" />
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[550px] h-[550px] bg-[#8B0000]/20 rounded-full blur-[120px] pointer-events-none" />
         
         <div className="relative z-20 space-y-4 max-w-xl px-6 pt-16">
           <span className="text-xs uppercase font-bold tracking-widest text-[#EAD8C0]">
             Get In Touch
           </span>
-          <h1 className="font-display text-5xl md:text-7xl text-[#F5EBDD] uppercase leading-none tracking-tight">
+          <h1 className="font-display text-5xl md:text-7xl text-[#F9EEDC] uppercase leading-none tracking-tight">
             LET'S BUILD YOUR BRAND
           </h1>
           <p className="text-xs md:text-sm text-[#EAD8C0]/70 max-w-sm mx-auto font-light leading-relaxed">
@@ -209,14 +209,14 @@ export default function ContactPage() {
         </div>
 
         {/* 4. Stats Counters Section */}
-        <div className="bg-[#4A0404] text-[#F5EBDD] rounded-3xl p-12 border border-[#8B0000]/10 shadow-[0_20px_50px_rgba(74,4,4,0.15)] grid grid-cols-2 lg:grid-cols-4 gap-8 text-center relative overflow-hidden">
+        <div className="bg-[#4A0404] text-[#F9EEDC] rounded-3xl p-12 border border-[#8B0000]/10 shadow-[0_20px_50px_rgba(74,4,4,0.15)] grid grid-cols-2 lg:grid-cols-4 gap-8 text-center relative overflow-hidden">
           <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/5 to-transparent skew-x-12 opacity-30 pointer-events-none" />
           
           <div className="space-y-2">
             <div className="text-4xl md:text-5xl font-bold tracking-tight text-[#EAD8C0]">
               <AnimatedCounter target={50} suffix="+" />
             </div>
-            <p className="text-[10px] uppercase font-bold tracking-wider text-[#F5EBDD]/60">
+            <p className="text-[10px] uppercase font-bold tracking-wider text-[#F9EEDC]/60">
               BRANDS WORKED WITH
             </p>
           </div>
@@ -225,7 +225,7 @@ export default function ContactPage() {
             <div className="text-4xl md:text-5xl font-bold tracking-tight text-[#EAD8C0]">
               <AnimatedCounter target={1200} suffix="+" />
             </div>
-            <p className="text-[10px] uppercase font-bold tracking-wider text-[#F5EBDD]/60">
+            <p className="text-[10px] uppercase font-bold tracking-wider text-[#F9EEDC]/60">
               REELS CREATED
             </p>
           </div>
@@ -234,7 +234,7 @@ export default function ContactPage() {
             <div className="text-4xl md:text-5xl font-bold tracking-tight text-[#EAD8C0]">
               <AnimatedCounter target={150} suffix="M+" />
             </div>
-            <p className="text-[10px] uppercase font-bold tracking-wider text-[#F5EBDD]/60">
+            <p className="text-[10px] uppercase font-bold tracking-wider text-[#F9EEDC]/60">
               REACH GENERATED
             </p>
           </div>
@@ -243,7 +243,7 @@ export default function ContactPage() {
             <div className="text-4xl md:text-5xl font-bold tracking-tight text-[#EAD8C0]">
               <AnimatedCounter target={98} suffix="%" />
             </div>
-            <p className="text-[10px] uppercase font-bold tracking-wider text-[#F5EBDD]/60">
+            <p className="text-[10px] uppercase font-bold tracking-wider text-[#F9EEDC]/60">
               CAMPAIGN SUCCESS
             </p>
           </div>
@@ -343,7 +343,7 @@ export default function ContactPage() {
                         value={form.name}
                         onChange={(e) => setForm({ ...form, name: e.target.value })}
                         placeholder="John Doe"
-                        className="w-full text-sm bg-[#F5EBDD]/40 border border-[#4A0404]/15 focus:border-[#4A0404] focus:outline-none rounded-xl p-3.5 text-[#1E1E1E] transition-colors"
+                        className="w-full text-sm bg-[#F9EEDC]/40 border border-[#4A0404]/15 focus:border-[#4A0404] focus:outline-none rounded-xl p-3.5 text-[#1E1E1E] transition-colors"
                       />
                     </div>
 
@@ -357,7 +357,7 @@ export default function ContactPage() {
                         value={form.businessName}
                         onChange={(e) => setForm({ ...form, businessName: e.target.value })}
                         placeholder="Acme Luxury Co."
-                        className="w-full text-sm bg-[#F5EBDD]/40 border border-[#4A0404]/15 focus:border-[#4A0404] focus:outline-none rounded-xl p-3.5 text-[#1E1E1E] transition-colors"
+                        className="w-full text-sm bg-[#F9EEDC]/40 border border-[#4A0404]/15 focus:border-[#4A0404] focus:outline-none rounded-xl p-3.5 text-[#1E1E1E] transition-colors"
                       />
                     </div>
                   </div>
@@ -370,7 +370,7 @@ export default function ContactPage() {
                       <select
                         value={form.budget}
                         onChange={(e) => setForm({ ...form, budget: e.target.value })}
-                        className="w-full text-sm bg-[#F5EBDD]/40 border border-[#4A0404]/15 focus:border-[#4A0404] focus:outline-none rounded-xl p-3.5 text-[#1E1E1E] transition-colors cursor-pointer"
+                        className="w-full text-sm bg-[#F9EEDC]/40 border border-[#4A0404]/15 focus:border-[#4A0404] focus:outline-none rounded-xl p-3.5 text-[#1E1E1E] transition-colors cursor-pointer"
                       >
                         {budgetOptions.map((opt) => (
                           <option key={opt} value={opt}>
@@ -396,7 +396,7 @@ export default function ContactPage() {
                             className={`p-3 rounded-xl border text-[11px] font-semibold text-left transition-all flex justify-between items-center cursor-pointer ${
                               isChecked
                                 ? 'bg-[#4A0404] text-white border-transparent shadow-sm'
-                                : 'bg-[#F5EBDD]/20 border-[#4A0404]/10 text-[#4A0404] hover:bg-[#4A0404]/5'
+                                : 'bg-[#F9EEDC]/20 border-[#4A0404]/10 text-[#4A0404] hover:bg-[#4A0404]/5'
                             }`}
                           >
                             {service}
@@ -416,7 +416,7 @@ export default function ContactPage() {
                       value={form.message}
                       onChange={(e) => setForm({ ...form, message: e.target.value })}
                       placeholder="Outline any specific targets, timeline, shoots or media specifications..."
-                      className="w-full text-sm bg-[#F5EBDD]/40 border border-[#4A0404]/15 focus:border-[#4A0404] focus:outline-none rounded-xl p-3.5 text-[#1E1E1E] transition-colors resize-none"
+                      className="w-full text-sm bg-[#F9EEDC]/40 border border-[#4A0404]/15 focus:border-[#4A0404] focus:outline-none rounded-xl p-3.5 text-[#1E1E1E] transition-colors resize-none"
                     />
                   </div>
 

@@ -9,7 +9,7 @@ export default function Footer() {
   };
 
   return (
-    <footer className="w-full bg-[#4A0404] text-[#F5EBDD] mt-auto border-t border-[#8B0000]/10 rounded-t-[2.5rem] overflow-hidden">
+    <footer className="w-full bg-[#4A0404] text-[#F9EEDC] mt-auto border-t border-[#8B0000]/10 rounded-t-[2.5rem] overflow-hidden">
       <div className="max-w-7xl mx-auto px-6 md:px-12 py-20">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-12 md:gap-8">
           {/* Brand Info */}
@@ -21,21 +21,21 @@ export default function Footer() {
             <div className="flex gap-4">
               <a
                 href="#"
-                className="w-10 h-10 rounded-xl border border-[#EAD8C0]/25 flex items-center justify-center hover:bg-[#8B0000] hover:border-[#8B0000] text-[#F5EBDD] transition-all duration-300 hover:scale-105"
+                className="w-10 h-10 rounded-xl border border-[#EAD8C0]/25 flex items-center justify-center hover:bg-[#8B0000] hover:border-[#8B0000] text-[#F9EEDC] transition-all duration-300 hover:scale-105"
                 aria-label="Instagram Link"
               >
                 <Instagram className="w-4 h-4" />
               </a>
               <a
                 href="#"
-                className="w-10 h-10 rounded-xl border border-[#EAD8C0]/25 flex items-center justify-center hover:bg-[#8B0000] hover:border-[#8B0000] text-[#F5EBDD] transition-all duration-300 hover:scale-105"
+                className="w-10 h-10 rounded-xl border border-[#EAD8C0]/25 flex items-center justify-center hover:bg-[#8B0000] hover:border-[#8B0000] text-[#F9EEDC] transition-all duration-300 hover:scale-105"
                 aria-label="Vimeo Link"
               >
                 <Video className="w-4 h-4" />
               </a>
               <a
                 href="#"
-                className="w-10 h-10 rounded-xl border border-[#EAD8C0]/25 flex items-center justify-center hover:bg-[#8B0000] hover:border-[#8B0000] text-[#F5EBDD] transition-all duration-300 hover:scale-105"
+                className="w-10 h-10 rounded-xl border border-[#EAD8C0]/25 flex items-center justify-center hover:bg-[#8B0000] hover:border-[#8B0000] text-[#F9EEDC] transition-all duration-300 hover:scale-105"
                 aria-label="LinkedIn Link"
               >
                 <Linkedin className="w-4 h-4" />

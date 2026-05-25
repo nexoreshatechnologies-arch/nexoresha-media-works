@@ -82,7 +82,7 @@ export default function HighlightsPage() {
   ];
 
   return (
-    <div className="min-h-screen bg-[#F5EBDD] pt-28 pb-24">
+    <div className="min-h-screen bg-[#F9EEDC] pt-28 pb-24">
       {/* Background radial glow */}
       <div className="absolute top-0 inset-x-0 h-[600px] pointer-events-none overflow-hidden z-0">
         <div className="absolute -top-40 left-1/2 -translate-x-1/2 w-[700px] h-[500px] bg-[#8B0000]/5 rounded-full blur-[140px]" />
@@ -114,7 +114,7 @@ export default function HighlightsPage() {
                   key={filter}
                   onClick={() => setActiveFilter(filter)}
                   className={`relative px-5 py-2.5 rounded-xl text-xs font-semibold uppercase tracking-wider transition-all duration-300 cursor-pointer ${
-                    isActive ? 'text-[#F5EBDD] font-bold z-10' : 'text-[#4A0404]/75 hover:text-[#4A0404]'
+                    isActive ? 'text-[#F9EEDC] font-bold z-10' : 'text-[#4A0404]/75 hover:text-[#4A0404]'
                   }`}
                 >
                   {isActive && (
