@@ -15,17 +15,25 @@ export default function Hero() {
   const [isPreloaded, setIsPreloaded] = useState(false);
   const [loadPercent, setLoadPercent] = useState(0);
 
+  const directorsRef = useRef<HTMLSpanElement>(null);
+
   // Mouse coordinate tracker for background glow with fading boundary
   const [mousePos, setMousePos] = useState({ x: -200, y: -200, opacity: 0 });
 
   const handleMouseMove = (e: React.MouseEvent) => {
     if (typeof window === 'undefined') return;
-    // Fade out glow when the mouse approaches the right column (sequence area)
-    const isLeft = e.clientX < window.innerWidth * 0.40;
+    
+    let isLeftOfS = false;
+    if (directorsRef.current) {
+      const rect = directorsRef.current.getBoundingClientRect();
+      // Only keep the glow active if the cursor is left of the right edge of the word "DIRECTOR'S"
+      isLeftOfS = e.clientX < rect.right;
+    }
+
     setMousePos({
       x: e.clientX,
       y: e.clientY,
-      opacity: isLeft ? 1 : 0,
+      opacity: isLeftOfS ? 1 : 0,
     });
   };
 
@@ -226,7 +234,7 @@ export default function Hero() {
               className="text-4xl md:text-5xl lg:text-7xl leading-[0.95] uppercase tracking-tight drop-shadow-sm flex flex-wrap justify-center lg:justify-start gap-x-3 gap-y-1 select-none"
             >
               <span className="inline-block">{renderInteractiveText("THE", false)}</span>
-              <span className="inline-block">{renderInteractiveText("DIRECTOR'S", false)}</span>
+              <span ref={directorsRef} className="inline-block">{renderInteractiveText("DIRECTOR'S", false)}</span>
               <span className="inline-block">{renderInteractiveText("EYE", true)}</span>
               <span className="inline-block">{renderInteractiveText("FOR", false)}</span>
               <span className="inline-block">{renderInteractiveText("YOUR", false)}</span>

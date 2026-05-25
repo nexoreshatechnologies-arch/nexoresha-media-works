@@ -148,3 +148,5 @@ The application now builds successfully into the following static and dynamic ro
     - Added an interactive **Cursor-Following Glow Overlay** to the background of the Hero section, translating a soft radial blood-red spotlight to follow pointer coordinate maps with spring damping filters.
     - Programmed a **Character Split Bounce Effect** on the displays: split the typography characters into distinct spans that scale, rotate, lift, and toggle colors individually upon mouse sweeps.
     - Configured badge icons to roll 45 degrees when hovered, and added spring physics scaling on CTA mouse-actions.
+11. **Boundary-Restricted Fading Glow**:
+    - Programmed an opacity constraint inside the mouse-movement tracker: if the cursor coordinates travel past the left 40% of the screen width (moving near the right column frames), the cursor glow's opacity smoothly transitions to `0`. This keeps the glow restricted to the left-side text area and prevents it from lighting up the static frame borders on the right.
