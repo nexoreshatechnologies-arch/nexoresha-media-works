@@ -35,7 +35,6 @@ export default function Hero() {
       };
       
       img.onerror = () => {
-        // Fallback progress on missing images
         loadedCount++;
         if (loadedCount === totalFrames) {
           setIsPreloaded(true);
@@ -117,23 +116,52 @@ export default function Hero() {
   return (
     <div ref={containerRef} className="relative w-full h-[300vh] bg-[#F9EEDC]">
       {/* Sticky Content Wrapper (Height locked to viewport) */}
-      <div className="sticky top-0 left-0 w-full h-screen overflow-hidden flex items-center justify-center bg-[#F9EEDC]">
+      <div className="sticky top-0 left-0 w-full h-screen overflow-hidden bg-[#F9EEDC]">
         
         {/* Soft Background blur accents */}
         <div className="absolute inset-0 pointer-events-none z-0 overflow-hidden">
-          <div className="absolute top-1/4 right-[10%] w-[350px] h-[350px] bg-[#8B0000]/5 rounded-full blur-[110px]" />
-          <div className="absolute bottom-10 left-[15%] w-[400px] h-[400px] bg-[#4A0404]/3 rounded-full blur-[130px]" />
+          <div className="absolute top-1/4 left-[10%] w-[300px] h-[300px] bg-[#8B0000]/3 rounded-full blur-[90px]" />
+          <div className="absolute bottom-10 right-[15%] w-[350px] h-[350px] bg-[#4A0404]/3 rounded-full blur-[110px]" />
         </div>
 
-        {/* Main Grid container */}
-        <div className="relative z-10 max-w-7xl mx-auto px-6 md:px-12 w-full grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
+        {/* 1. Full-Bleed Image Sequence (Z-Index 0) */}
+        <div className="absolute inset-x-0 top-[73px] bottom-0 w-full h-[calc(100vh-73px)] z-0 flex items-center justify-center bg-[#F9EEDC]">
           
-          {/* Left Column: Text & CTAs */}
+          {/* Loading Indicator for frames preloading */}
+          {!isPreloaded && (
+            <div className="absolute inset-0 bg-[#F9EEDC] z-20 flex flex-col items-center justify-center gap-3 p-8">
+              <span className="font-display text-xl text-[#4A0404] tracking-widest uppercase">
+                Loading Sequence
+              </span>
+              <div className="w-48 h-1.5 bg-[#4A0404]/10 rounded-full overflow-hidden">
+                <div
+                  className="h-full bg-[#8B0000] transition-all duration-300"
+                  style={{ width: `${loadPercent}%` }}
+                />
+              </div>
+              <span className="text-[10px] uppercase font-bold text-[#1E1E1E]/50 tracking-wider">
+                {loadPercent}% complete
+              </span>
+            </div>
+          )}
+
+          <img
+            ref={imgRef}
+            alt="Cinematic Brand Scroll Sequence"
+            className="w-full h-full object-cover select-none pointer-events-none"
+            src="/Hero Frames/ezgif-frame-001.jpg"
+          />
+        </div>
+
+        {/* 2. Content Overlay Container (Z-Index 10) */}
+        <div className="relative z-10 max-w-7xl mx-auto px-6 md:px-12 w-full h-full flex items-center justify-start pointer-events-none">
+          
+          {/* Text & CTAs card with light blur overlay for readability */}
           <motion.div
             variants={containerVariants}
             initial="hidden"
             animate="visible"
-            className="lg:col-span-5 space-y-6 text-center lg:text-left flex flex-col items-center lg:items-start"
+            className="max-w-xl space-y-6 text-center sm:text-left flex flex-col items-center sm:items-start bg-[#F9EEDC]/10 backdrop-blur-md border border-white/20 p-8 sm:p-10 rounded-3xl shadow-[0_15px_35px_rgba(74,4,4,0.04)] pointer-events-auto mt-[73px]"
           >
             <motion.div
               variants={itemVariants}
@@ -145,15 +173,15 @@ export default function Hero() {
 
             <motion.h1
               variants={itemVariants}
-              className="font-display text-4xl md:text-6xl lg:text-8xl leading-[0.95] text-[#4A0404] uppercase tracking-tight drop-shadow-sm"
+              className="font-display text-4xl md:text-5xl lg:text-7xl leading-[0.95] text-[#4A0404] uppercase tracking-tight drop-shadow-sm"
             >
-              THE DIRECTOR'S <br className="hidden lg:inline" />
+              THE DIRECTOR'S <br />
               <span className="text-[#8B0000]">EYE</span> FOR YOUR BRAND
             </motion.h1>
 
             <motion.p
               variants={itemVariants}
-              className="font-sans text-base md:text-lg text-[#1E1E1E]/80 max-w-xl leading-relaxed font-light"
+              className="font-sans text-sm md:text-base text-[#1E1E1E]/80 leading-relaxed font-light"
             >
               We don't just curate posts; we direct your legacy. Experience our scroll-triggered brand sequencing and establish visual authority.
             </motion.p>
@@ -161,7 +189,7 @@ export default function Hero() {
             {/* CTAs */}
             <motion.div
               variants={itemVariants}
-              className="flex flex-col sm:flex-row gap-4 w-full sm:w-auto"
+              className="flex flex-col sm:flex-row gap-4 w-full sm:w-auto pt-2"
             >
               <Link
                 href="/contact"
@@ -179,40 +207,7 @@ export default function Hero() {
               </Link>
             </motion.div>
           </motion.div>
-
-          {/* Right Column: Frame Sequence Scrubber */}
-          <div className="lg:col-span-7 w-full flex flex-col items-center justify-center relative">
-            
-            {/* Loading Indicator for frames preloading */}
-            {!isPreloaded && (
-              <div className="absolute inset-0 bg-[#F9EEDC] z-20 flex flex-col items-center justify-center gap-3 rounded-2xl border border-[#4A0404]/5 shadow-inner p-8">
-                <span className="font-display text-xl text-[#4A0404] tracking-widest uppercase">
-                  Loading Sequence
-                </span>
-                <div className="w-full h-1.5 bg-[#4A0404]/10 rounded-full overflow-hidden">
-                  <div
-                    className="h-full bg-[#8B0000] transition-all duration-300"
-                    style={{ width: `${loadPercent}%` }}
-                  />
-                </div>
-                <span className="text-[10px] uppercase font-bold text-[#1E1E1E]/50 tracking-wider">
-                  {loadPercent}% complete
-                </span>
-              </div>
-            )}
-
-            {/* Sequence Image Container */}
-            <div className="relative w-full flex items-center justify-center">
-              <img
-                ref={imgRef}
-                alt="Cinematic Brand Scroll Sequence"
-                className="w-full h-[50vh] md:h-[65vh] lg:h-[80vh] object-contain select-none pointer-events-none"
-                src="/Hero Frames/ezgif-frame-001.jpg"
-              />
-            </div>
-
-          </div>
-
+          
         </div>
 
       </div>

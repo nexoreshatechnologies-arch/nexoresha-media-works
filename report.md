@@ -136,3 +136,8 @@ The application now builds successfully into the following static and dynamic ro
    - Removed the image container box styling (border, shadow, rounded corners, background) from `sections/Hero.tsx`.
    - Set the image's sizing rule to `object-contain` to maintain native aspect ratio without cropping.
    - Performed a global search-and-replace to change the website background color token from `#F5EBDD` to `#F9EEDC` in 14 files (including `app/globals.css`, page files, and sections), achieving a seamless visual integration where the frames float natively on the page.
+8. **Sequence Layout Expansion & Label Removal**:
+   - Expanded the column grid share of the image sequence from `lg:col-span-5` (5 columns) to `lg:col-span-7` (7 columns) on desktop.
+   - Reduced the left text column span from `lg:col-span-7` to `lg:col-span-5` to accommodate the larger graphic space.
+   - Removed the aspect-ratio constraint and set the image height to `lg:h-[80vh]` on desktop screens, letting the frame sequence cover the entire right side of the screen.
+   - Removed the scrolling instruction helper text (`Scroll to scrub sequence`).
