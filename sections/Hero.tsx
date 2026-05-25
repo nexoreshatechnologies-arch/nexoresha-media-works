@@ -15,13 +15,17 @@ export default function Hero() {
   const [isPreloaded, setIsPreloaded] = useState(false);
   const [loadPercent, setLoadPercent] = useState(0);
 
-  // Mouse coordinate tracker for background glow
-  const [mousePos, setMousePos] = useState({ x: -200, y: -200 });
+  // Mouse coordinate tracker for background glow with fading boundary
+  const [mousePos, setMousePos] = useState({ x: -200, y: -200, opacity: 0 });
 
   const handleMouseMove = (e: React.MouseEvent) => {
+    if (typeof window === 'undefined') return;
+    // Fade out glow when the mouse approaches the right column (sequence area)
+    const isLeft = e.clientX < window.innerWidth * 0.40;
     setMousePos({
       x: e.clientX,
       y: e.clientY,
+      opacity: isLeft ? 1 : 0,
     });
   };
 
@@ -150,12 +154,13 @@ export default function Hero() {
         onMouseMove={handleMouseMove}
       >
         
-        {/* Interactive mouse follow cursor glow (Desktop only) */}
+        {/* Interactive mouse follow cursor glow (Desktop only, fades near sequence) */}
         <motion.div
           className="absolute w-[350px] h-[350px] bg-gradient-to-r from-[#8B0000]/12 to-transparent rounded-full blur-[80px] pointer-events-none z-0 hidden lg:block"
           animate={{
             x: mousePos.x - 175,
             y: mousePos.y - 175,
+            opacity: mousePos.opacity
           }}
           transition={{ type: 'spring', damping: 30, stiffness: 120 }}
         />

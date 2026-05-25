@@ -144,3 +144,7 @@ The application now builds successfully into the following static and dynamic ro
 9. **Bleed Split-Screen Layout**:
    - Adjusted `sections/Hero.tsx` so the image sequence container is positioned absolute on the right side (`left-[45%] w-[55%] right-0`) under the navbar (`top-[73px]`). This touches the right screen border and the bottom of the navbar.
    - Designed the left-aligned text area to align within the default container grid. Made it completely transparent (no borders, shadows, or frosted background) on desktop to sit directly on the plain canvas.
+10. **Micro-Interactions and Animation refits**:
+    - Added an interactive **Cursor-Following Glow Overlay** to the background of the Hero section, translating a soft radial blood-red spotlight to follow pointer coordinate maps with spring damping filters.
+    - Programmed a **Character Split Bounce Effect** on the displays: split the typography characters into distinct spans that scale, rotate, lift, and toggle colors individually upon mouse sweeps.
+    - Configured badge icons to roll 45 degrees when hovered, and added spring physics scaling on CTA mouse-actions.
