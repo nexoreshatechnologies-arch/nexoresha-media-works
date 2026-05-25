@@ -133,7 +133,7 @@ export default function Hero() {
             variants={containerVariants}
             initial="hidden"
             animate="visible"
-            className="lg:col-span-7 space-y-6 text-center lg:text-left flex flex-col items-center lg:items-start"
+            className="lg:col-span-5 space-y-6 text-center lg:text-left flex flex-col items-center lg:items-start"
           >
             <motion.div
               variants={itemVariants}
@@ -181,7 +181,7 @@ export default function Hero() {
           </motion.div>
 
           {/* Right Column: Frame Sequence Scrubber */}
-          <div className="lg:col-span-5 w-full flex flex-col items-center justify-center relative">
+          <div className="lg:col-span-7 w-full flex flex-col items-center justify-center relative">
             
             {/* Loading Indicator for frames preloading */}
             {!isPreloaded && (
@@ -202,20 +202,13 @@ export default function Hero() {
             )}
 
             {/* Sequence Image Container */}
-            <div className="relative w-full aspect-square max-w-sm sm:max-w-md lg:max-w-none md:aspect-[4/3] flex items-center justify-center">
+            <div className="relative w-full flex items-center justify-center">
               <img
                 ref={imgRef}
                 alt="Cinematic Brand Scroll Sequence"
-                className="w-full h-full object-contain select-none pointer-events-none"
+                className="w-full h-[50vh] md:h-[65vh] lg:h-[80vh] object-contain select-none pointer-events-none"
                 src="/Hero Frames/ezgif-frame-001.jpg"
               />
-            </div>
-            
-            {/* Helper Scroll indicator */}
-            <div className="mt-4 flex items-center gap-2 text-[#4A0404]/40 animate-pulse hidden lg:flex">
-              <span className="text-[10px] uppercase tracking-widest font-bold">
-                Scroll to scrub sequence
-              </span>
             </div>
 
           </div>

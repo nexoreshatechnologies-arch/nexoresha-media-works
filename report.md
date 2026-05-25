@@ -123,7 +123,7 @@ The application now builds successfully into the following static and dynamic ro
 ## 7. Refinement: Scroll-Scrubbed Hero Image Sequence
 
 ### Changes Made:
-1. **Background & Color Theme**: Removed the initial background image overlay from `sections/Hero.tsx` and locked the canvas layout onto the static base Cream Beige (`#F5EBDD`).
+1. **Background & Color Theme**: Removed the initial background image overlay from `sections/Hero.tsx` and locked the canvas layout onto a static base color.
 2. **Directory Relocation**: Transferred the `Hero Frames` folder containing 240 JPG frames (`ezgif-frame-001.jpg` to `ezgif-frame-240.jpg`) to the project `/public` folder to make them statically reachable by the client.
 3. **Sticky Scroll Track**: Structured a `300vh` scroll track container on the landing page, nesting a sticky child wrapper of `100vh`. This locks the screen vertically while scrolling scrub-controls the frame sequence.
 4. **Client-Side Image Preloading**: Programmed an asynchronous preloader inside a React hook that caches all 240 frames in browser memory on mount. Renders a progress tracker bar until 100% preloaded.
@@ -131,3 +131,8 @@ The application now builds successfully into the following static and dynamic ro
    - `currentProgress += (targetProgress - currentProgress) * 0.15`
    - Smoothly tracks mouse-wheel ticks up and down, mapping progress directly to the frame sequence index.
 6. **Responsive Alignment**: Maintained primary brand descriptions and action links on the left side, and positioned the responsive image canvas container on the right side.
+7. **Seamless Background Blend & Box Removal**:
+   - Programmatically analyzed the frames using PIL to read the exact corner background color (`(249, 238, 220)` -> `#F9EEDC`).
+   - Removed the image container box styling (border, shadow, rounded corners, background) from `sections/Hero.tsx`.
+   - Set the image's sizing rule to `object-contain` to maintain native aspect ratio without cropping.
+   - Performed a global search-and-replace to change the website background color token from `#F5EBDD` to `#F9EEDC` in 14 files (including `app/globals.css`, page files, and sections), achieving a seamless visual integration where the frames float natively on the page.
