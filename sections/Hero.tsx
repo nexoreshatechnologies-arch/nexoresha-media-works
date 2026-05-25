@@ -120,12 +120,12 @@ export default function Hero() {
         
         {/* Soft Background blur accents */}
         <div className="absolute inset-0 pointer-events-none z-0 overflow-hidden">
-          <div className="absolute top-1/4 left-[10%] w-[300px] h-[300px] bg-[#8B0000]/3 rounded-full blur-[90px]" />
-          <div className="absolute bottom-10 right-[15%] w-[350px] h-[350px] bg-[#4A0404]/3 rounded-full blur-[110px]" />
+          <div className="absolute top-1/4 left-[5%] w-[250px] h-[250px] bg-[#8B0000]/3 rounded-full blur-[80px]" />
+          <div className="absolute bottom-10 right-[25%] w-[300px] h-[300px] bg-[#4A0404]/3 rounded-full blur-[100px]" />
         </div>
 
-        {/* 1. Full-Bleed Image Sequence (Z-Index 0) */}
-        <div className="absolute inset-x-0 top-[73px] bottom-0 w-full h-[calc(100vh-73px)] z-0 flex items-center justify-center bg-[#F9EEDC]">
+        {/* 1. Image Sequence Container (Absolute right-aligned bleeding on desktop, full-screen overlay on mobile) */}
+        <div className="absolute top-[73px] right-0 bottom-0 left-0 lg:left-[45%] w-full lg:w-[55%] h-[calc(100vh-73px)] z-0 flex items-center justify-center bg-[#F9EEDC]">
           
           {/* Loading Indicator for frames preloading */}
           {!isPreloaded && (
@@ -148,7 +148,7 @@ export default function Hero() {
           <img
             ref={imgRef}
             alt="Cinematic Brand Scroll Sequence"
-            className="w-full h-full object-cover select-none pointer-events-none"
+            className="w-full h-full object-contain select-none pointer-events-none"
             src="/Hero Frames/ezgif-frame-001.jpg"
           />
         </div>
@@ -156,12 +156,12 @@ export default function Hero() {
         {/* 2. Content Overlay Container (Z-Index 10) */}
         <div className="relative z-10 max-w-7xl mx-auto px-6 md:px-12 w-full h-full flex items-center justify-start pointer-events-none">
           
-          {/* Text & CTAs card with light blur overlay for readability */}
+          {/* Text & CTAs card - transparent on desktop, light blur on mobile for legibility */}
           <motion.div
             variants={containerVariants}
             initial="hidden"
             animate="visible"
-            className="max-w-xl space-y-6 text-center sm:text-left flex flex-col items-center sm:items-start bg-[#F9EEDC]/10 backdrop-blur-md border border-white/20 p-8 sm:p-10 rounded-3xl shadow-[0_15px_35px_rgba(74,4,4,0.04)] pointer-events-auto mt-[73px]"
+            className="max-w-md lg:max-w-xl space-y-6 text-center lg:text-left flex flex-col items-center lg:items-start bg-[#F9EEDC]/10 backdrop-blur-md border border-white/20 p-8 sm:p-10 rounded-3xl shadow-[0_15px_35px_rgba(74,4,4,0.03)] lg:bg-transparent lg:backdrop-blur-none lg:border-none lg:shadow-none lg:p-0 pointer-events-auto mt-[73px]"
           >
             <motion.div
               variants={itemVariants}
