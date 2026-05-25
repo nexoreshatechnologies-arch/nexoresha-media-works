@@ -141,8 +141,6 @@ The application now builds successfully into the following static and dynamic ro
    - Reduced the left text column span from `lg:col-span-7` to `lg:col-span-5` to accommodate the larger graphic space.
    - Removed the aspect-ratio constraint and set the image height to `lg:h-[80vh]` on desktop screens, letting the frame sequence cover the entire right side of the screen.
    - Removed the scrolling instruction helper text (`Scroll to scrub sequence`).
-9. **Full-Bleed Sequence Layout & Text Overlay**:
-   - Refactored `sections/Hero.tsx` to mount the image sequence as a full-bleed absolute backdrop (`inset-x-0 top-[73px] bottom-0`), spanning from the left border to the right border of the viewport and touching the bottom of the navbar.
-   - Styled the sequence player using `object-cover` to fill the entire container area dynamically.
-   - Positioned the primary copy/CTA container at `z-index: 10` on the left hand side (`justify-start`), using a pointer-events pass-through configuration (`pointer-events-none` on overlay grid, `pointer-events-auto` on the text card) to preserve scroll scrubbing and CTA button clickability.
-   - Integrated a frosted glass backdrop (`backdrop-blur-md bg-[#F9EEDC]/10 border border-white/20`) on the copy card to ensure text readability.
+9. **Bleed Split-Screen Layout**:
+   - Adjusted `sections/Hero.tsx` so the image sequence container is positioned absolute on the right side (`left-[45%] w-[55%] right-0`) under the navbar (`top-[73px]`). This touches the right screen border and the bottom of the navbar.
+   - Designed the left-aligned text area to align within the default container grid. Made it completely transparent (no borders, shadows, or frosted background) on desktop to sit directly on the plain canvas.
