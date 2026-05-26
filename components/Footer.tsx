@@ -20,7 +20,9 @@ export default function Footer() {
             </p>
             <div className="flex gap-4">
               <a
-                href="#"
+                href="https://www.instagram.com/nexoresha.media.works?igsh=eHlhMDRpemFzMTJn"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="w-10 h-10 rounded-xl border border-[#EAD8C0]/25 flex items-center justify-center hover:bg-[#8B0000] hover:border-[#8B0000] text-[#F9EEDC] transition-all duration-300 hover:scale-105"
                 aria-label="Instagram Link"
               >
@@ -77,10 +79,10 @@ export default function Footer() {
                 <Link href="/contact" className="hover:text-white transition-colors">Contact Form</Link>
               </li>
               <li>
-                <a href="mailto:director@nexoresha.com" className="hover:text-white transition-colors">director@nexoresha.com</a>
+                <a href="mailto:ayush.choudhary@nexoresha.tech" className="hover:text-white transition-colors">ayush.choudhary@nexoresha.tech</a>
               </li>
               <li>
-                <a href="tel:+919876543210" className="hover:text-white transition-colors">+91 98765 43210</a>
+                <a href="tel:+919136936913" className="hover:text-white transition-colors">+91 91369 36913</a>
               </li>
               <li>
                 <a href="#" className="hover:text-white transition-colors">Privacy Policy</a>
@@ -95,7 +97,15 @@ export default function Footer() {
         {/* Bottom divider and back to top */}
         <div className="mt-16 pt-8 border-t border-[#EAD8C0]/10 flex flex-col sm:flex-row justify-between items-center gap-6">
           <p className="text-xs text-[#EAD8C0]/50 text-center sm:text-left">
-            © 2026 Nexoresha Media Works. The Director's Eye. All Rights Reserved.
+            © 2026 Nexoresha Media Works. Developed by{' '}
+            <a
+              href="https://nexoresha.tech/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="hover:text-white transition-colors underline"
+            >
+              Nexoresha Technologies
+            </a>
           </p>
           <button
             onClick={handleScrollToTop}

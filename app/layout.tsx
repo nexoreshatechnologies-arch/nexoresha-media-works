@@ -4,6 +4,7 @@ import "./globals.css";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import CartDrawer from "@/components/CartDrawer";
+import MonkeyCursor from "@/components/MonkeyCursor";
 
 const bebasNeue = Bebas_Neue({
   weight: "400",
@@ -26,8 +27,8 @@ export const metadata: Metadata = {
     description: "The Director's Eye for Your Brand. Elite digital branding and cinematography.",
     type: "website",
     locale: "en_IN",
-  }
-};
+    }
+  };
 
 export default function RootLayout({
   children,
@@ -44,6 +45,7 @@ export default function RootLayout({
         <main className="flex-grow">{children}</main>
         <CartDrawer />
         <Footer />
+        <MonkeyCursor />
       </body>
     </html>
   );

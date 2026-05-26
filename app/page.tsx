@@ -1,5 +1,6 @@
 import Hero from "@/sections/Hero";
 import Companies from "@/sections/Companies";
+import Vision from "@/sections/Vision";
 import FeaturedHighlights from "@/sections/FeaturedHighlights";
 import Packages from "@/sections/Packages";
 import Customize from "@/sections/Customize";
@@ -12,6 +13,9 @@ export default function Home() {
 
       {/* Trusted By brands scrolling ticker */}
       <Companies />
+
+      {/* Our Vision and founders profiles segment */}
+      <Vision />
 
       {/* Case studies showreel preview cards */}
       <FeaturedHighlights />

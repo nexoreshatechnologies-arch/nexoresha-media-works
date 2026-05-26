@@ -69,7 +69,7 @@ export default function FeaturedHighlights() {
   };
 
   return (
-    <section id="highlights" className="py-28 px-6 md:px-12 max-w-7xl mx-auto bg-[#F9EEDC]">
+    <section id="highlights" className="py-28 px-6 md:px-12 lg:px-20 max-w-[92vw] mx-auto bg-[#F9EEDC]">
       {/* Header */}
       <div className="text-center max-w-2xl mx-auto mb-16 space-y-4">
         <motion.span 

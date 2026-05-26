@@ -82,7 +82,7 @@ export default function HighlightsPage() {
         <div className="absolute -top-40 left-1/2 -translate-x-1/2 w-[700px] h-[500px] bg-[#8B0000]/5 rounded-full blur-[140px]" />
       </div>
 
-      <div className="max-w-7xl mx-auto px-6 md:px-12 relative z-10 space-y-16">
+      <div className="max-w-[92vw] mx-auto px-6 md:px-12 lg:px-20 relative z-10 space-y-16">
         {/* Page Header */}
         <div className="text-center space-y-4 max-w-2xl mx-auto">
           <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#8B0000]/10 border border-[#8B0000]/20 text-xs font-semibold text-[#8B0000] uppercase tracking-wider">

@@ -109,10 +109,10 @@ export default function ContactPage() {
   };
 
   const contactOptions = [
-    { label: 'WhatsApp', value: 'Chat with us', icon: MessageSquare, href: 'https://wa.me/919876543210', color: 'hover:border-emerald-500/30 text-emerald-600' },
-    { label: 'Instagram', value: '@nexoresha.media', icon: Instagram, href: '#', color: 'hover:border-pink-500/30 text-pink-600' },
-    { label: 'Email', value: 'director@nexoresha.com', icon: Mail, href: 'mailto:director@nexoresha.com', color: 'hover:border-[#8B0000]/30 text-[#8B0000]' },
-    { label: 'Phone', value: '+91 98765 43210', icon: Phone, href: 'tel:+919876543210', color: 'hover:border-[#4A0404]/30 text-[#4A0404]' },
+    { label: 'WhatsApp', value: 'Chat with us', icon: MessageSquare, href: 'https://wa.me/919136936913', color: 'hover:border-emerald-500/30 text-emerald-600' },
+    { label: 'Instagram', value: '@nexoresha.media.works', icon: Instagram, href: 'https://www.instagram.com/nexoresha.media.works?igsh=eHlhMDRpemFzMTJn', color: 'hover:border-pink-500/30 text-pink-600' },
+    { label: 'Email', value: 'ayush.choudhary@nexoresha.tech', icon: Mail, href: 'mailto:ayush.choudhary@nexoresha.tech', color: 'hover:border-[#8B0000]/30 text-[#8B0000]' },
+    { label: 'Phone', value: '+91 91369 36913', icon: Phone, href: 'tel:+919136936913', color: 'hover:border-[#4A0404]/30 text-[#4A0404]' },
   ];
 
   const whyChooseUsCards = [

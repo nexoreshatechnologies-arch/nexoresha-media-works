@@ -158,7 +158,7 @@ export default function Companies() {
                     scale: 1.02,
                   }}
                   transition={{ type: 'spring', stiffness: 400, damping: 25 }}
-                  className="glass-layer px-5 py-4 rounded-2xl flex items-center gap-4 min-w-[310px] cursor-pointer shadow-sm hover:shadow-[0_15px_30px_rgba(74,4,4,0.06)] border border-[#EAD8C0]/40 hover:border-[#8B0000]/30 hover:bg-[#8B0000]/[0.015] transition-all duration-300 group"
+                  className="glass-layer px-5 py-4 rounded-2xl flex items-center gap-4 min-w-[310px] shrink-0 cursor-pointer shadow-sm hover:shadow-[0_15px_30px_rgba(74,4,4,0.06)] border border-[#EAD8C0]/40 hover:border-[#8B0000]/30 hover:bg-[#8B0000]/[0.015] transition-all duration-300 group"
                 >
                   <div className="w-16 h-16 rounded-full overflow-hidden border border-[#4A0404]/10 transition-all duration-300 group-hover:scale-105 relative flex-shrink-0 bg-white flex items-center justify-center">
                     <img 
@@ -202,7 +202,7 @@ export default function Companies() {
                     scale: 1.02,
                   }}
                   transition={{ type: 'spring', stiffness: 400, damping: 25 }}
-                  className="glass-layer px-5 py-4 rounded-2xl flex items-center gap-4 min-w-[310px] cursor-pointer shadow-sm hover:shadow-[0_15px_30px_rgba(74,4,4,0.06)] border border-[#EAD8C0]/40 hover:border-[#8B0000]/30 hover:bg-[#8B0000]/[0.015] transition-all duration-300 group"
+                  className="glass-layer px-5 py-4 rounded-2xl flex items-center gap-4 min-w-[310px] shrink-0 cursor-pointer shadow-sm hover:shadow-[0_15px_30px_rgba(74,4,4,0.06)] border border-[#EAD8C0]/40 hover:border-[#8B0000]/30 hover:bg-[#8B0000]/[0.015] transition-all duration-300 group"
                 >
                   <div className="w-16 h-16 rounded-full overflow-hidden border border-[#4A0404]/10 transition-all duration-300 group-hover:scale-105 relative flex-shrink-0 bg-white flex items-center justify-center">
                     <img 

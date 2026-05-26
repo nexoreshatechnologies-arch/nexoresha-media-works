@@ -121,13 +121,19 @@ export default function HighlightCard({
         }`}>
           {category}
         </span>
-        <div className="flex justify-between items-end">
-          <div>
+        <div className="flex justify-between items-end w-full">
+          <div className="flex-grow pr-2">
             <span className="text-xs text-white/70 block font-medium">{client}</span>
             <h3 className="text-white font-display text-2xl tracking-wide uppercase leading-tight">
               {title}
             </h3>
           </div>
+          {reach && (
+            <div className="flex items-center gap-1 bg-white/10 backdrop-blur-sm px-2.5 py-1.5 rounded-xl border border-white/15 text-white text-[10px] font-bold uppercase tracking-wider shrink-0 shadow-sm">
+              <TrendingUp className="w-3.5 h-3.5 text-[#EAD8C0]" />
+              <span>{reach}</span>
+            </div>
+          )}
         </div>
       </motion.div>
     </motion.div>

@@ -77,7 +77,7 @@ export default function CartDrawer() {
 
       // 2. Open WhatsApp link
       const encodedMsg = encodeURIComponent(message);
-      const whatsappUrl = `https://wa.me/919876543210?text=${encodedMsg}`;
+      const whatsappUrl = `https://wa.me/919136936913?text=${encodedMsg}`;
 
       window.open(whatsappUrl, '_blank');
 
