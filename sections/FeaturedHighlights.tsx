@@ -12,34 +12,52 @@ interface ReelProject {
   client: string;
   reach: string;
   category: string;
-  thumbnail: string;
+  thumbnail?: string;
   videoUrl: string;
 }
 
 const featuredReels: ReelProject[] = [
   {
-    title: 'Skyline Manor',
-    client: 'Lumina Lux',
-    reach: '2.4M Reach',
-    category: 'Luxury Real Estate',
-    thumbnail: 'https://lh3.googleusercontent.com/aida-public/AB6AXuCImEf7k9s9k9EudQVZobqIaguoePfsu_awmNpO4hNbvOFOKsPLtptADWs90FHiuI_-dqLar3FErrDdsnEvSEXTqVveBpShLwNNxNG1h3dMRd1G57zX1tR6xeCkq117oSZ7na2YuVhaZoeSPydfa0cSUSBsZOcpKshQGd_29ijNGAFAD9838MW0eD48g-RjKxzJ19CHljJSpQpfX4n23zXJNHtZz4DkJbYxz4pUM80lBqQOqKLixeG4dzHTRh4GimtSttB35H1f0J4',
-    videoUrl: 'https://assets.mixkit.co/videos/preview/mixkit-fashion-woman-with-silver-makeup-40191-large.mp4',
-  },
-  {
-    title: 'The Artisan',
-    client: 'Chronos Time',
-    reach: '1.1M Reach',
-    category: 'Brand Documentary',
-    thumbnail: 'https://lh3.googleusercontent.com/aida-public/AB6AXuCd-bbzUuTJABNfq71txAwvhlLvul-yIcJ9pGHL8LLn8dnoWZuA3A8WrU3W9PEcxcUTM9ijC7Y4oH-rUXFxBBbT-pa4_muvDLECDoF_0u2rQMLwetthPcGjIFy7cCXTAUiGxKaDiX7U3XtDR1UPB6OZekt3b8YxM6TVpv2kbnLmdfE8cGe1HsgHgN_ViFqchCStZhWKuBsz7ON7rpVRe9qNdKBLXyRNbZ6FXFdQrmmmSI3x4bc4OzOA1hdjM7FGRwVb1FrP9bcWer0',
-    videoUrl: 'https://assets.mixkit.co/videos/preview/mixkit-hands-of-a-potter-creating-a-clay-vase-41712-large.mp4',
-  },
-  {
-    title: 'Velocità',
-    client: 'Eclipse Motors',
+    title: 'Future Builders',
+    client: "Sidhpura's Institute",
     reach: '850K Reach',
+    category: 'Brand Film',
+    videoUrl: '/Highlights/SaveClip.App_AQMV1p4Urvj0gEfDOcYtuz0IJGXcF1p-TQSdoGPy5wSlZUdBXQnRj7CT2rxrZibynMQfVbAUyVCEtwC0z2sQDSuwm-H5l9cjOWNhSdo.mp4',
+  },
+  {
+    title: 'Glamour Narrative',
+    client: 'Khushi Kumpawat',
+    reach: '2.4M Reach',
+    category: 'Beauty & Fashion',
+    videoUrl: '/Highlights/SaveClip.App_AQNlO-4gmIV1QZe3IN3NnELC2o7Bgot6mmuJKyYsy_SgYXlb8UZk2vvshyz9J3vpTQUjCD7bBcMGSZPXQqh9xnrAC17x1VIL9BiWSUA.mp4',
+  },
+  {
+    title: 'Taste of Thane',
+    client: 'The Thane Foodie',
+    reach: '1.1M Reach',
+    category: 'Social Campaign',
+    videoUrl: '/Highlights/SaveClip.App_AQNMgmGaQVPLf0z61k14px3fLqy2Up7oApk9eRBS90Z3f0EL1IgHntnme5jt_b8Nuq8F3Wm7em1eQmYofDCxiCAvsglTwXnJEzU5ejM.mp4',
+  },
+  {
+    title: 'School of Excellence',
+    client: 'Finland Int. School',
+    reach: '1.8M Reach',
+    category: 'Cinematography',
+    videoUrl: '/Highlights/SaveClip.App_AQOavP-z27RyV_x2gKQ129D1dRf8rG2uPbiwm2FjHq9Lyr27aQvcJ1OYQ8-BiV1lzCtTIJHM8uZx4A_ShkX4u0UEHMGL6VXertJIGj4.mp4',
+  },
+  {
+    title: 'Touring Maharashtra',
+    client: 'Bha2Pa (Touring Party)',
+    reach: '3.1M Views',
+    category: 'Branding',
+    videoUrl: '/Highlights/SaveClip.App_AQPMjUB6m94d57tGt5xOcOYqF4QRujxVPtZKDfiSL348YG9VleczT4QmCbXESDVCwkw_t1_EMM-DFQE8JHDbL7ZRsueXAICPprThVXQ.mp4',
+  },
+  {
+    title: 'Coastal Feast',
+    client: 'Malvan Tadka',
+    reach: '980K Likes',
     category: 'Commercial Reel',
-    thumbnail: 'https://lh3.googleusercontent.com/aida-public/AB6AXuCguSRpSI6D7yPvbDrncNy0b8t5cix7hsFSfFNMh49t-fUG9hbXJpQShrnjN76TwMiMtajJ2H9WV2Vqo7fy6A_MEc5G91W0vEiWNXGtHFv_QWACTt_DqhS_totaptwA1SeLT-RcFti05dn5JOwVdjAQu5K8-ATAXltmpVJl60LNXWiLokoUOeMLNTb9CRfhAboiZWR_0e0J6jYQVxSWCZMivmG58eXXuIw3gRbSOF72AuKuwieOtKaKhq6MIGjCTg281InMlu-PmyY',
-    videoUrl: 'https://assets.mixkit.co/videos/preview/mixkit-driving-in-a-futuristic-neon-lit-city-42618-large.mp4',
+    videoUrl: '/Highlights/SaveClip.App_AQPh2KWWhywm3QI5ohx-Urwa7WjS-H1Diz16CpTH-PZ54y4PkJoRdB2uG821BgyEleTi22v8VDqpOHA6vLKDDNLO5-zFhxz7SbYT0ws.mp4',
   },
 ];
 
@@ -106,6 +124,7 @@ export default function FeaturedHighlights() {
               category={reel.category}
               thumbnail={reel.thumbnail}
               videoUrl={reel.videoUrl}
+              featured={reel.videoUrl.includes('AQNlO-4gmIV1QZe3IN3NnELC2o7Bgot6mmuJKyYsy_SgYXlb8UZk2vvshyz9J3vpTQUjCD7bBcMGSZPXQqh9xnrAC17x1VIL9BiWSUA')}
               onSelect={handleSelectVideo}
             />
           </motion.div>

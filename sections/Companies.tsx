@@ -8,22 +8,97 @@ interface Company {
   category: string;
   stat: string;
   icon: any;
+  image: string;
 }
 
 const row1Companies: Company[] = [
-  { name: 'Lumina Lux', category: 'Luxury Hospitality', stat: '+240% Reach', icon: Gem },
-  { name: 'Chronos Time', category: 'Haute Horology', stat: '+180% Growth', icon: Clock },
-  { name: 'Vogue Elite', category: 'Fashion Agency', stat: '1.2M+ Views', icon: Sparkles },
-  { name: 'Aurelia Gems', category: 'Fine Jewelry', stat: '+320% Sales', icon: Crown },
-  { name: 'Zenith Yachts', category: 'Luxury Charters', stat: '+210% Booking', icon: Anchor },
+  { 
+    name: 'Khushi Kumpawat', 
+    category: 'Beauty & Fashion', 
+    stat: '78.6k Followers', 
+    icon: Sparkles,
+    image: '/Work/logo_1_centered.png'
+  },
+  { 
+    name: "Sidhpura's Institute", 
+    category: 'Commerce Academy', 
+    stat: 'Trusted Classes', 
+    icon: Building2,
+    image: '/Work/logo_2_centered.png'
+  },
+  { 
+    name: 'The Thane Foodie', 
+    category: 'Food & Drink Vlogger', 
+    stat: '1.1k Followers', 
+    icon: Utensils,
+    image: '/Work/logo_3_centered.png'
+  },
+  { 
+    name: 'Finland Int. School', 
+    category: 'Premium Education', 
+    stat: '5.0k Followers', 
+    icon: Compass,
+    image: '/Work/logo_4_centered.png'
+  },
+  { 
+    name: 'Bha2Pa (Touring Party)', 
+    category: 'Food & Travel', 
+    stat: '238k Followers', 
+    icon: Car,
+    image: '/Work/logo_5_centered.png'
+  },
+  { 
+    name: 'Malvan Tadka', 
+    category: 'Coastal Restaurant', 
+    stat: '18+ Outlets', 
+    icon: Anchor,
+    image: '/Work/logo_6_centered.png'
+  },
 ];
 
 const row2Companies: Company[] = [
-  { name: 'Forma Studio', category: 'Architecture', stat: 'Award Winning', icon: Compass },
-  { name: 'Estate Vines', category: 'Wine & Spirits', stat: '+310% Likes', icon: GlassWater },
-  { name: 'Skyline Prop', category: 'Real Estate', stat: '+500 Leads', icon: Building2 },
-  { name: 'Velvet Dine', category: 'Fine Dining', stat: '+150% Bookings', icon: Utensils },
-  { name: 'Eclipse Motors', category: 'Hypercars', stat: 'Sold Out', icon: Car },
+  { 
+    name: 'Finland Int. School', 
+    category: 'Premium Education', 
+    stat: '5.0k Followers', 
+    icon: Compass,
+    image: '/Work/logo_4_centered.png'
+  },
+  { 
+    name: 'Bha2Pa (Touring Party)', 
+    category: 'Food & Travel', 
+    stat: '238k Followers', 
+    icon: Car,
+    image: '/Work/logo_5_centered.png'
+  },
+  { 
+    name: 'Malvan Tadka', 
+    category: 'Coastal Restaurant', 
+    stat: '18+ Outlets', 
+    icon: Anchor,
+    image: '/Work/logo_6_centered.png'
+  },
+  { 
+    name: 'Khushi Kumpawat', 
+    category: 'Beauty & Fashion', 
+    stat: '78.6k Followers', 
+    icon: Sparkles,
+    image: '/Work/logo_1_centered.png'
+  },
+  { 
+    name: "Sidhpura's Institute", 
+    category: 'Commerce Academy', 
+    stat: 'Trusted Classes', 
+    icon: Building2,
+    image: '/Work/logo_2_centered.png'
+  },
+  { 
+    name: 'The Thane Foodie', 
+    category: 'Food & Drink Vlogger', 
+    stat: '1.1k Followers', 
+    icon: Utensils,
+    image: '/Work/logo_3_centered.png'
+  },
 ];
 
 export default function Companies() {
@@ -57,7 +132,7 @@ export default function Companies() {
           transition={{ duration: 0.8, delay: 0.15, type: 'spring', stiffness: 100 }}
           className="text-[11px] md:text-xs text-[#4A0404]/60 tracking-[0.2em] uppercase font-medium mt-3 max-w-2xl mx-auto leading-relaxed"
         >
-          Partnering with the world's most prestigious labels to craft cinematic visual masterpieces
+          Partnering with the world&apos;s most prestigious labels to craft cinematic visual masterpieces
         </motion.p>
         <motion.div 
           initial={{ width: 0 }}
@@ -75,7 +150,6 @@ export default function Companies() {
           <div className="flex gap-6 marquee-left py-2">
             {/* Direct list */}
             {row1Companies.concat(row1Companies).map((company, index) => {
-              const Icon = company.icon;
               return (
                 <motion.div
                   key={`r1-${index}`}
@@ -84,10 +158,14 @@ export default function Companies() {
                     scale: 1.02,
                   }}
                   transition={{ type: 'spring', stiffness: 400, damping: 25 }}
-                  className="glass-layer px-8 py-5 rounded-2xl flex items-center gap-5 min-w-[290px] cursor-pointer shadow-sm hover:shadow-[0_15px_30px_rgba(74,4,4,0.06)] border border-[#EAD8C0]/40 hover:border-[#8B0000]/30 hover:bg-[#8B0000]/[0.015] transition-all duration-300 group"
+                  className="glass-layer px-5 py-4 rounded-2xl flex items-center gap-4 min-w-[310px] cursor-pointer shadow-sm hover:shadow-[0_15px_30px_rgba(74,4,4,0.06)] border border-[#EAD8C0]/40 hover:border-[#8B0000]/30 hover:bg-[#8B0000]/[0.015] transition-all duration-300 group"
                 >
-                  <div className="w-12 h-12 rounded-xl bg-[#4A0404]/5 flex items-center justify-center text-[#4A0404] border border-[#4A0404]/10 transition-all duration-300 group-hover:bg-[#8B0000] group-hover:text-[#F9EEDC] group-hover:border-[#8B0000]/25 group-hover:scale-105">
-                    <Icon className="w-5 h-5" />
+                  <div className="w-16 h-16 rounded-full overflow-hidden border border-[#4A0404]/10 transition-all duration-300 group-hover:scale-105 relative flex-shrink-0 bg-white flex items-center justify-center">
+                    <img 
+                      src={`${company.image}?v=5`} 
+                      alt={company.name} 
+                      className="w-full h-full object-cover"
+                    />
                   </div>
                   <div>
                     <h4 className="font-display text-lg text-[#4A0404] tracking-wide uppercase leading-tight transition-colors duration-300 group-hover:text-[#8B0000]">
@@ -116,7 +194,6 @@ export default function Companies() {
         <div className="flex overflow-hidden select-none mask-image-gradient py-6 -my-6">
           <div className="flex gap-6 marquee-right py-2">
             {row2Companies.concat(row2Companies).map((company, index) => {
-              const Icon = company.icon;
               return (
                 <motion.div
                   key={`r2-${index}`}
@@ -125,10 +202,14 @@ export default function Companies() {
                     scale: 1.02,
                   }}
                   transition={{ type: 'spring', stiffness: 400, damping: 25 }}
-                  className="glass-layer px-8 py-5 rounded-2xl flex items-center gap-5 min-w-[290px] cursor-pointer shadow-sm hover:shadow-[0_15px_30px_rgba(74,4,4,0.06)] border border-[#EAD8C0]/40 hover:border-[#8B0000]/30 hover:bg-[#8B0000]/[0.015] transition-all duration-300 group"
+                  className="glass-layer px-5 py-4 rounded-2xl flex items-center gap-4 min-w-[310px] cursor-pointer shadow-sm hover:shadow-[0_15px_30px_rgba(74,4,4,0.06)] border border-[#EAD8C0]/40 hover:border-[#8B0000]/30 hover:bg-[#8B0000]/[0.015] transition-all duration-300 group"
                 >
-                  <div className="w-12 h-12 rounded-xl bg-[#4A0404]/5 flex items-center justify-center text-[#4A0404] border border-[#4A0404]/10 transition-all duration-300 group-hover:bg-[#8B0000] group-hover:text-[#F9EEDC] group-hover:border-[#8B0000]/25 group-hover:scale-105">
-                    <Icon className="w-5 h-5" />
+                  <div className="w-16 h-16 rounded-full overflow-hidden border border-[#4A0404]/10 transition-all duration-300 group-hover:scale-105 relative flex-shrink-0 bg-white flex items-center justify-center">
+                    <img 
+                      src={`${company.image}?v=5`} 
+                      alt={company.name} 
+                      className="w-full h-full object-cover"
+                    />
                   </div>
                   <div>
                     <h4 className="font-display text-lg text-[#4A0404] tracking-wide uppercase leading-tight transition-colors duration-300 group-hover:text-[#8B0000]">

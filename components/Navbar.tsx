@@ -75,11 +75,7 @@ export default function Navbar() {
   return (
     <nav
       id="top-nav"
-      className={`fixed top-0 left-0 w-full z-50 transition-all duration-500 max-w-full ${
-        isScrolled
-          ? 'py-4 bg-[#F9EEDC]/80 backdrop-blur-xl border-b border-[#4A0404]/10 shadow-[0_4px_30px_rgba(74,4,4,0.03)]'
-          : 'py-6 bg-transparent'
-      }`}
+      className="fixed top-0 left-0 w-full z-50 transition-all duration-300 max-w-full py-4 bg-transparent"
     >
       <div className="max-w-7xl mx-auto px-6 md:px-12 flex justify-between items-center">
         {/* Logo */}
@@ -154,10 +150,10 @@ export default function Navbar() {
           {/* Mobile Menu Toggle Button */}
           <button
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-            className="md:hidden p-2 rounded-xl text-[#4A0404] hover:bg-[#4A0404]/5 transition-colors cursor-pointer"
+            className="max-md:flex hidden relative p-2.5 rounded-xl border border-[#4A0404]/10 hover:border-[#4A0404]/30 bg-[#F9EEDC]/40 hover:bg-[#F9EEDC] text-[#4A0404] transition-all duration-300 hover:scale-105 active:scale-95 cursor-pointer items-center justify-center"
             aria-label="Toggle menu"
           >
-            {isMobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+            {isMobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
           </button>
         </div>
       </div>

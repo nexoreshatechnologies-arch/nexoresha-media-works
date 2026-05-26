@@ -2,9 +2,8 @@
 
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { X, Trash2, Plus, Minus, Ticket, CreditCard, Loader2 } from 'lucide-react';
+import { X, Trash2, Plus, Minus, Ticket, Loader2, MessageSquare, ShoppingBag } from 'lucide-react';
 import { useCartStore } from '@/lib/store';
-import MockPaymentModal from './MockPaymentModal';
 
 declare global {
   interface Window {
@@ -30,14 +29,6 @@ export default function CartDrawer() {
   const [couponSuccess, setCouponSuccess] = useState(false);
   
   const [isCheckoutLoading, setIsCheckoutLoading] = useState(false);
-  const [showMockGateway, setShowMockGateway] = useState(false);
-  const [orderDetails, setOrderDetails] = useState<{
-    razorpayOrderId: string;
-    amount: number;
-    currency: string;
-    keyId: string;
-    isMock: boolean;
-  } | null>(null);
 
   // Price calculations
   const subtotal = items.reduce((sum, item) => sum + item.price * item.quantity, 0);
@@ -63,134 +54,42 @@ export default function CartDrawer() {
     }
   };
 
-  const loadRazorpayScript = () => {
-    return new Promise((resolve) => {
-      if (window.Razorpay) {
-        resolve(true);
-        return;
-      }
-      const script = document.createElement('script');
-      script.src = 'https://checkout.razorpay.com/v1/checkout.js';
-      script.onload = () => resolve(true);
-      script.onerror = () => resolve(false);
-      document.body.appendChild(script);
-    });
-  };
-
-  const handleCheckout = async () => {
+  const handleCheckout = () => {
     if (items.length === 0) return;
     setIsCheckoutLoading(true);
 
     try {
-      // 1. Create order on the backend
-      const res = await fetch('/api/checkout', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          items,
-          couponCode: coupon?.code,
-          discountPercent,
-        }),
+      // 1. Build a beautiful descriptive message for WhatsApp
+      let message = `Hello Nexoresha! I would like to initiate a branding project with the following services:\n\n`;
+
+      items.forEach((item, index) => {
+        message += `${index + 1}. *${item.name}* (${item.category}) - ${item.quantity} unit(s) x ₹${item.price.toLocaleString('en-IN')}\n`;
       });
 
-      const data = await res.json();
-      if (!res.ok) throw new Error(data.error || 'Checkout request failed');
-
-      setOrderDetails(data);
-
-      // 2. Route based on sandbox vs live keys
-      if (data.isMock) {
-        // Fallback simulated payment UI
-        setShowMockGateway(true);
-        setIsCheckoutLoading(false);
-      } else {
-        // Load live Razorpay SDK
-        const scriptLoaded = await loadRazorpayScript();
-        if (!scriptLoaded) {
-          throw new Error('Failed to load Razorpay payment SDK');
-        }
-
-        const options = {
-          key: data.keyId,
-          amount: data.amount * 100, // in paise
-          currency: data.currency,
-          name: 'Nexoresha Media Works',
-          description: 'Payment for Creative Agency Services',
-          order_id: data.razorpayOrderId,
-          handler: async function (response: any) {
-            // Payment success callback from Razorpay
-            await verifyPayment({
-              razorpayOrderId: data.razorpayOrderId,
-              razorpayPaymentId: response.razorpay_payment_id,
-              razorpaySignature: response.razorpay_signature,
-              isMock: false,
-            });
-          },
-          prefill: {
-            name: 'Client Partner',
-            email: 'partner@nexoresha.com',
-            contact: '9999999999',
-          },
-          theme: { color: '#4A0404' },
-          modal: {
-            ondismiss: function () {
-              setIsCheckoutLoading(false);
-            },
-          },
-        };
-
-        const rzp = new window.Razorpay(options);
-        rzp.open();
-        setIsCheckoutLoading(false);
+      if (coupon) {
+        message += `\n*Coupon Applied:* ${coupon.code} (${coupon.discountPercent}% OFF)\n`;
+        message += `*Discount Amount:* - ₹${discountAmount.toLocaleString('en-IN')}\n`;
       }
-    } catch (err: any) {
-      console.error(err);
-      alert(err.message || 'An error occurred during checkout initialization.');
-      setIsCheckoutLoading(false);
-    }
-  };
 
-  const verifyPayment = async (verificationPayload: {
-    razorpayOrderId: string;
-    razorpayPaymentId: string;
-    razorpaySignature?: string;
-    isMock: boolean;
-  }) => {
-    try {
-      setIsCheckoutLoading(true);
-      const res = await fetch('/api/verify', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(verificationPayload),
-      });
+      message += `\n*GST (18%):* ₹${gstAmount.toLocaleString('en-IN')}\n`;
+      message += `*Estimated Budget:* ₹${totalAmount.toLocaleString('en-IN')}\n\n`;
+      message += `Please connect me with a media director to discuss the roadmap!`;
 
-      const data = await res.json();
-      if (!res.ok) throw new Error(data.error || 'Verification failed');
+      // 2. Open WhatsApp link
+      const encodedMsg = encodeURIComponent(message);
+      const whatsappUrl = `https://wa.me/919876543210?text=${encodedMsg}`;
 
-      // Clear state and close cart
+      window.open(whatsappUrl, '_blank');
+
+      // 3. Clear cart and close
       clearCart();
       toggleCart(false);
-      setShowMockGateway(false);
-      alert('Payment Success! Your media order has been registered. Our Director will contact you soon.');
-    } catch (err: any) {
-      alert(err.message || 'Payment verification failed.');
-    } finally {
+      setIsCheckoutLoading(false);
+    } catch (err) {
+      console.error(err);
+      alert('Failed to initialize WhatsApp redirection. Please try again.');
       setIsCheckoutLoading(false);
     }
-  };
-
-  const handleMockSuccess = async (paymentId: string) => {
-    if (!orderDetails) return;
-    await verifyPayment({
-      razorpayOrderId: orderDetails.razorpayOrderId,
-      razorpayPaymentId: paymentId,
-      isMock: true,
-    });
-  };
-
-  const handleMockFailure = () => {
-    setShowMockGateway(false);
-    alert('Simulated transaction failed or was cancelled by user.');
   };
 
   return (
@@ -239,7 +138,7 @@ export default function CartDrawer() {
                   {items.length === 0 ? (
                     <div className="flex flex-col items-center justify-center h-64 text-center space-y-4">
                       <div className="w-16 h-16 rounded-full bg-[#4A0404]/5 flex items-center justify-center text-[#4A0404]/45">
-                        <CreditCard className="w-8 h-8" />
+                        <ShoppingBag className="w-8 h-8" />
                       </div>
                       <div>
                         <p className="font-display text-lg text-[#4A0404] tracking-wide uppercase">
@@ -378,12 +277,12 @@ export default function CartDrawer() {
                       {isCheckoutLoading ? (
                         <>
                           <Loader2 className="w-5 h-5 animate-spin" />
-                          Processing Order...
+                          Redirecting...
                         </>
                       ) : (
                         <>
-                          <CreditCard className="w-5 h-5" />
-                          Initiate Project
+                          <MessageSquare className="w-5 h-5" />
+                          Discuss on WhatsApp
                         </>
                       )}
                     </button>
@@ -394,15 +293,6 @@ export default function CartDrawer() {
           </div>
         )}
       </AnimatePresence>
-
-      {/* Test Sandbox Gateway Modal Component */}
-      <MockPaymentModal
-        isOpen={showMockGateway}
-        onClose={handleMockFailure}
-        orderData={orderDetails}
-        onSuccess={handleMockSuccess}
-        onFailure={handleMockFailure}
-      />
     </>
   );
 }

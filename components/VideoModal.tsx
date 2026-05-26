@@ -15,6 +15,7 @@ export default function VideoModal({ isOpen, onClose, videoUrl, title }: VideoMo
   const [isLoading, setIsLoading] = useState(true);
   const videoRef = useRef<HTMLVideoElement>(null);
 
+  // eslint-disable-next-line react-hooks/set-state-in-effect
   useEffect(() => {
     if (isOpen) {
       setIsLoading(true);

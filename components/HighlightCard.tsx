@@ -2,15 +2,16 @@
 
 import { useState, useRef } from 'react';
 import { motion } from 'framer-motion';
-import { Play, TrendingUp, Eye } from 'lucide-react';
+import { Play, TrendingUp, Award } from 'lucide-react';
 
 interface HighlightCardProps {
   title: string;
   client: string;
   reach: string;
   category: string;
-  thumbnail: string;
+  thumbnail?: string;
   videoUrl: string;
+  featured?: boolean;
   onSelect: (videoUrl: string, title: string) => void;
 }
 
@@ -21,6 +22,7 @@ export default function HighlightCard({
   category,
   thumbnail,
   videoUrl,
+  featured = false,
   onSelect,
 }: HighlightCardProps) {
   const [isHovered, setIsHovered] = useState(false);
@@ -31,7 +33,6 @@ export default function HighlightCard({
     if (videoRef.current) {
       videoRef.current.currentTime = 0;
       videoRef.current.play().catch((e) => {
-        // Safe check for browser auto-play blocker
         console.warn('Hover auto-play blocked:', e);
       });
     }
@@ -49,26 +50,45 @@ export default function HighlightCard({
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
       onClick={() => onSelect(videoUrl, `${client} - ${title}`)}
-      className="group relative aspect-[9/16] overflow-hidden rounded-2xl bg-[#4A0404] cursor-pointer border border-[#4A0404]/10 hover:border-[#8B0000]/30 shadow-md hover:shadow-[0_20px_50px_rgba(139,0,0,0.18)] transition-all duration-500 flex flex-col justify-end"
+      className={`group relative aspect-[9/16] overflow-hidden rounded-2xl bg-[#4A0404] cursor-pointer border shadow-md transition-all duration-500 flex flex-col justify-end ${
+        featured 
+          ? 'border-yellow-500/50 hover:border-yellow-400 shadow-[0_10px_35px_rgba(234,179,8,0.15)] hover:shadow-[0_20px_50px_rgba(234,179,8,0.3)] ring-1 ring-yellow-500/20' 
+          : 'border-[#4A0404]/10 hover:border-[#8B0000]/30 hover:shadow-[0_20px_50px_rgba(139,0,0,0.18)]'
+      }`}
     >
-      {/* Thumbnail static image */}
-      <img
-        alt={`${client} project thumbnail`}
-        className={`absolute inset-0 w-full h-full object-cover transition-all duration-700 ease-out group-hover:scale-105 ${
-          isHovered ? 'opacity-0 scale-105' : 'opacity-80 scale-100'
-        }`}
-        src={thumbnail}
-      />
+      {/* Featured Badge */}
+      {featured && (
+        <div className="absolute top-4 left-4 z-30 flex items-center gap-1.5 bg-gradient-to-r from-yellow-500 to-amber-600 border border-yellow-400/25 px-3 py-1 rounded-full shadow-lg">
+          <Award className="w-3.5 h-3.5 text-white animate-pulse" />
+          <span className="text-[9px] text-white font-bold tracking-widest uppercase">
+            Featured Focus
+          </span>
+        </div>
+      )}
 
-      {/* Hover autoplay preview video */}
+      {/* Thumbnail static image */}
+      {thumbnail ? (
+        <img
+          alt={`${client} project thumbnail`}
+          className={`absolute inset-0 w-full h-full object-cover transition-all duration-700 ease-out group-hover:scale-105 ${
+            isHovered ? 'opacity-0 scale-105' : 'opacity-80 scale-100'
+          }`}
+          src={thumbnail}
+        />
+      ) : null}
+
+      {/* Autoplay preview video (or fallback static first frame) */}
       <video
         ref={videoRef}
         src={videoUrl}
         loop
         muted
         playsInline
-        className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-500 ease-in-out pointer-events-none ${
-          isHovered ? 'opacity-70' : 'opacity-0'
+        preload="metadata"
+        className={`absolute inset-0 w-full h-full object-cover transition-all duration-500 ease-in-out pointer-events-none ${
+          thumbnail
+            ? (isHovered ? 'opacity-70 scale-105' : 'opacity-0 scale-100')
+            : (isHovered ? 'opacity-90 scale-105' : 'opacity-85 scale-100')
         }`}
       />
 
@@ -80,9 +100,13 @@ export default function HighlightCard({
         <motion.div
           animate={{ scale: isHovered ? 1 : 0.8, opacity: isHovered ? 1 : 0 }}
           transition={{ type: 'spring', stiffness: 260, damping: 20 }}
-          className="w-16 h-16 rounded-full bg-white/20 backdrop-blur-md border border-white/40 flex items-center justify-center text-white shadow-lg"
+          className={`w-16 h-16 rounded-full border flex items-center justify-center text-white shadow-lg backdrop-blur-md ${
+            featured 
+              ? 'bg-yellow-500/20 border-yellow-400/50 text-yellow-100' 
+              : 'bg-white/20 border-white/40 text-white'
+          }`}
         >
-          <Play className="w-6 h-6 fill-white ml-1" />
+          <Play className="w-6 h-6 fill-current ml-1" />
         </motion.div>
       </div>
 
@@ -92,7 +116,9 @@ export default function HighlightCard({
         transition={{ type: 'spring', stiffness: 300, damping: 25 }}
         className="relative z-20 p-6 space-y-2"
       >
-        <span className="text-[10px] text-[#EAD8C0] tracking-widest uppercase font-bold block">
+        <span className={`text-[10px] tracking-widest uppercase font-bold block ${
+          featured ? 'text-yellow-400' : 'text-[#EAD8C0]'
+        }`}>
           {category}
         </span>
         <div className="flex justify-between items-end">
@@ -102,15 +128,6 @@ export default function HighlightCard({
               {title}
             </h3>
           </div>
-          
-          <motion.div 
-            animate={{ scale: isHovered ? 1.05 : 1, rotate: isHovered ? -2 : 0 }}
-            transition={{ type: 'spring', stiffness: 300, damping: 15 }}
-            className="flex items-center gap-1 bg-[#8B0000] text-white text-[9px] font-bold uppercase tracking-wider px-2.5 py-1 rounded-lg shadow-md flex-shrink-0"
-          >
-            <TrendingUp className="w-3 h-3" />
-            {reach}
-          </motion.div>
         </div>
       </motion.div>
     </motion.div>
