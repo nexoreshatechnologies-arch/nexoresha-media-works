@@ -245,7 +245,7 @@ The application now builds successfully into the following static and dynamic ro
    - **Customize Builder**: Shrunk tab paddings and typography to prevent horizontal viewport overflows on mobile screen widths.
    - **Contact Us**: Repositioned the inquiry form above the direct channels list on mobile layouts so users can access form fields instantly.
 4. **Founders ecosystem and copy fixes**:
-   - Directed the ecosystem links inside the founder's detailed page: NEXORESHA TECHNOLOGIES redirects to `https://nexoresha.tech/`, while NEXORESHA TALES and NEXORESHA MEDIA WORKS point back to internal anchors/homepage.
+    - Directed the ecosystem links inside the founder's detailed page: NEXORESHA TECHNOLOGIES redirects to `https://www.nexoreshamedia.works/`, while NEXORESHA TALES and NEXORESHA MEDIA WORKS point back to internal anchors/homepage.
    - Changed global company email addresses to `nexoreshamediaworks@gmail.com` across all views and components.
    - Corrected founder name spelling to "Ayush Choudhary" globally.
    - Linked the navbar "Start Project" action button to the package options block (`#packages`) on the homepage.
@@ -293,4 +293,19 @@ The application now builds successfully into the following static and dynamic ro
    - Restyled the top **"Social Media & Branding Agency"** tag badge to use a darker backdrop `bg-black/50` with a subtle white border and medium backdrop blur (`backdrop-blur-md`), preventing blending with light frames.
    - Refitted the **"View Showreel"** CTA button from a light frosted look to a semi-transparent dark button style (`bg-black/40 hover:bg-black/55 border-white/15 backdrop-blur-md`), elevating text and icon legibility across all scrubbed frame animations.
 
+---
+
+## 16. SEO & Verification: Explicit Sitemap & Robots XML Setup
+
+### Changes Made:
+1. **Explicit Sitemap Arrays**:
+   - Refined [sitemap.ts](file:///c:/Projects/Nexoresha%20Media%20Works/app/sitemap.ts) to define an explicit layout array instead of a generic dynamic mapping.
+   - Assigned optimized priorities and crawl frequencies:
+     - `/` (Home): `weekly` update frequency, priority `1.0`
+     - `/highlights` (Portfolio): `weekly` update frequency, priority `0.9`
+     - `/contact`: `monthly` update frequency, priority `0.8`
+     - `/team/*` (Founder profiles): `monthly` update frequency, priority `0.8`
+     - Policy pages: `yearly` update frequency, priority `0.3`
+2. **Robots crawling definitions**:
+   - Confirmed [robots.ts](file:///c:/Projects/Nexoresha%20Media%20Works/app/robots.ts) points correctly to `https://www.nexoreshamedia.works/sitemap.xml` and blocks API endpoints `/api/*` from crawl engines.
 

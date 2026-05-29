@@ -4,7 +4,7 @@ export const metadata: Metadata = {
   title: "Privacy Policy | Nexoresha Media Works",
   description: "Read the Privacy Policy of Nexoresha Media Works. Understand how we collect, use, and protect your personal and business data.",
   alternates: {
-    canonical: 'https://nexoresha.tech/privacy-policy',
+    canonical: 'https://www.nexoreshamedia.works/privacy-policy',
   },
 };
 

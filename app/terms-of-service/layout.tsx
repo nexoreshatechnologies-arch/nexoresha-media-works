@@ -4,7 +4,7 @@ export const metadata: Metadata = {
   title: "Terms of Service | Nexoresha Media Works",
   description: "Read the Terms of Service of Nexoresha Media Works. Learn about client responsibilities, payments, refunds, and governing laws.",
   alternates: {
-    canonical: 'https://nexoresha.tech/terms-of-service',
+    canonical: 'https://www.nexoreshamedia.works/terms-of-service',
   },
 };
 

@@ -98,7 +98,7 @@ export default function Footer() {
           <p className="text-xs text-[#EAD8C0]/50 text-center sm:text-left">
             © 2026 Nexoresha Media Works. Developed by{' '}
             <a
-              href="https://nexoresha.tech/"
+              href="https://www.nexoreshamedia.works/"
               target="_blank"
               rel="noopener noreferrer"
               className="hover:text-white transition-colors underline"

@@ -38,7 +38,7 @@ export default function AyushChoudharyPortfolio() {
       role: 'Owner & Founder',
       desc: 'The technical core, building premium custom software solutions, ecommerce platforms, web applications, and digital interfaces.',
       tag: 'Tech Core',
-      href: 'https://nexoresha.tech/',
+      href: 'https://www.nexoreshamedia.works/',
     },
     {
       name: 'Nexoresha Tales',

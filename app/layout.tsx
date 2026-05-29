@@ -18,7 +18,7 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL('https://nexoresha.tech'),
+  metadataBase: new URL('https://www.nexoreshamedia.works'),
   title: "Nexoresha Media Works | The Director's Eye for Your Brand",
   description: "High-tier cinematic branding and contemporary luxury media. We don't just create content; we direct your legacy.",
   keywords: ["social media management", "branding agency", "reels production", "cinematic marketing", "content strategy", "paid marketing", "Nexoresha"],
@@ -28,12 +28,12 @@ export const metadata: Metadata = {
     follow: true,
   },
   alternates: {
-    canonical: 'https://nexoresha.tech',
+    canonical: 'https://www.nexoreshamedia.works',
   },
   openGraph: {
     title: "Nexoresha Media Works",
     description: "The Director's Eye for Your Brand. Elite digital branding and cinematography.",
-    url: 'https://nexoresha.tech',
+    url: 'https://www.nexoreshamedia.works',
     siteName: 'Nexoresha Media Works',
     type: "website",
     locale: "en_IN",

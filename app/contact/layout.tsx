@@ -5,7 +5,7 @@ export const metadata: Metadata = {
   description: "Get in touch with Nexoresha Media Works. Outline your brand targets and let our directors craft a premium digital identity for your brand.",
   keywords: ["contact Nexoresha", "branding inquiry", "content strategy inquiry", "hire social media manager", "Nexoresha Media Works"],
   alternates: {
-    canonical: 'https://nexoresha.tech/contact',
+    canonical: 'https://www.nexoreshamedia.works/contact',
   },
 };
 
