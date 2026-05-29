@@ -329,9 +329,7 @@ The application now builds successfully into the following static and dynamic ro
 ## 18. SEO & Verification: Yandex Webmaster Ownership Verification
 
 ### Changes Made:
-1. **Static HTML file Verification**:
-   - Created [yandex_750cf12607b8b736.html](file:///c:/Projects/Nexoresha%20Media%20Works/public/yandex_750cf12607b8b736.html) in the `public/` directory containing the requested HTML verification syntax.
-   - This page is served directly at the root (`https://www.nexoreshamedia.works/yandex_750cf12607b8b736.html`) for search engines to fetch.
-2. **Metadata verification block**:
+1. **Metadata verification block**:
    - Added the verification tag key `"yandex: '750cf12607b8b736'"` inside the `Metadata` object in the main layout file [app/layout.tsx](file:///c:/Projects/Nexoresha%20Media%20Works/app/layout.tsx).
-   - This renders `<meta name="yandex-verification" content="750cf12607b8b736" />` automatically in the final compiled document header.
+   - This automatically compiles to `<meta name="yandex-verification" content="750cf12607b8b736" />` in the final HTML document `<head>` on all client-facing pages (including the homepage root).
+
