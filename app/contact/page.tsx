@@ -252,7 +252,7 @@ export default function ContactPage() {
         {/* 5. Contact Form + Options Split Layout */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
           {/* Contact Options Cards */}
-          <div className="lg:col-span-4 space-y-6">
+          <div className="lg:col-span-4 space-y-6 order-2 lg:order-1">
             <div className="space-y-4">
               <h3 className="font-display text-2xl text-[#4A0404] tracking-wider uppercase">
                 DIRECT CHANNELS
@@ -316,13 +316,13 @@ export default function ContactPage() {
           </div>
 
           {/* Form */}
-          <div className="lg:col-span-8">
-            <div className="glass-layer rounded-3xl p-8 border border-[#4A0404]/10 shadow-lg bg-white/40">
+          <div className="lg:col-span-8 order-1 lg:order-2">
+            <div className="glass-layer rounded-3xl p-5 sm:p-8 border border-[#4A0404]/10 shadow-lg bg-white/40">
               <div className="mb-8">
-                <h3 className="font-display text-2xl text-[#4A0404] tracking-wider uppercase">
+                <h3 className="font-display text-xl sm:text-2xl text-[#4A0404] tracking-wider uppercase">
                   PROJECT INQUIRY FORM
                 </h3>
-                <p className="text-xs text-[#1E1E1E]/60 mt-1 font-light">
+                <p className="text-[10px] sm:text-xs text-[#1E1E1E]/60 mt-1 font-light">
                   Tell us about your brand targets. Let's outline a premium media structure.
                 </p>
               </div>
@@ -368,7 +368,7 @@ export default function ContactPage() {
                         value={form.name}
                         onChange={(e) => setForm({ ...form, name: e.target.value })}
                         placeholder="John Doe"
-                        className="w-full text-sm bg-[#F9EEDC]/40 border border-[#4A0404]/15 focus:border-[#4A0404] focus:outline-none rounded-xl p-3.5 text-[#1E1E1E] transition-colors"
+                        className="w-full text-xs sm:text-sm bg-[#F9EEDC]/40 border border-[#4A0404]/15 focus:border-[#4A0404] focus:outline-none rounded-xl p-3 sm:p-3.5 text-[#1E1E1E] transition-colors"
                       />
                     </div>
 
@@ -382,7 +382,7 @@ export default function ContactPage() {
                         value={form.businessName}
                         onChange={(e) => setForm({ ...form, businessName: e.target.value })}
                         placeholder="Acme Luxury Co."
-                        className="w-full text-sm bg-[#F9EEDC]/40 border border-[#4A0404]/15 focus:border-[#4A0404] focus:outline-none rounded-xl p-3.5 text-[#1E1E1E] transition-colors"
+                        className="w-full text-xs sm:text-sm bg-[#F9EEDC]/40 border border-[#4A0404]/15 focus:border-[#4A0404] focus:outline-none rounded-xl p-3 sm:p-3.5 text-[#1E1E1E] transition-colors"
                       />
                     </div>
                   </div>
@@ -395,7 +395,7 @@ export default function ContactPage() {
                       <select
                         value={form.budget}
                         onChange={(e) => setForm({ ...form, budget: e.target.value })}
-                        className="w-full text-sm bg-[#F9EEDC]/40 border border-[#4A0404]/15 focus:border-[#4A0404] focus:outline-none rounded-xl p-3.5 text-[#1E1E1E] transition-colors cursor-pointer"
+                        className="w-full text-xs sm:text-sm bg-[#F9EEDC]/40 border border-[#4A0404]/15 focus:border-[#4A0404] focus:outline-none rounded-xl p-3 sm:p-3.5 text-[#1E1E1E] transition-colors cursor-pointer"
                       >
                         {budgetOptions.map((opt) => (
                           <option key={opt} value={opt}>
@@ -418,7 +418,7 @@ export default function ContactPage() {
                             type="button"
                             key={service}
                             onClick={() => handleCheckboxChange(service)}
-                            className={`p-3 rounded-xl border text-[11px] font-semibold text-left transition-all flex justify-between items-center cursor-pointer ${
+                            className={`p-2.5 sm:p-3 rounded-xl border text-[10px] sm:text-[11px] font-semibold text-left transition-all flex justify-between items-center cursor-pointer ${
                               isChecked
                                 ? 'bg-[#4A0404] text-white border-transparent shadow-sm'
                                 : 'bg-[#F9EEDC]/20 border-[#4A0404]/10 text-[#4A0404] hover:bg-[#4A0404]/5'
@@ -441,7 +441,7 @@ export default function ContactPage() {
                       value={form.message}
                       onChange={(e) => setForm({ ...form, message: e.target.value })}
                       placeholder="Outline any specific targets, timeline, shoots or media specifications..."
-                      className="w-full text-sm bg-[#F9EEDC]/40 border border-[#4A0404]/15 focus:border-[#4A0404] focus:outline-none rounded-xl p-3.5 text-[#1E1E1E] transition-colors resize-none"
+                      className="w-full text-xs sm:text-sm bg-[#F9EEDC]/40 border border-[#4A0404]/15 focus:border-[#4A0404] focus:outline-none rounded-xl p-3 sm:p-3.5 text-[#1E1E1E] transition-colors resize-none"
                     />
                   </div>
 

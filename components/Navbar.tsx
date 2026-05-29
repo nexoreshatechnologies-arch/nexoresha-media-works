@@ -155,7 +155,7 @@ export default function Navbar() {
           {/* Mobile Menu Toggle Button */}
           <button
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-            className="max-md:flex hidden relative p-2.5 rounded-xl border border-[#4A0404]/10 hover:border-[#4A0404]/30 bg-[#F9EEDC]/40 hover:bg-[#F9EEDC] text-[#4A0404] transition-all duration-300 hover:scale-105 active:scale-95 cursor-pointer items-center justify-center"
+            className="flex md:hidden relative p-2.5 rounded-xl border border-[#4A0404]/10 hover:border-[#4A0404]/30 bg-[#F9EEDC]/40 hover:bg-[#F9EEDC] text-[#4A0404] transition-all duration-300 hover:scale-105 active:scale-95 cursor-pointer items-center justify-center"
             aria-label="Toggle menu"
           >
             {isMobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}

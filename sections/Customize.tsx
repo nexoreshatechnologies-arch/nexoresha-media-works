@@ -235,7 +235,7 @@ export default function Customize() {
   };
 
   return (
-    <section id="customize" className="py-28 max-w-7xl mx-auto px-6 md:px-12 bg-[#F9EEDC]">
+    <section id="customize" className="py-16 sm:py-28 max-w-7xl mx-auto px-4 sm:px-6 md:px-12 bg-[#F9EEDC]">
       {/* Header */}
       <div className="text-center max-w-xl mx-auto mb-16 space-y-4">
         <motion.span 
@@ -258,7 +258,7 @@ export default function Customize() {
             color: { duration: 0.3 },
             default: { duration: 0.8, delay: 0.1, type: 'spring', stiffness: 100 }
           }}
-          className="font-display text-4xl md:text-6xl text-[#4A0404] uppercase leading-none cursor-default inline-block"
+          className="font-display text-3xl sm:text-4xl md:text-6xl text-[#4A0404] uppercase leading-none cursor-default inline-block"
         >
           BUILD YOUR VISION
         </motion.h2>
@@ -267,15 +267,15 @@ export default function Customize() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.8, delay: 0.2, type: 'spring', stiffness: 100 }}
-          className="text-sm md:text-base text-[#1E1E1E]/70 font-light leading-relaxed"
+          className="text-xs sm:text-sm md:text-base text-[#1E1E1E]/70 font-light leading-relaxed px-2 sm:px-0"
         >
           Mix and match premium services to architect a tailored branding roadmap. Add selections to checkout.
         </motion.p>
       </div>
 
       {/* Tabs Selector Navigation */}
-      <div className="flex justify-center mb-12">
-        <div className="inline-flex bg-[#EAD8C0]/30 p-1.5 rounded-2xl border border-[#4A0404]/5 shadow-inner">
+      <div className="flex justify-center mb-12 max-w-full overflow-x-auto no-scrollbar">
+        <div className="inline-flex bg-[#EAD8C0]/30 p-1 rounded-xl border border-[#4A0404]/5 shadow-inner min-w-max">
           {tabs.map((tab) => {
             const Icon = tabIcons[tab];
             const isActive = activeTab === tab;
@@ -284,7 +284,7 @@ export default function Customize() {
               <button
                 key={tab}
                 onClick={() => setActiveTab(tab)}
-                className={`relative flex items-center gap-2 px-6 py-3 rounded-xl text-xs font-semibold uppercase tracking-wider transition-all duration-300 cursor-pointer ${
+                className={`relative flex items-center gap-1 sm:gap-2 px-2.5 py-2 sm:px-6 sm:py-3 rounded-xl text-[10px] sm:text-xs font-semibold uppercase tracking-wider transition-all duration-300 cursor-pointer ${
                   isActive ? 'text-[#F9EEDC] font-bold z-10' : 'text-[#4A0404]/70 hover:text-[#4A0404]'
                 }`}
               >
@@ -295,7 +295,7 @@ export default function Customize() {
                     transition={{ type: 'spring', stiffness: 380, damping: 30 }}
                   />
                 )}
-                <Icon className="w-4 h-4" />
+                <Icon className="w-3 h-3 sm:w-4 sm:h-4" />
                 {tab}
               </button>
             );
@@ -327,13 +327,13 @@ export default function Customize() {
                 }}
                 key={service.id}
                 onClick={() => setSelectedService(service)}
-                className="glass-layer rounded-2xl p-7 flex flex-col justify-between group hover:border-[#8B0000]/30 hover:bg-[#8B0000]/[0.01] cursor-pointer shadow-sm hover:shadow-[0_15px_30px_rgba(74,4,4,0.06)] transition-all duration-500 relative"
+                className="glass-layer rounded-2xl p-5 sm:p-7 flex flex-col justify-between group hover:border-[#8B0000]/30 hover:bg-[#8B0000]/[0.01] cursor-pointer shadow-sm hover:shadow-[0_15px_30px_rgba(74,4,4,0.06)] transition-all duration-500 relative"
               >
                 {/* Visual card content */}
                 <div>
-                  <div className="flex justify-between items-start mb-6">
-                    <div className="w-12 h-12 rounded-xl bg-[#4A0404]/5 flex items-center justify-center text-[#4A0404] border border-[#4A0404]/10 transition-all duration-300 group-hover:bg-[#8B0000] group-hover:text-[#F9EEDC] group-hover:border-[#8B0000]/25 group-hover:scale-105">
-                      <Icon className="w-5 h-5" />
+                  <div className="flex justify-between items-start mb-5 sm:mb-6">
+                    <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-xl bg-[#4A0404]/5 flex items-center justify-center text-[#4A0404] border border-[#4A0404]/10 transition-all duration-300 group-hover:bg-[#8B0000] group-hover:text-[#F9EEDC] group-hover:border-[#8B0000]/25 group-hover:scale-105">
+                      <Icon className="w-4 h-4 sm:w-5 sm:h-5" />
                     </div>
                     
                     {/* Info indicator */}
@@ -342,20 +342,20 @@ export default function Customize() {
                     </button>
                   </div>
 
-                  <h3 className="font-display text-2xl text-[#4A0404] tracking-wide uppercase mb-2">
+                  <h3 className="font-display text-xl sm:text-2xl text-[#4A0404] tracking-wide uppercase mb-2">
                     {service.name}
                   </h3>
-                  <p className="text-xs text-[#1E1E1E]/65 leading-relaxed font-light mb-6 line-clamp-2">
+                  <p className="text-[11px] sm:text-xs text-[#1E1E1E]/65 leading-relaxed font-light mb-5 line-clamp-2">
                     {service.description}
                   </p>
                 </div>
 
-                <div className="flex justify-between items-center border-t border-[#4A0404]/5 pt-5">
+                <div className="flex justify-between items-center border-t border-[#4A0404]/5 pt-4 sm:pt-5">
                   <div>
-                    <span className="text-[9px] uppercase tracking-widest text-[#1E1E1E]/40 font-bold block">
+                    <span className="text-[8px] sm:text-[9px] uppercase tracking-widest text-[#1E1E1E]/40 font-bold block">
                       Starting Price
                     </span>
-                    <span className="font-display text-xl text-[#8B0000]">
+                    <span className="font-display text-lg sm:text-xl text-[#8B0000]">
                       ₹{service.price.toLocaleString('en-IN')}
                     </span>
                   </div>
@@ -363,10 +363,10 @@ export default function Customize() {
                   {/* Add icon button */}
                   <button
                     onClick={(e) => handleQuickAdd(e, service)}
-                    className="w-10 h-10 rounded-xl bg-[#4A0404] hover:bg-[#8B0000] text-white flex items-center justify-center transition-all hover:scale-105 active:scale-95 shadow-md cursor-pointer group/btn"
+                    className="w-9 h-9 sm:w-10 sm:h-10 rounded-xl bg-[#4A0404] hover:bg-[#8B0000] text-white flex items-center justify-center transition-all hover:scale-105 active:scale-95 shadow-md cursor-pointer group/btn"
                     aria-label={`Add ${service.name} to cart`}
                   >
-                    <Plus className="w-4 h-4 transition-transform duration-300 group-hover/btn:rotate-90 group-hover:rotate-45" />
+                    <Plus className="w-3.5 h-3.5 sm:w-4 sm:h-4 transition-transform duration-300 group-hover/btn:rotate-90 group-hover:rotate-45" />
                   </button>
                 </div>
 

@@ -15,8 +15,8 @@ export default function Vision() {
 
       <div className="relative z-10 grid grid-cols-1 lg:grid-cols-12 gap-16 items-center">
         {/* Left Side: Vision Text */}
-        <div className="lg:col-span-5 space-y-8">
-          <div className="space-y-3">
+        <div className="lg:col-span-5 space-y-8 text-center lg:text-left">
+          <div className="space-y-3 flex flex-col items-center lg:items-start">
             <motion.span
               initial={{ opacity: 0, scale: 0.95 }}
               whileInView={{ opacity: 1, scale: 1 }}
@@ -43,13 +43,13 @@ export default function Vision() {
             </motion.h2>
           </div>
 
-          <div className="space-y-6 text-[#1E1E1E]">
+          <div className="space-y-6 text-[#1E1E1E] text-center lg:text-left">
             <motion.p
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6, delay: 0.1 }}
-              className="font-sans text-xl md:text-2xl font-bold text-[#4A0404] leading-relaxed border-l-4 border-[#8B0000] pl-5"
+              className="font-sans text-lg md:text-2xl font-bold text-[#4A0404] leading-relaxed border-[#8B0000] border-l-0 pl-0 lg:border-l-4 lg:pl-5 text-center lg:text-left"
             >
               “To become a next-generation creative media powerhouse that transforms brands into digital icons through strategy, storytelling, and innovative social media experiences.”
             </motion.p>
@@ -59,7 +59,7 @@ export default function Vision() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6, delay: 0.2 }}
-              className="font-sans text-sm md:text-base text-[#1E1E1E]/80 leading-relaxed font-light"
+              className="font-sans text-xs md:text-base text-[#1E1E1E]/80 leading-relaxed font-light text-center lg:text-left"
             >
               At Nexoresha Media Works, the vision is to help businesses grow beyond likes and followers by building powerful brand identities, meaningful audience connections, and long-term digital success. Inspired by the strategic and growth-focused approach shown in your presentation, the company aims to combine creativity, trend intelligence, content production, and performance marketing into one complete media ecosystem.
             </motion.p>

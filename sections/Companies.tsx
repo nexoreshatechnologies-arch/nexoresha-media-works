@@ -144,9 +144,9 @@ export default function Companies() {
       </div>
 
       {/* Marquee Rows Container */}
-      <div className="space-y-8 relative z-10">
+      <div className="space-y-8 relative z-10 w-full max-w-full overflow-hidden">
         {/* Row 1: Left */}
-        <div className="flex overflow-hidden select-none mask-image-gradient py-6 -my-6">
+        <div className="w-full overflow-hidden select-none mask-image-gradient py-6 -my-6 flex">
           <div className="flex gap-6 marquee-left py-2">
             {/* Direct list */}
             {row1Companies.concat(row1Companies).map((company, index) => {
@@ -191,7 +191,7 @@ export default function Companies() {
         </div>
 
         {/* Row 2: Right */}
-        <div className="flex overflow-hidden select-none mask-image-gradient py-6 -my-6">
+        <div className="w-full overflow-hidden select-none mask-image-gradient py-6 -my-6 flex">
           <div className="flex gap-6 marquee-right py-2">
             {row2Companies.concat(row2Companies).map((company, index) => {
               return (

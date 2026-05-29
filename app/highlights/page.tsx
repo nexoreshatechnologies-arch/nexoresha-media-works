@@ -100,14 +100,14 @@ export default function HighlightsPage() {
 
         {/* Filter Selection Panel */}
         <div className="flex justify-center flex-wrap gap-3">
-          <div className="inline-flex flex-wrap bg-[#EAD8C0]/30 p-1.5 rounded-2xl border border-[#4A0404]/5 shadow-inner">
+          <div className="inline-flex flex-wrap bg-[#EAD8C0]/30 p-1.5 rounded-2xl border border-[#4A0404]/5 shadow-inner gap-1 sm:gap-0">
             {filterOptions.map((filter) => {
               const isActive = activeFilter === filter;
               return (
                 <button
                   key={filter}
                   onClick={() => setActiveFilter(filter)}
-                  className={`relative px-5 py-2.5 rounded-xl text-xs font-semibold uppercase tracking-wider transition-all duration-300 cursor-pointer ${
+                  className={`relative px-3 py-2 sm:px-5 sm:py-2.5 rounded-xl text-[10px] sm:text-xs font-semibold uppercase tracking-wider transition-all duration-300 cursor-pointer ${
                     isActive ? 'text-[#F9EEDC] font-bold z-10' : 'text-[#4A0404]/75 hover:text-[#4A0404]'
                   }`}
                 >

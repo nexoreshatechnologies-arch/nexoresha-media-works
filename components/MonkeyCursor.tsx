@@ -39,12 +39,20 @@ export default function MonkeyCursor() {
 
     const checkDevice = () => {
       // Disable on touch devices or screens smaller than 1024px
-      const hasTouch = window.matchMedia("(pointer: coarse)").matches;
+      const hasTouch = 
+        window.matchMedia("(pointer: coarse)").matches || 
+        ('ontouchstart' in window) || 
+        (navigator.maxTouchPoints > 0);
       setIsDesktop(window.innerWidth >= 1024 && !hasTouch);
     };
 
     checkDevice();
     window.addEventListener("resize", checkDevice);
+
+    const handleTouchStart = () => {
+      setIsDesktop(false);
+    };
+    window.addEventListener("touchstart", handleTouchStart, { passive: true });
 
     const handleMouseMove = (e: MouseEvent) => {
       const currentX = e.clientX;
@@ -75,6 +83,7 @@ export default function MonkeyCursor() {
 
     return () => {
       window.removeEventListener("resize", checkDevice);
+      window.removeEventListener("touchstart", handleTouchStart);
       window.removeEventListener("mousemove", handleMouseMove);
     };
   }, [targetX, targetY, rawMouseX, rawMouseY]);

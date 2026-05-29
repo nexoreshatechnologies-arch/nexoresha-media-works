@@ -112,6 +112,7 @@ export default function FeaturedHighlights() {
         {featuredReels.map((reel, index) => (
           <motion.div
             key={reel.title}
+            className={index >= 3 ? 'hidden md:block' : ''}
             initial={{ opacity: 0, y: 40 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: '-50px' }}

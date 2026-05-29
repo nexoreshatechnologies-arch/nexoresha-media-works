@@ -151,7 +151,7 @@ export default function Hero() {
     <div id="home" ref={containerRef} className="relative w-full h-[300vh] bg-[#997557]">
       {/* Sticky Content Wrapper (Height locked to viewport) */}
       <div 
-        className="sticky top-0 left-0 w-full h-screen overflow-hidden bg-[#997557]"
+        className="sticky top-0 left-0 w-full h-[100dvh] overflow-hidden bg-[#997557]"
         onMouseMove={handleMouseMove}
       >
         
@@ -173,7 +173,7 @@ export default function Hero() {
         </div>
 
         {/* 1. Image Sequence Container (Absolute centered background animation) */}
-        <div className="absolute top-0 right-0 bottom-0 left-0 w-full h-screen z-0 flex items-center justify-center bg-[#997557] overflow-hidden">
+        <div className="absolute top-0 right-0 bottom-0 left-0 w-full h-[100dvh] z-0 flex items-center justify-center bg-[#997557] overflow-hidden">
           
           {/* Loading Indicator for frames preloading */}
           {!isPreloaded && (
@@ -193,7 +193,7 @@ export default function Hero() {
             </div>
           )}
 
-          <div className="relative w-full aspect-[16/9] scale-[2.4] sm:scale-[1.25] transition-transform duration-300 transform -translate-y-[12vh] sm:translate-y-0 flex items-center justify-center overflow-hidden">
+          <div className="relative w-full h-full sm:h-auto aspect-auto sm:aspect-[16/9] scale-100 sm:scale-[1.25] transition-transform duration-300 transform translate-y-0 flex items-center justify-center overflow-hidden">
             <img
               ref={imgRef}
               alt="Cinematic Brand Scroll Sequence"
