@@ -226,3 +226,45 @@ The application now builds successfully into the following static and dynamic ro
    - Retained the card's original full-sized 9:16 vertical proportions inside `components/HighlightCard.tsx` (reverting the `md:h-[44vh]` height bounds) to ensure maximum visual prominence and high-impact fidelity.
 4. **Relocated Explore More Button**:
    - Moved the "Explore More" link from the header top-right and positioned a redesigned centered button directly *below* the 3 cards grid. Hovering over it fills the button with a blood-red background and turns the text cream-beige, complete with spring-tap scale animations.
+
+---
+
+## 12. Refinement: Mobile Responsiveness, Navbar Enhancements, and Founders Page Links
+
+### Changes Made:
+1. **Hamburger Navbar & Glassmorphism**:
+   - Integrated a fully responsive mobile drawer navigation menu toggled via a clean hamburger button.
+   - Restructured the active section monitoring to highlight current section links in both desktop and mobile layouts.
+   - Refined the navbar glassmorphism overlay on scroll: it seamlessly transitions to a translucent frosted layer taking the hue of the underlying content background.
+2. **Hero Scrubbing on Mobile**:
+   - Locked the scroll-pinning hero sequence to a uniform `h-[300vh]` parent height and `h-[100dvh]` sticky height.
+   - Restored Apple-style smooth scrubbing frame animations on mobile devices, removing large empty gaps and layouts misalignment.
+3. **Mobile Layout Optimizations**:
+   - **Featured Works**: Limited to 3 high-impact reels on mobile to optimize loading speeds.
+   - **Our Mission**: Centered the title, subtitle, badges, and quote alignments for a symmetrical mobile presentation.
+   - **Customize Builder**: Shrunk tab paddings and typography to prevent horizontal viewport overflows on mobile screen widths.
+   - **Contact Us**: Repositioned the inquiry form above the direct channels list on mobile layouts so users can access form fields instantly.
+4. **Founders ecosystem and copy fixes**:
+   - Directed the ecosystem links inside the founder's detailed page: NEXORESHA TECHNOLOGIES redirects to `https://nexoresha.tech/`, while NEXORESHA TALES and NEXORESHA MEDIA WORKS point back to internal anchors/homepage.
+   - Changed global company email addresses to `nexoreshamediaworks@gmail.com` across all views and components.
+   - Corrected founder name spelling to "Ayush Choudhary" globally.
+   - Linked the navbar "Start Project" action button to the package options block (`#packages`) on the homepage.
+
+---
+
+## 13. Integration: EmailJS Contact Form Setup & Inline Validations
+
+### Changes Made:
+1. **Direct Client-Side Dispatch**:
+   - Integrated `@emailjs/browser` to route inquiries directly to EmailJS from client browsers, avoiding backend API overhead.
+   - Created safe environment maps in `.env.local` (`NEXT_PUBLIC_EMAILJS_SERVICE_ID`, `NEXT_PUBLIC_EMAILJS_TEMPLATE_ID`, `NEXT_PUBLIC_EMAILJS_PUBLIC_KEY`) to prevent key exposure.
+2. **Upgraded Form Ingestion**:
+   - Redesigned the form to capture 7 required fields: Full Name, Business Name, Email Address, Phone Number, Monthly Budget, Services Needed (multi-select button cards stored as array), and Custom message.
+3. **Beautiful Validation Feedback**:
+   - Programmed instant client-side validation triggers checking string length (minimum 10-digit phone numbers and 20-character messages), email format checks, and array counts.
+   - Added clear inline validation errors that dye input borders red and inject validation messages underneath.
+4. **UX States & Premium Success Overlays**:
+   - Locked submit events during processing, disabling the button and displaying a loader spinner with text `"Sending Inquiry..."`.
+   - On success, resets the entire form inputs, triggers a confetti splash, and slides a backdrop-blurred **"Project Inquiry Received"** modal over the screen.
+   - On EmailJS API failure, shows an elegant error toast bar at the bottom-right of the viewport with a dismissal button, keeping field inputs intact to support immediate retry.
+

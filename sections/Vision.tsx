@@ -76,7 +76,7 @@ export default function Vision() {
             transition={{ duration: 0.6, delay: 0.15 }}
             className="flex flex-col"
           >
-            <Link href="/team/ayush-chaudhary" className="group flex flex-col">
+            <Link href="/team/ayush-choudhary" className="group flex flex-col">
               <motion.div
                 whileHover={{ y: -8, scale: 1.03 }}
                 transition={{ type: 'spring', stiffness: 350, damping: 22 }}
@@ -86,7 +86,7 @@ export default function Vision() {
                 <div className="relative w-full flex-grow overflow-hidden bg-white">
                   <img
                     src="/team/ayush.jpg"
-                    alt="Ayush Chaudhary"
+                    alt="Ayush Choudhary"
                     className="w-full h-full object-cover object-top grayscale-[20%] group-hover:grayscale-0 transition-all duration-500 group-hover:scale-105"
                   />
                   
@@ -100,7 +100,7 @@ export default function Vision() {
                 {/* Info area */}
                 <div className="p-5 space-y-1 bg-white/60 group-hover:bg-[#8B0000]/[0.02] border-t border-[#4A0404]/5 transition-colors">
                   <h3 className="font-display text-xl text-[#4A0404] tracking-wider uppercase leading-none group-hover:text-[#8B0000] transition-colors flex items-center justify-between">
-                    Ayush Chaudhary
+                    Ayush Choudhary
                     <ArrowRight className="w-4 h-4 opacity-0 -translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 transition-all" />
                   </h3>
                   <p className="text-[10px] text-[#1E1E1E]/60 tracking-widest uppercase font-semibold">

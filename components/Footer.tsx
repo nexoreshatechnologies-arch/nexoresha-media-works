@@ -77,7 +77,7 @@ export default function Footer() {
                 <Link href="/contact" className="hover:text-white transition-colors">Contact Form</Link>
               </li>
               <li>
-                <a href="mailto:ayush.choudhary@nexoresha.tech" className="hover:text-white transition-colors">ayush.choudhary@nexoresha.tech</a>
+                <a href="mailto:nexoreshamediaworks@gmail.com" className="hover:text-white transition-colors">nexoreshamediaworks@gmail.com</a>
               </li>
               <li className="flex flex-col gap-1.5">
                 <a href="tel:+919136936913" className="hover:text-white transition-colors font-medium">+91 91369 36913</a>

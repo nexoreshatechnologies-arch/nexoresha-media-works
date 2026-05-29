@@ -32,6 +32,16 @@ Nexoresha Media Works is a premium, high-fidelity cinematic social media and bra
    - Scroll-triggered entrance animations for headings, subtitles, and decorative border separators.
    - Fluid active navigation highlighting updated by scrolling heights.
 
+7. **EmailJS Direct Integration**:
+   - Fully client-side email dispatcher using `@emailjs/browser` (no backend API overhead).
+   - Rich form ingestion capturing Full Name, Business Name, Email, Phone, Budget, Services (multiple checkboxes stored as an array), and Message.
+   - Strict inline field validation, dynamic submit state indicators, interactive confetti splash, premium backdrop-blur modal overlays, and resilient error toast notifications.
+
+8. **Optimized Mobile Experience**:
+   - Responsive layout adapting grid templates, sizes, and spacing for tablets and mobiles.
+   - Custom mobile drawer navigation panel toggled with a hamburger button.
+   - Fixed scrolling frame-pinning, showreel alignments, and category customization lists preventing horizontal page scroll leaks.
+
 ---
 
 ## 🛠️ Technology Stack
@@ -94,7 +104,7 @@ npm install
 ```
 
 ### 2. Set Up Environment Variables
-Create a `.env.local` file in the root directory to customize keys:
+Create a `.env.local` file in the root directory based on the template in [.env.example](file:///c:/Projects/Nexoresha%20Media%20Works/.env.example):
 ```env
 # MongoDB Connection (Falls back to lib/mock_db.json if empty)
 MONGODB_URI=your_mongodb_connection_uri
@@ -102,6 +112,11 @@ MONGODB_URI=your_mongodb_connection_uri
 # Razorpay Keys (Runs in simulated Sandbox Mode if empty)
 RAZORPAY_KEY_ID=your_razorpay_key_id
 RAZORPAY_KEY_SECRET=your_razorpay_key_secret
+
+# EmailJS Client Keys
+NEXT_PUBLIC_EMAILJS_SERVICE_ID=your_emailjs_service_id
+NEXT_PUBLIC_EMAILJS_TEMPLATE_ID=your_emailjs_template_id
+NEXT_PUBLIC_EMAILJS_PUBLIC_KEY=your_emailjs_public_key
 ```
 
 ### 3. Run Development Server

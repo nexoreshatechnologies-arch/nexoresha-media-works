@@ -1,13 +1,16 @@
 'use client';
 
 import { useState } from 'react';
-import { motion } from 'framer-motion';
-import { Mail, MessageSquare, Phone, Instagram, Send, Loader2, Sparkles, Gem, Brain, TrendingUp, Users, Target, ShieldCheck } from 'lucide-react';
+import { motion, AnimatePresence } from 'framer-motion';
+import { Mail, MessageSquare, Phone, Instagram, Send, Loader2, Sparkles, Gem, Brain, TrendingUp, Users, Target, ShieldCheck, ShieldAlert } from 'lucide-react';
 import AnimatedCounter from '@/components/AnimatedCounter';
 import confetti from 'canvas-confetti';
+import emailjs from '@emailjs/browser';
 
 interface FormState {
   name: string;
+  email: string;
+  phone: string;
   businessName: string;
   budget: string;
   services: string[];
@@ -17,15 +20,19 @@ interface FormState {
 export default function ContactPage() {
   const [form, setForm] = useState<FormState>({
     name: '',
+    email: '',
+    phone: '',
     businessName: '',
     budget: '₹10,000 - ₹25,000',
     services: [],
     message: '',
   });
 
+  const [errors, setErrors] = useState<Partial<Record<keyof FormState, string>>>({});
   const [isLoading, setIsLoading] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
   const [errorMessage, setErrorMessage] = useState('');
+  const [showErrorToast, setShowErrorToast] = useState(false);
 
   const servicesList = [
     'Social Media Management',
@@ -47,42 +54,92 @@ export default function ContactPage() {
   const handleCheckboxChange = (service: string) => {
     setForm((prev) => {
       const isSelected = prev.services.includes(service);
+      const updatedServices = isSelected
+        ? prev.services.filter((s) => s !== service)
+        : [...prev.services, service];
+      
+      // Clear services error if at least one selected
+      if (updatedServices.length > 0 && errors.services) {
+        setErrors(err => ({ ...err, services: undefined }));
+      }
       return {
         ...prev,
-        services: isSelected
-          ? prev.services.filter((s) => s !== service)
-          : [...prev.services, service],
+        services: updatedServices,
       };
     });
   };
 
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    setIsLoading(true);
-    setErrorMessage('');
+  const validateForm = (): boolean => {
+    const newErrors: Partial<Record<keyof FormState, string>> = {};
 
-    // Client-side validations
-    if (!form.name.trim() || !form.businessName.trim()) {
-      setErrorMessage('Please fill in both Name and Business Name.');
-      setIsLoading(false);
-      return;
+    if (!form.name || !form.name.trim()) {
+      newErrors.name = 'Full name is required';
+    }
+
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!form.email || !form.email.trim()) {
+      newErrors.email = 'Email address is required';
+    } else if (!emailRegex.test(form.email)) {
+      newErrors.email = 'Enter a valid email address';
+    }
+
+    const phoneDigits = form.phone.replace(/\D/g, '');
+    if (!form.phone || !form.phone.trim()) {
+      newErrors.phone = 'Phone number is required';
+    } else if (phoneDigits.length < 10) {
+      newErrors.phone = 'Phone number must be at least 10 digits';
+    }
+
+    if (!form.businessName || !form.businessName.trim()) {
+      newErrors.businessName = 'Business name is required';
+    }
+
+    if (!form.budget) {
+      newErrors.budget = 'Please select a budget range';
     }
 
     if (form.services.length === 0) {
-      setErrorMessage('Please select at least one service to begin.');
-      setIsLoading(false);
+      newErrors.services = 'Select at least one service';
+    }
+
+    if (!form.message || !form.message.trim()) {
+      newErrors.message = 'Message/Requirements is required';
+    } else if (form.message.trim().length < 20) {
+      newErrors.message = 'Message must be at least 20 characters';
+    }
+
+    setErrors(newErrors);
+    return Object.keys(newErrors).length === 0;
+  };
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setErrorMessage('');
+    setShowErrorToast(false);
+
+    if (!validateForm()) {
       return;
     }
 
-    try {
-      const res = await fetch('/api/contact', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(form),
-      });
+    setIsLoading(true);
 
-      const data = await res.json();
-      if (!res.ok) throw new Error(data.error || 'Submission failed');
+    const templateParams = {
+      name: form.name,
+      email: form.email,
+      phone: form.phone,
+      business_name: form.businessName,
+      budget: form.budget,
+      services: form.services.join(", "),
+      message: form.message
+    };
+
+    try {
+      await emailjs.send(
+        process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID || '',
+        process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID || '',
+        templateParams,
+        process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY || ''
+      );
 
       setIsSuccess(true);
       confetti({
@@ -92,17 +149,22 @@ export default function ContactPage() {
         colors: ['#4A0404', '#8B0000', '#EAD8C0', '#F9EEDC']
       });
 
-      // Reset form
+      // Reset entire form
       setForm({
         name: '',
+        email: '',
+        phone: '',
         businessName: '',
         budget: '₹10,000 - ₹25,000',
         services: [],
         message: '',
       });
+      setErrors({});
 
     } catch (err: any) {
-      setErrorMessage(err.message || 'An error occurred during submission. Please try again.');
+      console.error('EmailJS submit error:', err);
+      setErrorMessage("We couldn't send your inquiry. Please try again in a moment.");
+      setShowErrorToast(true);
     } finally {
       setIsLoading(false);
     }
@@ -111,7 +173,7 @@ export default function ContactPage() {
   const contactOptions = [
     { label: 'WhatsApp', value: 'Chat with us', icon: MessageSquare, href: 'https://wa.me/919136936913', color: 'hover:border-emerald-500/30 text-emerald-600' },
     { label: 'Instagram', value: '@nexoresha.media.works', icon: Instagram, href: 'https://www.instagram.com/nexoresha.media.works?igsh=eHlhMDRpemFzMTJn', color: 'hover:border-pink-500/30 text-pink-600' },
-    { label: 'Email', value: 'ayush.choudhary@nexoresha.tech', icon: Mail, href: 'mailto:ayush.choudhary@nexoresha.tech', color: 'hover:border-[#8B0000]/30 text-[#8B0000]' },
+    { label: 'Email', value: 'nexoreshamediaworks@gmail.com', icon: Mail, href: 'mailto:nexoreshamediaworks@gmail.com', color: 'hover:border-[#8B0000]/30 text-[#8B0000]' },
     { label: 'Phone', value: '+91 91369 36913', icon: Phone, href: 'tel:+919136936913', color: 'hover:border-[#4A0404]/30 text-[#4A0404]' },
   ];
 
@@ -327,148 +389,259 @@ export default function ContactPage() {
                 </p>
               </div>
 
-              {isSuccess ? (
-                <motion.div
-                  initial={{ opacity: 0, scale: 0.95 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  className="flex flex-col items-center justify-center py-12 text-center space-y-4"
-                >
-                  <div className="w-16 h-16 bg-emerald-500/10 rounded-full flex items-center justify-center border border-emerald-500/30 text-emerald-600">
-                    <Sparkles className="w-8 h-8" />
-                  </div>
-                  <h4 className="font-display text-2xl text-emerald-700 tracking-wider uppercase">
-                    INQUIRY REGISTERED
-                  </h4>
-                  <p className="text-xs text-[#1E1E1E]/70 max-w-sm leading-relaxed">
-                    Thank you! Your brand specifications have been recorded in our lead registry. Our Director will reach out to you within 24 hours.
-                  </p>
-                  <button
-                    onClick={() => setIsSuccess(false)}
-                    className="text-xs text-[#8B0000] font-bold hover:underline"
-                  >
-                    Send another message
-                  </button>
-                </motion.div>
-              ) : (
-                <form onSubmit={handleSubmit} className="space-y-6">
-                  {errorMessage && (
-                    <div className="p-4 bg-red-500/10 border border-red-500/20 text-red-700 text-xs rounded-xl font-semibold">
-                      {errorMessage}
-                    </div>
-                  )}
-
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                    <div className="space-y-2">
-                      <label className="text-[10px] font-bold tracking-widest text-[#4A0404] uppercase">
-                        Your Name
-                      </label>
-                      <input
-                        type="text"
-                        required
-                        value={form.name}
-                        onChange={(e) => setForm({ ...form, name: e.target.value })}
-                        placeholder="John Doe"
-                        className="w-full text-xs sm:text-sm bg-[#F9EEDC]/40 border border-[#4A0404]/15 focus:border-[#4A0404] focus:outline-none rounded-xl p-3 sm:p-3.5 text-[#1E1E1E] transition-colors"
-                      />
-                    </div>
-
-                    <div className="space-y-2">
-                      <label className="text-[10px] font-bold tracking-widest text-[#4A0404] uppercase">
-                        Business Name
-                      </label>
-                      <input
-                        type="text"
-                        required
-                        value={form.businessName}
-                        onChange={(e) => setForm({ ...form, businessName: e.target.value })}
-                        placeholder="Acme Luxury Co."
-                        className="w-full text-xs sm:text-sm bg-[#F9EEDC]/40 border border-[#4A0404]/15 focus:border-[#4A0404] focus:outline-none rounded-xl p-3 sm:p-3.5 text-[#1E1E1E] transition-colors"
-                      />
-                    </div>
-                  </div>
-
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                    <div className="space-y-2">
-                      <label className="text-[10px] font-bold tracking-widest text-[#4A0404] uppercase block">
-                        Monthly Budget Target
-                      </label>
-                      <select
-                        value={form.budget}
-                        onChange={(e) => setForm({ ...form, budget: e.target.value })}
-                        className="w-full text-xs sm:text-sm bg-[#F9EEDC]/40 border border-[#4A0404]/15 focus:border-[#4A0404] focus:outline-none rounded-xl p-3 sm:p-3.5 text-[#1E1E1E] transition-colors cursor-pointer"
-                      >
-                        {budgetOptions.map((opt) => (
-                          <option key={opt} value={opt}>
-                            {opt}
-                          </option>
-                        ))}
-                      </select>
-                    </div>
-                  </div>
-
-                  <div className="space-y-3">
-                    <label className="text-[10px] font-bold tracking-widest text-[#4A0404] uppercase block">
-                      Services Needed (Select all that apply)
+              <form onSubmit={handleSubmit} className="space-y-6">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                  <div className="space-y-2">
+                    <label className="text-[10px] font-bold tracking-widest text-[#4A0404] uppercase">
+                      Full Name
                     </label>
-                    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-3">
-                      {servicesList.map((service) => {
-                        const isChecked = form.services.includes(service);
-                        return (
-                          <button
-                            type="button"
-                            key={service}
-                            onClick={() => handleCheckboxChange(service)}
-                            className={`p-2.5 sm:p-3 rounded-xl border text-[10px] sm:text-[11px] font-semibold text-left transition-all flex justify-between items-center cursor-pointer ${
-                              isChecked
-                                ? 'bg-[#4A0404] text-white border-transparent shadow-sm'
-                                : 'bg-[#F9EEDC]/20 border-[#4A0404]/10 text-[#4A0404] hover:bg-[#4A0404]/5'
-                            }`}
-                          >
-                            {service}
-                            {isChecked && <Sparkles className="w-3.5 h-3.5 text-[#EAD8C0] flex-shrink-0 ml-1.5" />}
-                          </button>
-                        );
-                      })}
-                    </div>
+                    <input
+                      type="text"
+                      value={form.name}
+                      onChange={(e) => {
+                        setForm({ ...form, name: e.target.value });
+                        if (errors.name) setErrors(err => ({ ...err, name: undefined }));
+                      }}
+                      placeholder="John Doe"
+                      className={`w-full text-xs sm:text-sm bg-[#F9EEDC]/40 border ${errors.name ? 'border-red-600 focus:border-red-600' : 'border-[#4A0404]/15 focus:border-[#4A0404]'} focus:outline-none rounded-xl p-3 sm:p-3.5 text-[#1E1E1E] transition-colors`}
+                    />
+                    {errors.name && <p className="text-red-700 text-[10px] font-semibold mt-1">{errors.name}</p>}
                   </div>
 
                   <div className="space-y-2">
                     <label className="text-[10px] font-bold tracking-widest text-[#4A0404] uppercase">
-                      Custom Message / Requirements
+                      Business Name
                     </label>
-                    <textarea
-                      rows={5}
-                      value={form.message}
-                      onChange={(e) => setForm({ ...form, message: e.target.value })}
-                      placeholder="Outline any specific targets, timeline, shoots or media specifications..."
-                      className="w-full text-xs sm:text-sm bg-[#F9EEDC]/40 border border-[#4A0404]/15 focus:border-[#4A0404] focus:outline-none rounded-xl p-3 sm:p-3.5 text-[#1E1E1E] transition-colors resize-none"
+                    <input
+                      type="text"
+                      value={form.businessName}
+                      onChange={(e) => {
+                        setForm({ ...form, businessName: e.target.value });
+                        if (errors.businessName) setErrors(err => ({ ...err, businessName: undefined }));
+                      }}
+                      placeholder="Acme Luxury Co."
+                      className={`w-full text-xs sm:text-sm bg-[#F9EEDC]/40 border ${errors.businessName ? 'border-red-600 focus:border-red-600' : 'border-[#4A0404]/15 focus:border-[#4A0404]'} focus:outline-none rounded-xl p-3 sm:p-3.5 text-[#1E1E1E] transition-colors`}
                     />
+                    {errors.businessName && <p className="text-red-700 text-[10px] font-semibold mt-1">{errors.businessName}</p>}
+                  </div>
+                </div>
+
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                  <div className="space-y-2">
+                    <label className="text-[10px] font-bold tracking-widest text-[#4A0404] uppercase">
+                      Email Address
+                    </label>
+                    <input
+                      type="text"
+                      value={form.email}
+                      onChange={(e) => {
+                        setForm({ ...form, email: e.target.value });
+                        if (errors.email) setErrors(err => ({ ...err, email: undefined }));
+                      }}
+                      placeholder="john@example.com"
+                      className={`w-full text-xs sm:text-sm bg-[#F9EEDC]/40 border ${errors.email ? 'border-red-600 focus:border-red-600' : 'border-[#4A0404]/15 focus:border-[#4A0404]'} focus:outline-none rounded-xl p-3 sm:p-3.5 text-[#1E1E1E] transition-colors`}
+                    />
+                    {errors.email && <p className="text-red-700 text-[10px] font-semibold mt-1">{errors.email}</p>}
                   </div>
 
-                  <button
-                    type="submit"
-                    disabled={isLoading}
-                    className="w-full bg-[#4A0404] hover:bg-[#8B0000] disabled:bg-[#4A0404]/45 text-white py-4.5 rounded-xl font-display tracking-widest text-lg uppercase flex items-center justify-center gap-2 transition-all duration-300 hover:scale-[1.01] active:scale-95 shadow-md cursor-pointer"
-                  >
-                    {isLoading ? (
-                      <>
-                        <Loader2 className="w-5 h-5 animate-spin" />
-                        Submitting Inquiry...
-                      </>
-                    ) : (
-                      <>
-                        <Send className="w-4 h-4" />
-                        Submit Project Request
-                      </>
-                    )}
-                  </button>
-                </form>
-              )}
+                  <div className="space-y-2">
+                    <label className="text-[10px] font-bold tracking-widest text-[#4A0404] uppercase">
+                      Phone Number
+                    </label>
+                    <input
+                      type="text"
+                      value={form.phone}
+                      onChange={(e) => {
+                        setForm({ ...form, phone: e.target.value });
+                        if (errors.phone) setErrors(err => ({ ...err, phone: undefined }));
+                      }}
+                      placeholder="+91 91369 36913"
+                      className={`w-full text-xs sm:text-sm bg-[#F9EEDC]/40 border ${errors.phone ? 'border-red-600 focus:border-red-600' : 'border-[#4A0404]/15 focus:border-[#4A0404]'} focus:outline-none rounded-xl p-3 sm:p-3.5 text-[#1E1E1E] transition-colors`}
+                    />
+                    {errors.phone && <p className="text-red-700 text-[10px] font-semibold mt-1">{errors.phone}</p>}
+                  </div>
+                </div>
+
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                  <div className="space-y-2">
+                    <label className="text-[10px] font-bold tracking-widest text-[#4A0404] uppercase block">
+                      Monthly Budget
+                    </label>
+                    <select
+                      value={form.budget}
+                      onChange={(e) => {
+                        setForm({ ...form, budget: e.target.value });
+                        if (errors.budget) setErrors(err => ({ ...err, budget: undefined }));
+                      }}
+                      className={`w-full text-xs sm:text-sm bg-[#F9EEDC]/40 border ${errors.budget ? 'border-red-600 focus:border-red-600' : 'border-[#4A0404]/15 focus:border-[#4A0404]'} focus:outline-none rounded-xl p-3 sm:p-3.5 text-[#1E1E1E] transition-colors cursor-pointer`}
+                    >
+                      {budgetOptions.map((opt) => (
+                        <option key={opt} value={opt}>
+                          {opt}
+                        </option>
+                      ))}
+                    </select>
+                    {errors.budget && <p className="text-red-700 text-[10px] font-semibold mt-1">{errors.budget}</p>}
+                  </div>
+                </div>
+
+                <div className="space-y-3">
+                  <label className="text-[10px] font-bold tracking-widest text-[#4A0404] uppercase block">
+                    Services Needed (Select all that apply)
+                  </label>
+                  <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-3">
+                    {servicesList.map((service) => {
+                      const isChecked = form.services.includes(service);
+                      return (
+                        <button
+                          type="button"
+                          key={service}
+                          onClick={() => handleCheckboxChange(service)}
+                          className={`p-2.5 sm:p-3 rounded-xl border text-[10px] sm:text-[11px] font-semibold text-left transition-all flex justify-between items-center cursor-pointer ${
+                            isChecked
+                              ? 'bg-[#4A0404] text-white border-transparent shadow-sm'
+                              : 'bg-[#F9EEDC]/20 border-[#4A0404]/10 text-[#4A0404] hover:bg-[#4A0404]/5'
+                          }`}
+                        >
+                          {service}
+                          {isChecked && <Sparkles className="w-3.5 h-3.5 text-[#EAD8C0] flex-shrink-0 ml-1.5" />}
+                        </button>
+                      );
+                    })}
+                  </div>
+                  {errors.services && <p className="text-red-700 text-[10px] font-semibold mt-1">{errors.services}</p>}
+                </div>
+
+                <div className="space-y-2">
+                  <label className="text-[10px] font-bold tracking-widest text-[#4A0404] uppercase">
+                    Custom Message / Requirements
+                  </label>
+                  <textarea
+                    rows={5}
+                    value={form.message}
+                    onChange={(e) => {
+                      setForm({ ...form, message: e.target.value });
+                      if (errors.message) setErrors(err => ({ ...err, message: undefined }));
+                    }}
+                    placeholder="Outline any specific targets, timeline, shoots or media specifications..."
+                    className={`w-full text-xs sm:text-sm bg-[#F9EEDC]/40 border ${errors.message ? 'border-red-600 focus:border-red-600' : 'border-[#4A0404]/15 focus:border-[#4A0404]'} focus:outline-none rounded-xl p-3 sm:p-3.5 text-[#1E1E1E] transition-colors resize-none`}
+                  />
+                  {errors.message && <p className="text-red-700 text-[10px] font-semibold mt-1">{errors.message}</p>}
+                </div>
+
+                <button
+                  type="submit"
+                  disabled={isLoading}
+                  className="w-full bg-[#4A0404] hover:bg-[#8B0000] disabled:bg-[#4A0404]/45 text-white py-4.5 rounded-xl font-display tracking-widest text-lg uppercase flex items-center justify-center gap-2 transition-all duration-300 hover:scale-[1.01] active:scale-95 shadow-md cursor-pointer"
+                >
+                  {isLoading ? (
+                    <>
+                      <Loader2 className="w-5 h-5 animate-spin" />
+                      Sending Inquiry...
+                    </>
+                  ) : (
+                    <>
+                      <Send className="w-4 h-4" />
+                      Submit Project Request
+                    </>
+                  )}
+                </button>
+              </form>
             </div>
           </div>
         </div>
 
       </div>
+
+      {/* Success Modal */}
+      <AnimatePresence>
+        {isSuccess && (
+          <div className="fixed inset-0 z-[300] flex items-center justify-center p-4">
+            {/* Backdrop glass blur */}
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              onClick={() => setIsSuccess(false)}
+              className="absolute inset-0 bg-[#1E1E1E]/60 backdrop-blur-md"
+            />
+
+            {/* Modal Box */}
+            <motion.div
+              initial={{ y: 50, opacity: 0, scale: 0.95 }}
+              animate={{ y: 0, opacity: 1, scale: 1 }}
+              exit={{ y: 50, opacity: 0, scale: 0.95 }}
+              transition={{ type: 'spring', duration: 0.5 }}
+              className="relative w-full max-w-md bg-[#F5EBDD] border border-[#4A0404]/20 rounded-3xl p-8 text-center shadow-[0_20px_50px_rgba(74,4,4,0.25)] z-10 flex flex-col items-center space-y-6"
+            >
+              {/* Premium Success Animation */}
+              <div className="relative">
+                <motion.div
+                  initial={{ scale: 0 }}
+                  animate={{ scale: 1 }}
+                  transition={{ type: 'spring', stiffness: 200, damping: 12, delay: 0.1 }}
+                  className="w-16 h-16 bg-[#4A0404] rounded-full flex items-center justify-center border border-[#8B0000]/20 text-[#F5EBDD] shadow-lg"
+                >
+                  <Sparkles className="w-8 h-8 text-[#EAD8C0]" />
+                </motion.div>
+                
+                {/* Ping rings */}
+                <motion.div 
+                  initial={{ scale: 0.8, opacity: 0.5 }}
+                  animate={{ scale: 1.4, opacity: 0 }}
+                  transition={{ repeat: Infinity, duration: 1.5, ease: 'easeOut' }}
+                  className="absolute inset-0 border-2 border-[#8B0000] rounded-full"
+                />
+              </div>
+
+              <div className="space-y-2">
+                <h3 className="font-display text-3xl text-[#4A0404] uppercase tracking-wide">
+                  Project Inquiry Received
+                </h3>
+                <p className="text-xs text-[#1E1E1E]/70 leading-relaxed font-light">
+                  Thank you for contacting Nexoresha Media Works. Our team will review your requirements and contact you shortly.
+                </p>
+              </div>
+
+              <button
+                onClick={() => setIsSuccess(false)}
+                className="w-full bg-[#4A0404] hover:bg-[#8B0000] text-white py-3.5 rounded-xl font-display tracking-wider text-sm uppercase transition-all duration-300 hover:scale-[1.02] active:scale-95 shadow-md cursor-pointer"
+              >
+                Close Window
+              </button>
+            </motion.div>
+          </div>
+        )}
+      </AnimatePresence>
+
+      {/* Error Toast */}
+      <AnimatePresence>
+        {showErrorToast && (
+          <div className="fixed bottom-6 right-6 z-[300] max-w-sm w-full">
+            <motion.div
+              initial={{ x: 100, opacity: 0 }}
+              animate={{ x: 0, opacity: 1 }}
+              exit={{ x: 100, opacity: 0 }}
+              className="bg-red-950/90 border border-red-500/30 backdrop-blur-md text-red-100 p-4 rounded-2xl shadow-xl flex items-center gap-3.5"
+            >
+              <div className="w-8 h-8 bg-red-500/20 rounded-xl flex items-center justify-center text-red-400 flex-shrink-0">
+                <ShieldAlert className="w-5 h-5" />
+              </div>
+              <div className="flex-grow">
+                <p className="text-xs font-semibold leading-relaxed">
+                  We couldn't send your inquiry. Please try again in a moment.
+                </p>
+              </div>
+              <button 
+                onClick={() => setShowErrorToast(false)}
+                className="text-red-400/60 hover:text-red-400 transition-colors text-xs font-bold uppercase tracking-wider pl-1.5"
+              >
+                Dismiss
+              </button>
+            </motion.div>
+          </div>
+        )}
+      </AnimatePresence>
     </div>
   );
 }

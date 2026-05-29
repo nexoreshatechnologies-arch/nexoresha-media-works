@@ -4,6 +4,7 @@ import Vision from "@/sections/Vision";
 import FeaturedHighlights from "@/sections/FeaturedHighlights";
 import Packages from "@/sections/Packages";
 import Customize from "@/sections/Customize";
+import Ecosystem from "@/sections/Ecosystem";
 
 export default function Home() {
   return (
@@ -25,6 +26,9 @@ export default function Home() {
 
       {/* Dynamic shopping package builder */}
       <Customize />
+
+      {/* Ecosystem brands portfolio */}
+      <Ecosystem />
     </div>
   );
 }

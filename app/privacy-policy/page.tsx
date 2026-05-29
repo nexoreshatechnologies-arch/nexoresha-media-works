@@ -207,8 +207,8 @@ export default function PrivacyPolicyPage() {
                   <Mail className="w-4 h-4" />
                   Email
                 </div>
-                <a href="mailto:nexoreshamediawork@gmail.com" className="text-xs text-[#1E1E1E] hover:underline font-semibold block break-all">
-                  nexoreshamediawork@gmail.com
+                <a href="mailto:nexoreshamediaworks@gmail.com" className="text-xs text-[#1E1E1E] hover:underline font-semibold block break-all">
+                  nexoreshamediaworks@gmail.com
                 </a>
               </div>
               <div className="space-y-2">

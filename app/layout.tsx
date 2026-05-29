@@ -18,17 +18,27 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL('https://nexoresha.tech'),
   title: "Nexoresha Media Works | The Director's Eye for Your Brand",
   description: "High-tier cinematic branding and contemporary luxury media. We don't just create content; we direct your legacy.",
   keywords: ["social media management", "branding agency", "reels production", "cinematic marketing", "content strategy", "paid marketing", "Nexoresha"],
   authors: [{ name: "Nexoresha Media Works" }],
+  robots: {
+    index: true,
+    follow: true,
+  },
+  alternates: {
+    canonical: 'https://nexoresha.tech',
+  },
   openGraph: {
     title: "Nexoresha Media Works",
     description: "The Director's Eye for Your Brand. Elite digital branding and cinematography.",
+    url: 'https://nexoresha.tech',
+    siteName: 'Nexoresha Media Works',
     type: "website",
     locale: "en_IN",
-    }
-  };
+  }
+};
 
 export default function RootLayout({
   children,

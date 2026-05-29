@@ -2,9 +2,9 @@
 
 import { motion } from 'framer-motion';
 import Link from 'next/link';
-import { ArrowLeft, Sparkles, Building, Briefcase, Award, Eye, Heart, Compass, MessageSquare } from 'lucide-react';
+import { ArrowLeft, Sparkles, Building, Briefcase, Award, Eye, Heart, Compass, MessageSquare, ExternalLink } from 'lucide-react';
 
-export default function AyushChaudharyPortfolio() {
+export default function AyushChoudharyPortfolio() {
   const leadershipQualities = [
     {
       title: 'Ecosystem Visionary',
@@ -38,18 +38,21 @@ export default function AyushChaudharyPortfolio() {
       role: 'Owner & Founder',
       desc: 'The technical core, building premium custom software solutions, ecommerce platforms, web applications, and digital interfaces.',
       tag: 'Tech Core',
+      href: 'https://nexoresha.tech/',
     },
     {
       name: 'Nexoresha Tales',
       role: 'Owner & Founder',
       desc: 'The storytelling division, drafting rich narrative copy, editorial scriptures, brand storylines, and creative content scripts.',
       tag: 'Storytelling & Literature',
+      href: '#',
     },
     {
       name: 'Nexoresha Media Works',
       role: 'Owner & Founder',
       desc: 'The production house, designing visual assets, filming cinematic advertisements, and managing high-tier social media channels.',
       tag: 'Cinematography & Branding',
+      href: '/',
     },
   ];
 
@@ -83,7 +86,7 @@ export default function AyushChaudharyPortfolio() {
         >
           <img
             src="/team/ayush.jpg"
-            alt="Ayush Chaudhary"
+            alt="Ayush Choudhary"
             className="w-full h-full object-cover object-top"
           />
         </motion.div>
@@ -100,7 +103,7 @@ export default function AyushChaudharyPortfolio() {
               Founder & Director
             </span>
             <h1 className="font-display text-5xl md:text-7xl text-[#4A0404] uppercase leading-none tracking-tight">
-              Ayush Chaudhary
+              Ayush Choudhary
             </h1>
             <p className="text-xs uppercase font-bold tracking-wider text-[#1E1E1E]/55">
               Owner & Founder of Nexoresha Ventures
@@ -113,7 +116,7 @@ export default function AyushChaudharyPortfolio() {
             transition={{ type: 'spring', stiffness: 100, delay: 0.2 }}
             className="font-sans text-sm md:text-base text-[#1E1E1E]/80 leading-relaxed font-light max-w-2xl"
           >
-            Ayush Chaudhary is a visionary entrepreneur and strategist who operates at the intersection of technology, creative narrative, and high-impact cinematography. As the orchestrator of the Nexoresha ecosystem, he sets the brand's direction and builds frameworks that bridge complex web software and narrative storytelling with commercial media marketing.
+            Ayush Choudhary is a visionary entrepreneur and strategist who operates at the intersection of technology, creative narrative, and high-impact cinematography. As the orchestrator of the Nexoresha ecosystem, he sets the brand's direction and builds frameworks that bridge complex web software and narrative storytelling with commercial media marketing.
           </motion.p>
 
           <motion.div
@@ -196,35 +199,47 @@ export default function AyushChaudharyPortfolio() {
 
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
           {companies.map((co, index) => (
-            <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: '-50px' }}
-              whileHover={{ y: -6 }}
-              transition={{ 
-                y: { type: 'spring', stiffness: 350, damping: 20 },
-                opacity: { duration: 0.5, delay: index * 0.1 }
-              }}
+            <Link
+              href={co.href}
               key={co.name}
-              className="glass-layer p-8 rounded-2xl border border-[#4A0404]/10 shadow-sm flex flex-col justify-between bg-white/20 hover:border-[#8B0000]/30 hover:bg-[#8B0000]/[0.01] transition-all"
+              target={co.href.startsWith('http') ? '_blank' : undefined}
+              rel={co.href.startsWith('http') ? 'noopener noreferrer' : undefined}
+              className="block group"
             >
-              <div className="space-y-4">
-                <span className="text-[9px] uppercase font-bold tracking-widest text-[#8B0000] border border-[#8B0000]/20 px-2.5 py-1 rounded-full w-fit block bg-[#8B0000]/5">
-                  {co.tag}
-                </span>
-                <div className="space-y-1">
-                  <h3 className="font-display text-2xl text-[#4A0404] tracking-wide uppercase">
-                    {co.name}
-                  </h3>
-                  <p className="text-[10px] text-[#1E1E1E]/50 tracking-wider font-semibold uppercase">
-                    {co.role}
+              <motion.div
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: '-50px' }}
+                whileHover={{ y: -6 }}
+                transition={{ 
+                  y: { type: 'spring', stiffness: 350, damping: 20 },
+                  opacity: { duration: 0.5, delay: index * 0.1 }
+                }}
+                className="glass-layer p-8 rounded-2xl border border-[#4A0404]/10 shadow-sm flex flex-col justify-between bg-white/20 hover:border-[#8B0000]/30 hover:bg-[#8B0000]/[0.01] transition-all h-full cursor-pointer"
+              >
+                <div className="space-y-4">
+                  <div className="flex justify-between items-center">
+                    <span className="text-[9px] uppercase font-bold tracking-widest text-[#8B0000] border border-[#8B0000]/20 px-2.5 py-1 rounded-full w-fit block bg-[#8B0000]/5">
+                      {co.tag}
+                    </span>
+                    {co.href.startsWith('http') && (
+                      <ExternalLink className="w-3.5 h-3.5 text-[#8B0000]/60 group-hover:text-[#8B0000] transition-colors" />
+                    )}
+                  </div>
+                  <div className="space-y-1">
+                    <h3 className="font-display text-2xl text-[#4A0404] tracking-wide uppercase group-hover:text-[#8B0000] transition-colors">
+                      {co.name}
+                    </h3>
+                    <p className="text-[10px] text-[#1E1E1E]/50 tracking-wider font-semibold uppercase">
+                      {co.role}
+                    </p>
+                  </div>
+                  <p className="text-xs text-[#1E1E1E]/75 leading-relaxed font-light">
+                    {co.desc}
                   </p>
                 </div>
-                <p className="text-xs text-[#1E1E1E]/75 leading-relaxed font-light">
-                  {co.desc}
-                </p>
-              </div>
-            </motion.div>
+              </motion.div>
+            </Link>
           ))}
         </div>
       </div>
