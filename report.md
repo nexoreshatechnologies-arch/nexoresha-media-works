@@ -268,3 +268,11 @@ The application now builds successfully into the following static and dynamic ro
    - On success, resets the entire form inputs, triggers a confetti splash, and slides a backdrop-blurred **"Project Inquiry Received"** modal over the screen.
    - On EmailJS API failure, shows an elegant error toast bar at the bottom-right of the viewport with a dismissal button, keeping field inputs intact to support immediate retry.
 
+---
+
+## 14. SEO & Verification: Google Search Console Setup
+
+### Changes Made:
+1. **Google Site Verification Meta Tag**:
+   - Added verification token `"t8GTxoQmFniqQETDBbJH1d3WdjmRA_RkF4kXU7OBjNA"` inside the Next.js `Metadata` API object of the main layout file [app/layout.tsx](file:///c:/Projects/Nexoresha%20Media%20Works/app/layout.tsx).
+   - This translates natively to `<meta name="google-site-verification" content="t8GTxoQmFniqQETDBbJH1d3WdjmRA_RkF4kXU7OBjNA" />` in the final rendered HTML `<head>` on all pages, enabling Google Search Console verification.

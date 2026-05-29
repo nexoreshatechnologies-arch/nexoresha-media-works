@@ -37,6 +37,9 @@ export const metadata: Metadata = {
     siteName: 'Nexoresha Media Works',
     type: "website",
     locale: "en_IN",
+  },
+  verification: {
+    google: "t8GTxoQmFniqQETDBbJH1d3WdjmRA_RkF4kXU7OBjNA",
   }
 };
 
