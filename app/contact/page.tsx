@@ -265,6 +265,31 @@ export default function ContactPage() {
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-1 gap-4">
               {contactOptions.map((opt) => {
                 const Icon = opt.icon;
+                if (opt.label === 'Phone') {
+                  return (
+                    <div
+                      key={opt.label}
+                      className={`glass-layer p-5 rounded-2xl border border-[#4A0404]/10 shadow-sm flex items-center gap-4 bg-white/20 ${opt.color}`}
+                    >
+                      <div className="w-10 h-10 rounded-xl bg-current/5 border border-current/10 flex items-center justify-center">
+                        <Icon className="w-5 h-5" />
+                      </div>
+                      <div>
+                        <span className="text-[10px] uppercase font-bold tracking-widest text-[#1E1E1E]/50 block">
+                          {opt.label}
+                        </span>
+                        <div className="text-sm font-semibold block text-[#1E1E1E] mt-0.5 flex flex-col gap-1">
+                          <a href="tel:+919136936913" className="hover:text-[#8B0000] transition-colors block">
+                            +91 91369 36913
+                          </a>
+                          <a href="tel:+918879501593" className="hover:text-[#8B0000] transition-colors block">
+                            +91 88795 01593
+                          </a>
+                        </div>
+                      </div>
+                    </div>
+                  );
+                }
                 return (
                   <a
                     key={opt.label}

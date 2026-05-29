@@ -1,7 +1,7 @@
 'use client';
 
 import Link from 'next/link';
-import { Instagram, Linkedin, Video, ArrowUp } from 'lucide-react';
+import { Instagram, Linkedin, Youtube, ArrowUp } from 'lucide-react';
 
 export default function Footer() {
   const handleScrollToTop = () => {
@@ -20,9 +20,7 @@ export default function Footer() {
             </p>
             <div className="flex gap-4">
               <a
-                href="https://www.instagram.com/nexoresha.media.works?igsh=eHlhMDRpemFzMTJn"
-                target="_blank"
-                rel="noopener noreferrer"
+                href="#"
                 className="w-10 h-10 rounded-xl border border-[#EAD8C0]/25 flex items-center justify-center hover:bg-[#8B0000] hover:border-[#8B0000] text-[#F9EEDC] transition-all duration-300 hover:scale-105"
                 aria-label="Instagram Link"
               >
@@ -31,9 +29,9 @@ export default function Footer() {
               <a
                 href="#"
                 className="w-10 h-10 rounded-xl border border-[#EAD8C0]/25 flex items-center justify-center hover:bg-[#8B0000] hover:border-[#8B0000] text-[#F9EEDC] transition-all duration-300 hover:scale-105"
-                aria-label="Vimeo Link"
+                aria-label="YouTube Link"
               >
-                <Video className="w-4 h-4" />
+                <Youtube className="w-4 h-4" />
               </a>
               <a
                 href="#"
@@ -81,14 +79,15 @@ export default function Footer() {
               <li>
                 <a href="mailto:ayush.choudhary@nexoresha.tech" className="hover:text-white transition-colors">ayush.choudhary@nexoresha.tech</a>
               </li>
-              <li>
-                <a href="tel:+919136936913" className="hover:text-white transition-colors">+91 91369 36913</a>
+              <li className="flex flex-col gap-1.5">
+                <a href="tel:+919136936913" className="hover:text-white transition-colors font-medium">+91 91369 36913</a>
+                <a href="tel:+918879501593" className="hover:text-white transition-colors font-medium">+91 88795 01593</a>
               </li>
               <li>
-                <a href="#" className="hover:text-white transition-colors">Privacy Policy</a>
+                <Link href="/privacy-policy" className="hover:text-white transition-colors">Privacy Policy</Link>
               </li>
               <li>
-                <a href="#" className="hover:text-white transition-colors">Terms of Service</a>
+                <Link href="/terms-of-service" className="hover:text-white transition-colors">Terms of Service</Link>
               </li>
             </ul>
           </div>

@@ -75,7 +75,11 @@ export default function Navbar() {
   return (
     <nav
       id="top-nav"
-      className="fixed top-0 left-0 w-full z-50 transition-all duration-300 max-w-full py-4 bg-transparent"
+      className={`fixed top-0 left-0 w-full z-50 transition-all duration-300 max-w-full ${
+        isScrolled
+          ? 'py-3 bg-[#F9EEDC]/20 backdrop-blur-xl border-b border-[#4A0404]/5 shadow-sm'
+          : 'py-4 bg-transparent'
+      }`}
     >
       <div className="max-w-7xl mx-auto px-6 md:px-12 flex justify-between items-center">
         {/* Logo */}
@@ -140,7 +144,8 @@ export default function Navbar() {
 
           {/* Quick Start Project CTA */}
           <Link
-            href="/contact"
+            href="/#packages"
+            onClick={(e) => handleNavClick(e, 'packages')}
             className="hidden sm:flex bg-[#4A0404] hover:bg-[#8B0000] text-white px-6 py-2.5 rounded-xl font-medium text-xs tracking-wider uppercase transition-all duration-300 hover:scale-[1.03] active:scale-95 shadow-[0_4px_12px_rgba(74,4,4,0.15)] flex-row items-center gap-1.5"
           >
             Start Project
@@ -160,7 +165,7 @@ export default function Navbar() {
 
       {/* Mobile Nav Overlay Slide */}
       {isMobileMenuOpen && (
-        <div className="md:hidden fixed inset-x-0 top-[73px] bg-[#F9EEDC] border-b border-[#4A0404]/10 shadow-lg px-6 py-8 flex flex-col gap-6 z-40 transition-all duration-300 animate-in fade-in slide-in-from-top-5">
+        <div className="md:hidden absolute inset-x-0 top-full bg-[#F9EEDC]/95 backdrop-blur-md border-b border-[#4A0404]/10 shadow-lg px-6 py-8 flex flex-col gap-6 z-40 transition-all duration-300 animate-in fade-in slide-in-from-top-5">
           {navItems.map((item) => {
             const isActive = pathname === '/'
               ? activeSection === item.id
@@ -182,8 +187,8 @@ export default function Navbar() {
             );
           })}
           <Link
-            href="/contact"
-            onClick={() => setIsMobileMenuOpen(false)}
+            href="/#packages"
+            onClick={(e) => handleNavClick(e, 'packages')}
             className="bg-[#4A0404] text-white text-center py-3.5 rounded-xl font-display tracking-widest text-lg uppercase hover:bg-[#8B0000] transition-all"
           >
             Start Project
