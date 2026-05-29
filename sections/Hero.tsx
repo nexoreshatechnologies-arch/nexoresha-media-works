@@ -133,7 +133,7 @@ export default function Hero() {
       return (
         <motion.span
           key={index}
-          className={`inline-block cursor-default font-display transition-colors duration-300 ${
+          className={`inline-block cursor-default font-display transition-colors duration-300 hero-text-shadow ${
             isMaroon 
               ? 'text-[#FF5E5E] hover:text-[#F9EEDC]' 
               : 'text-[#F9EEDC] hover:text-[#FF5E5E]'
@@ -218,7 +218,7 @@ export default function Hero() {
             <motion.div
               variants={itemVariants}
               whileHover={{ scale: 1.03 }}
-              className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-white/10 border border-white/20 text-[9px] sm:text-xs font-semibold text-[#F9EEDC] uppercase tracking-wider group cursor-default backdrop-blur-sm"
+              className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-black/50 border border-white/15 text-[9px] sm:text-xs font-semibold text-[#F9EEDC] uppercase tracking-wider group cursor-default backdrop-blur-md shadow-lg"
             >
               <Film className="w-3 h-3 sm:w-3.5 sm:h-3.5 text-[#FF5E5E] group-hover:rotate-[45deg] transition-transform duration-500" />
               Social Media & Branding Agency
@@ -239,7 +239,7 @@ export default function Hero() {
 
             <motion.p
               variants={itemVariants}
-              className="font-sans text-[11px] sm:text-sm md:text-base text-[#F9EEDC]/85 leading-relaxed font-light drop-shadow-sm max-w-[85%] sm:max-w-md lg:max-w-2xl"
+              className="font-sans text-[11px] sm:text-sm md:text-base text-[#F9EEDC]/85 leading-relaxed font-light drop-shadow-[0_2px_8px_rgba(0,0,0,0.85)] max-w-[85%] sm:max-w-md lg:max-w-2xl"
             >
               We don&apos;t just curate posts; we direct your legacy. Experience our scroll-triggered brand sequencing and establish visual authority.
             </motion.p>
@@ -258,7 +258,7 @@ export default function Hero() {
               </Link>
               <Link
                 href="/highlights"
-                className="group bg-white/10 hover:bg-white/20 border border-white/20 hover:border-white/40 text-[#F9EEDC] hover:text-white px-4 py-2.5 sm:px-8 sm:py-4 rounded-xl font-medium tracking-wide uppercase transition-all duration-300 hover:scale-[1.03] active:scale-95 flex items-center justify-center gap-1.5 sm:gap-2 text-[10px] sm:text-sm backdrop-blur-sm shadow-[0_10px_25px_rgba(255,255,255,0.03)]"
+                className="group bg-black/40 hover:bg-black/55 border border-white/15 hover:border-white/30 text-[#F9EEDC] hover:text-white px-4 py-2.5 sm:px-8 sm:py-4 rounded-xl font-medium tracking-wide uppercase transition-all duration-300 hover:scale-[1.03] active:scale-95 flex items-center justify-center gap-1.5 sm:gap-2 text-[10px] sm:text-sm backdrop-blur-md shadow-[0_10px_30px_rgba(0,0,0,0.15)]"
               >
                 <Play className="w-3.5 h-3.5 sm:w-4 sm:h-4 fill-[#F9EEDC] text-[#F9EEDC] group-hover:scale-115 transition-transform" />
                 View Showreel

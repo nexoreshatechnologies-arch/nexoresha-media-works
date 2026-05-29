@@ -276,3 +276,21 @@ The application now builds successfully into the following static and dynamic ro
 1. **Google Site Verification Meta Tag**:
    - Added verification token `"t8GTxoQmFniqQETDBbJH1d3WdjmRA_RkF4kXU7OBjNA"` inside the Next.js `Metadata` API object of the main layout file [app/layout.tsx](file:///c:/Projects/Nexoresha%20Media%20Works/app/layout.tsx).
    - This translates natively to `<meta name="google-site-verification" content="t8GTxoQmFniqQETDBbJH1d3WdjmRA_RkF4kXU7OBjNA" />` in the final rendered HTML `<head>` on all pages, enabling Google Search Console verification.
+
+---
+
+## 15. Refinement: Hero Typography Contrast Shadow Outline
+
+### Changes Made:
+1. **Contour Shadow Outline on Heading**:
+   - Reverted the experimental hollow typography layout to preserve solid text fills.
+   - Assigned a custom CSS class `.hero-text-shadow` to each interactive letter inside [Hero.tsx](file:///c:/Projects/Nexoresha%20Media%20Works/sections/Hero.tsx).
+   - Defined `.hero-text-shadow` in [globals.css](file:///c:/Projects/Nexoresha%20Media%20Works/app/globals.css) with a 4-axis black outline (`1px` width at `85%` opacity) combined with a soft `rgba(0, 0, 0, 0.6)` drop-shadow offset.
+   - This ensures excellent readability against the high-contrast background image scrubbing sequence without altering the luxury color theme.
+2. **Enhanced Description Text Contrast**:
+   - Upgraded the description paragraph drop-shadow class from `drop-shadow-sm` to a more prominent `drop-shadow-[0_2px_8px_rgba(0,0,0,0.85)]` shadow wrapper, making the body paragraph text pop on top of the dynamic media.
+3. **Contrast Adjustments on Secondary CTAs & Badges**:
+   - Restyled the top **"Social Media & Branding Agency"** tag badge to use a darker backdrop `bg-black/50` with a subtle white border and medium backdrop blur (`backdrop-blur-md`), preventing blending with light frames.
+   - Refitted the **"View Showreel"** CTA button from a light frosted look to a semi-transparent dark button style (`bg-black/40 hover:bg-black/55 border-white/15 backdrop-blur-md`), elevating text and icon legibility across all scrubbed frame animations.
+
+
