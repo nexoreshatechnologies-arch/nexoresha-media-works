@@ -323,3 +323,15 @@ The application now builds successfully into the following static and dynamic ro
 2. **Nexoresha Media Works card redirection**:
    - Updated the target anchor link `href` for the `"Nexoresha Media Works"` card in both the home page [Ecosystem.tsx](file:///c:/Projects/Nexoresha%20Media%20Works/sections/Ecosystem.tsx) and the Ayush detailed profile [page.tsx](file:///c:/Projects/Nexoresha%20Media%20Works/app/team/ayush-choudhary/page.tsx) to point to the Hero section `/#home`.
    - This guides visitors directly back to the visual hero sequence presentation from anywhere in the ecosystem.
+
+---
+
+## 18. SEO & Verification: Yandex Webmaster Ownership Verification
+
+### Changes Made:
+1. **Static HTML file Verification**:
+   - Created [yandex_750cf12607b8b736.html](file:///c:/Projects/Nexoresha%20Media%20Works/public/yandex_750cf12607b8b736.html) in the `public/` directory containing the requested HTML verification syntax.
+   - This page is served directly at the root (`https://www.nexoreshamedia.works/yandex_750cf12607b8b736.html`) for search engines to fetch.
+2. **Metadata verification block**:
+   - Added the verification tag key `"yandex: '750cf12607b8b736'"` inside the `Metadata` object in the main layout file [app/layout.tsx](file:///c:/Projects/Nexoresha%20Media%20Works/app/layout.tsx).
+   - This renders `<meta name="yandex-verification" content="750cf12607b8b736" />` automatically in the final compiled document header.
