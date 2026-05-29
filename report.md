@@ -308,4 +308,8 @@ The application now builds successfully into the following static and dynamic ro
      - Policy pages: `yearly` update frequency, priority `0.3`
 2. **Robots crawling definitions**:
    - Confirmed [robots.ts](file:///c:/Projects/Nexoresha%20Media%20Works/app/robots.ts) points correctly to `https://www.nexoreshamedia.works/sitemap.xml` and blocks API endpoints `/api/*` from crawl engines.
+3. **Core SEO Metadata, OpenGraph & Twitter Cards**:
+   - Implemented exact Title, Description, and Keywords on [app/layout.tsx](file:///c:/Projects/Nexoresha%20Media%20Works/app/layout.tsx) matching search visibility targets.
+   - Added OpenGraph schemas (with custom dimensions and type parameters) and Twitter Cards (`summary_large_image`) mapping directly to the new primary domain `https://www.nexoreshamedia.works`.
+
 
