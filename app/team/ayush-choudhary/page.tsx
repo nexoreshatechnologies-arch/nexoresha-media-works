@@ -52,7 +52,7 @@ export default function AyushChoudharyPortfolio() {
       role: 'Owner & Founder',
       desc: 'The production house, designing visual assets, filming cinematic advertisements, and managing high-tier social media channels.',
       tag: 'Cinematography & Branding',
-      href: '/',
+      href: '/#home',
     },
   ];
 

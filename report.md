@@ -313,3 +313,13 @@ The application now builds successfully into the following static and dynamic ro
    - Added OpenGraph schemas (with custom dimensions and type parameters) and Twitter Cards (`summary_large_image`) mapping directly to the new primary domain `https://www.nexoreshamedia.works`.
 
 
+---
+
+## 17. Refinement: Brand Navigation & Footer Redirection Adjustments
+
+### Changes Made:
+1. **Footer attribution redirect**:
+   - Reverted the developer credit link `"Nexoresha Technologies"` in [Footer.tsx](file:///c:/Projects/Nexoresha%20Media%20Works/components/Footer.tsx) back to its dedicated domain: `https://nexoresha.tech/`.
+2. **Nexoresha Media Works card redirection**:
+   - Updated the target anchor link `href` for the `"Nexoresha Media Works"` card in both the home page [Ecosystem.tsx](file:///c:/Projects/Nexoresha%20Media%20Works/sections/Ecosystem.tsx) and the Ayush detailed profile [page.tsx](file:///c:/Projects/Nexoresha%20Media%20Works/app/team/ayush-choudhary/page.tsx) to point to the Hero section `/#home`.
+   - This guides visitors directly back to the visual hero sequence presentation from anywhere in the ecosystem.
