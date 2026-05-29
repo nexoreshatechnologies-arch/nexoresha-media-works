@@ -245,7 +245,7 @@ The application now builds successfully into the following static and dynamic ro
    - **Customize Builder**: Shrunk tab paddings and typography to prevent horizontal viewport overflows on mobile screen widths.
    - **Contact Us**: Repositioned the inquiry form above the direct channels list on mobile layouts so users can access form fields instantly.
 4. **Founders ecosystem and copy fixes**:
-    - Directed the ecosystem links inside the founder's detailed page: NEXORESHA TECHNOLOGIES redirects to `https://www.nexoreshamedia.works/`, while NEXORESHA TALES and NEXORESHA MEDIA WORKS point back to internal anchors/homepage.
+    - Directed the ecosystem links inside the founder's detailed page: NEXORESHA TECHNOLOGIES redirects to `https://nexoresha.tech/`, while NEXORESHA TALES and NEXORESHA MEDIA WORKS point back to internal anchors/homepage.
    - Changed global company email addresses to `nexoreshamediaworks@gmail.com` across all views and components.
    - Corrected founder name spelling to "Ayush Choudhary" globally.
    - Linked the navbar "Start Project" action button to the package options block (`#packages`) on the homepage.
