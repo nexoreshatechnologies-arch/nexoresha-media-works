@@ -20,7 +20,9 @@ export default function Footer() {
             </p>
             <div className="flex gap-4">
               <a
-                href="#"
+                href="https://www.instagram.com/nexoreshamediaworks"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="w-10 h-10 rounded-xl border border-[#EAD8C0]/25 flex items-center justify-center hover:bg-[#8B0000] hover:border-[#8B0000] text-[#F9EEDC] transition-all duration-300 hover:scale-105"
                 aria-label="Instagram Link"
               >

@@ -172,7 +172,7 @@ export default function ContactPage() {
 
   const contactOptions = [
     { label: 'WhatsApp', value: 'Chat with us', icon: MessageSquare, href: 'https://wa.me/919136936913', color: 'hover:border-emerald-500/30 text-emerald-600' },
-    { label: 'Instagram', value: '@nexoresha.media.works', icon: Instagram, href: 'https://www.instagram.com/nexoresha.media.works?igsh=eHlhMDRpemFzMTJn', color: 'hover:border-pink-500/30 text-pink-600' },
+    { label: 'Instagram', value: '@nexoreshamediaworks', icon: Instagram, href: 'https://www.instagram.com/nexoreshamediaworks', color: 'hover:border-pink-500/30 text-pink-600' },
     { label: 'Email', value: 'nexoreshamediaworks@gmail.com', icon: Mail, href: 'mailto:nexoreshamediaworks@gmail.com', color: 'hover:border-[#8B0000]/30 text-[#8B0000]' },
     { label: 'Phone', value: '+91 91369 36913', icon: Phone, href: 'tel:+919136936913', color: 'hover:border-[#4A0404]/30 text-[#4A0404]' },
   ];
